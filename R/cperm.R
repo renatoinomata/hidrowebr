@@ -1,9 +1,16 @@
-cperm <- function(dados, posPlot = "weibull"){
+cperm <- function(dados, posPlot = "weibull", pad = NULL){
   if (posPlot != "weibull" & posPlot != "gringorten" & posPlot != "blom" &
       posPlot != "hazen" & posPlot != "cunnane"){
     warning("Fórmula de posição de plotagem inválida. Utilizando a fórmula de
             Weibull.")
     posPlot <- "weibull"
+  }
+  if(is.null(pad) == FALSE){
+    if(pad != "media" & pad != "mediana"){
+      warning("Valor para 'pad' inválido. Não será realizado a
+              padronização das vazões")
+      pad <- NULL
+    }
   }
 
   cPerm <- data.frame()
@@ -27,6 +34,15 @@ cperm <- function(dados, posPlot = "weibull"){
     }
     if(posPlot == "cunnane"){
       aux <- cbind(aux, 100 * (aux[, "Ordem"] - 0.40) / (nrow(aux) + 0.20))
+    }
+    # Curva padronizada
+    if(is.null(pad) == FALSE){
+      if(pad == "media"){
+        aux$Q <- aux$Q / mean(aux$Q)
+      }
+      if(pad == "mediana"){
+        aux$Q <- aux$Q / median(aux$Q)
+      }
     }
 
     names(aux) <- c("Estacao", "Data", "Q", "Ordem", "Freq")
