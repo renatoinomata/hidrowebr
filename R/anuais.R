@@ -40,6 +40,7 @@ maxAnuais <- function(dados, ano_hidro = "01-01", min_dias = 365){
     }
     anuais <- rbind(anuais, data.frame(i, periodo, max_ano))
   }
+  names(anuais) <- c("Estacao", "Periodo", "Maxima")
   return(anuais)
 }
 
@@ -85,6 +86,7 @@ minAnuais <- function(dados, ano_hidro = "01-01"){
     }
     anuais <- rbind(anuais, data.frame(i, periodo, min_ano))
   }
+  names(anuais) <- c("Estacao", "Periodo", "Minima")
   return(anuais)
 }
 
@@ -130,5 +132,6 @@ medAnuais <- function(dados, ano_hidro = "01-01"){
     }
     anuais <- rbind(anuais, data.frame(i, periodo, med_ano))
   }
+  names(anuais) <- c("Estacao", "Periodo", "Media")
   return(anuais)
 }
