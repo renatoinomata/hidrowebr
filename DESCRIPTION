@@ -11,4 +11,6 @@ Encoding: UTF-8
 LazyData: true
 Imports: dplyr,
     tidyr,
-    lubridate
+    lubridate,
+    fitdistrplus,
+    FAdist
