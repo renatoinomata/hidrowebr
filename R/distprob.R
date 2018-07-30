@@ -55,6 +55,56 @@ distprob <- function(valores, dist, prob){
     nomesDist <- c(nomesDist,"gumbel")
   }
 
+  if(any(dist == "weibull")){
+    fit <- fitdistrplus::fitdist(valores, "weibull")
+    gof <- fitdistrplus::gofstat(fit, fitnames = "weibull")
+    estimado <- qweibull(prob, shape = coef(fit)[1],
+                      scale = coef(fit)[2])
+    coefs <- list(as.numeric(coef(fit)[1]), as.numeric(coef(fit)[2]))
+    names(coefs) <- c("shape", "scale")
+    KS <- as.numeric(gof$ks)
+    weibull <- list(coefs, KS, estimado)
+    names(weibull) <- c("coefs", "KS", "estimado")
+    distribuicao[["weibull"]] <- weibull
+    nomesDist <- c(nomesDist,"weibull")
+  }
+
+  if(any(dist == "pearson3")){
+    dpearson3 <- FAdist::dgamma3
+    ppearson3 <- FAdist::pgamma3
+    qpearson3 <- FAdist::qgamma3
+    fit <- fitdistrplus::fitdist(valores, "pearson3",
+                                 start=list(shape=10, scale=10))
+    gof <- fitdistrplus::gofstat(fit, fitnames = "pearson3")
+    estimado <- FAdist::qgamma3(prob, shape = coef(fit)[1],
+                                scale = coef(fit)[2])
+    coefs <- list(as.numeric(coef(fit)[1]), as.numeric(coef(fit)[2]))
+    names(coefs) <- c("shape", "scale")
+    KS <- as.numeric(gof$ks)
+    pearson3 <- list(coefs, KS, as.numeric(estimado))
+    names(pearson3) <- c("coefs", "KS", "estimado")
+    distribuicao[["pearson3"]] <- pearson3
+    nomesDist <- c(nomesDist, "pearson3")
+  }
+
+  if(any(dist == "logpear3")){
+    dlogpear3 <- FAdist::dlgamma3
+    plogpear3 <- FAdist::plgamma3
+    qlogpear3 <- FAdist::qlgamma3
+    fit <- fitdistrplus::fitdist(valores, "logpear3",
+                                 start=list(shape=10, scale=10))
+    gof <- fitdistrplus::gofstat(fit, fitnames = "logpear3")
+    estimado <- FAdist::qlgamma3(prob, shape = coef(fit)[1],
+                                scale = coef(fit)[2])
+    coefs <- list(as.numeric(coef(fit)[1]), as.numeric(coef(fit)[2]))
+    names(coefs) <- c("shape", "scale")
+    KS <- as.numeric(gof$ks)
+    logpear3 <- list(coefs, KS, as.numeric(estimado))
+    names(logpear3) <- c("coefs", "KS", "estimado")
+    distribuicao[["logpear3"]] <- logpear3
+    nomesDist <- c(nomesDist, "logpear3")
+  }
+
   names(distribuicao) <- nomesDist
   return(distribuicao)
 }
