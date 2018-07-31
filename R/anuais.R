@@ -1,4 +1,4 @@
-maxAnuais <- function(dados, ano_hidro = "01-01", min_dias = 365){
+maxAnuais <- function(dados, ano_hidro = "01-01"){
   anuais <- data.frame()
   for(i in unique(dados$Estacao)){
     # Criando os intervalos de datas
@@ -13,29 +13,16 @@ maxAnuais <- function(dados, ano_hidro = "01-01", min_dias = 365){
     for(j in 1:nrow(datas)){
       auxAno <- dplyr::filter(auxEst, Data >= datas$inicio[j] &
                                 Data <= datas$fim[j])
-      # Caso o ano tenha menos observações do que o especificado por min_dias
-      if(nrow(auxAno) < min_dias){
-        warning(paste("Período de", datas$inicio[j], "a", datas$fim[j],
-                      "não possui dados para todos os dias do ano."))
-        periodo <- rbind(periodo,
-                         ifelse(ano_hidro != "01-01",
-                                paste0(lubridate::year(datas$inicio[j]),
-                                       "-",
-                                       lubridate::year(datas$fim[j])),
-                                lubridate::year(datas$inicio[j])))
-        max_ano <- rbind(max_ano, NA)
+      periodo <- rbind(periodo,
+                       ifelse(ano_hidro != "01-01",
+                              paste0(lubridate::year(datas$inicio[j]),
+                                     "-",
+                                     lubridate::year(datas$fim[j])),
+                              lubridate::year(datas$inicio[j])))
+      if(any(colnames(dados) == "Q")){
+        max_ano <- rbind(max_ano, max(auxAno$Q))
       } else {
-        periodo <- rbind(periodo,
-                         ifelse(ano_hidro != "01-01",
-                                paste0(lubridate::year(datas$inicio[j]),
-                                       "-",
-                                       lubridate::year(datas$fim[j])),
-                                lubridate::year(datas$inicio[j])))
-        if(any(colnames(dados) == "Q")){
-          max_ano <- rbind(max_ano, max(auxAno$Q))
-        } else {
-          max_ano <- rbind(max_ano, max(auxAno$P))
-        }
+        max_ano <- rbind(max_ano, max(auxAno$P))
       }
     }
     anuais <- rbind(anuais, data.frame(i, periodo, max_ano))
@@ -59,29 +46,16 @@ minAnuais <- function(dados, ano_hidro = "01-01"){
     for(j in 1:nrow(datas)){
       auxAno <- dplyr::filter(auxEst, Data >= datas$inicio[j] &
                                 Data <= datas$fim[j])
-      # Caso o ano tenha menos observações do que o especificado por min_dias
-      if(nrow(auxAno) < min_dias){
-        warning(paste("Período de", datas$inicio[j], "a", datas$fim[j],
-                      "não possui dados para todos os dias do ano."))
-        periodo <- rbind(periodo,
-                         ifelse(ano_hidro != "01-01",
-                                paste0(lubridate::year(datas$inicio[j]),
-                                       "-",
-                                       lubridate::year(datas$fim[j])),
-                                lubridate::year(datas$inicio[j])))
-        min_ano <- rbind(min_ano, NA)
+      periodo <- rbind(periodo,
+                       ifelse(ano_hidro != "01-01",
+                              paste0(lubridate::year(datas$inicio[j]),
+                                     "-",
+                                     lubridate::year(datas$fim[j])),
+                              lubridate::year(datas$inicio[j])))
+      if(any(colnames(dados) == "Q")){
+        min_ano <- rbind(min_ano, min(auxAno$Q))
       } else {
-        periodo <- rbind(periodo,
-                         ifelse(ano_hidro != "01-01",
-                                paste0(lubridate::year(datas$inicio[j]),
-                                       "-",
-                                       lubridate::year(datas$fim[j])),
-                                lubridate::year(datas$inicio[j])))
-        if(any(colnames(dados) == "Q")){
-          min_ano <- rbind(min_ano, min(auxAno$Q))
-        } else {
-          min_ano <- rbind(min_ano, min(auxAno$P))
-        }
+        min_ano <- rbind(min_ano, min(auxAno$P))
       }
     }
     anuais <- rbind(anuais, data.frame(i, periodo, min_ano))
@@ -105,29 +79,16 @@ medAnuais <- function(dados, ano_hidro = "01-01"){
     for(j in 1:nrow(datas)){
       auxAno <- dplyr::filter(auxEst, Data >= datas$inicio[j] &
                                 Data <= datas$fim[j])
-      # Caso o ano tenha menos observações do que o especificado por min_dias
-      if(nrow(auxAno) < min_dias){
-        warning(paste("Período de", datas$inicio[j], "a", datas$fim[j],
-                      "não possui dados para todos os dias do ano."))
-        periodo <- rbind(periodo,
-                         ifelse(ano_hidro != "01-01",
-                                paste0(lubridate::year(datas$inicio[j]),
-                                       "-",
-                                       lubridate::year(datas$fim[j])),
-                                lubridate::year(datas$inicio[j])))
-        med_ano <- rbind(med_ano, NA)
+      periodo <- rbind(periodo,
+                       ifelse(ano_hidro != "01-01",
+                              paste0(lubridate::year(datas$inicio[j]),
+                                     "-",
+                                     lubridate::year(datas$fim[j])),
+                              lubridate::year(datas$inicio[j])))
+      if(any(colnames(dados) == "Q")){
+        med_ano <- rbind(med_ano, mean(auxAno$Q))
       } else {
-        periodo <- rbind(periodo,
-                         ifelse(ano_hidro != "01-01",
-                                paste0(lubridate::year(datas$inicio[j]),
-                                       "-",
-                                       lubridate::year(datas$fim[j])),
-                                lubridate::year(datas$inicio[j])))
-        if(any(colnames(dados) == "Q")){
-          med_ano <- rbind(med_ano, mean(auxAno$Q))
-        } else {
-          med_ano <- rbind(med_ano, mean(auxAno$P))
-        }
+        med_ano <- rbind(med_ano, mean(auxAno$P))
       }
     }
     anuais <- rbind(anuais, data.frame(i, periodo, med_ano))
