@@ -6,6 +6,7 @@ descartar <- function(dados, falhas = 5, modo = "anual"){
     est <- unique(dados$Estacao)
   for(i in est){
       auxEst <- dplyr::filter(dados, Estacao == i)
+
       # Para descartar por ano
       if(modo == "anual"){
         anos  <- unique(lubridate::year(auxEst$Data))
@@ -36,20 +37,20 @@ descartar <- function(dados, falhas = 5, modo = "anual"){
           }
         }
         aux$ndias <- aux$ndias - 1
-        aux$ndias <- lubridate::day(aux$ndias)
+        aux$ndias <- as.numeric(lubridate::day(aux$ndias))
         aux$mindias <- aux$ndias - floor(aux$ndias * falhas / 100)
-        falhas <- aux[which(aux$mindias > aux$obs), ]
-        falhas$inicio <- as.Date(paste0(falhas$ano, "-",
-                                      falhas$mes, "-",
+        falhas_datas <- aux[which(aux$mindias > aux$obs), ]
+        falhas_datas$inicio <- as.Date(paste0(falhas_datas$ano, "-",
+                                              falhas_datas$mes, "-",
                                       "01"),
                                "%Y-%m-%d")
-        falhas$fim <- as.Date(paste0(falhas$ano, "-",
-                                   falhas$mes, "-",
-                                   falhas$ndias),
+        falhas_datas$fim <- as.Date(paste0(falhas_datas$ano, "-",
+                                    falhas_datas$mes, "-",
+                                    falhas_datas$ndias),
                             "%Y-%m-%d")
-        for(j in 1:nrow(falhas)){
-          auxEst <- dplyr::filter(auxEst, Data < falhas[j, "inicio"] |
-                                     Data > falhas[j, "fim"])
+        for(j in 1:nrow(falhas_datas)){
+          auxEst <- dplyr::filter(auxEst, Data < falhas_datas[j, "inicio"] |
+                                    Data > falhas_datas[j, "fim"])
         }
         dadosAux <- rbind(dadosAux, auxEst)
       }
