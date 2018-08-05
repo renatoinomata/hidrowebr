@@ -10,7 +10,7 @@ descartar <- function(dados, falhas = 5, modo = "anual"){
       # Para descartar por ano
       if(modo == "anual"){
         anos  <- unique(lubridate::year(auxEst$Data))
-        ndias <- 365 - floor(falhas / 100 * 365)
+        ndias <- 365 - ceiling(falhas / 100 * 365)
         for(j in anos) {
           aux <- dplyr::filter(auxEst, lubridate::year(Data) == j)
           if(nrow(aux) < ndias){
@@ -38,7 +38,7 @@ descartar <- function(dados, falhas = 5, modo = "anual"){
         }
         aux$ndias <- aux$ndias - 1
         aux$ndias <- as.numeric(lubridate::day(aux$ndias))
-        aux$mindias <- aux$ndias - floor(aux$ndias * falhas / 100)
+        aux$mindias <- aux$ndias - ceiling(aux$ndias * falhas / 100)
         falhas_datas <- aux[which(aux$mindias > aux$obs), ]
         falhas_datas$inicio <- as.Date(paste0(falhas_datas$ano, "-",
                                               falhas_datas$mes, "-",
