@@ -20,5 +20,6 @@ organizar <- function(dados){
       dados <- rbind(dados, dados_aux)
     }
   }
+  dados$Estacao <- as.factor(dados$Estacao)
   return(dados)
 }
