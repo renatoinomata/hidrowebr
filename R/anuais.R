@@ -6,21 +6,21 @@ maxAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
     # Criando os intervalos de datas
     auxEst <- dplyr::filter(dados, Estacao == i)
     anos <- unique(lubridate::year(auxEst$Data))
-    datas <- as.Date(paste0(ano_hidro,"-",anos), "%d-%m-%Y")
-    datas <- data.frame(datas, datas + lubridate::years(1) - 1)
-    colnames(datas) <- c("inicio", "fim")
+    datasAux <- as.Date(paste0(ano_hidro,"-",anos), "%d-%m-%Y")
+    datasAux <- data.frame(datasAux, datasAux + lubridate::years(1) - 1)
+    colnames(datasAux) <- c("inicio", "fim")
     # Criando os valores máximos e períodos
     max_ano <- c()
     periodo <- c()
-    for(j in 1:nrow(datas)){
-      auxAno <- dplyr::filter(auxEst, Data >= datas$inicio[j] &
-                                Data <= datas$fim[j])
+    for(j in 1:nrow(datasAux)){
+      auxAno <- dplyr::filter(auxEst, Data >= datasAux$inicio[j] &
+                                Data <= datasAux$fim[j])
       periodo <- rbind(periodo,
                        ifelse(ano_hidro != "01-01",
-                              paste0(lubridate::year(datas$inicio[j]),
+                              paste0(lubridate::year(datasAux$inicio[j]),
                                      "-",
-                                     lubridate::year(datas$fim[j])),
-                              lubridate::year(datas$inicio[j])))
+                                     lubridate::year(datasAux$fim[j])),
+                              lubridate::year(datasAux$inicio[j])))
       if (nrow(auxAno) != 0){
         max_ano <- rbind(max_ano, max(auxAno$Valores))
       } else {
@@ -41,21 +41,21 @@ minAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
     # Criando os intervalos de datas
     auxEst <- dplyr::filter(dados, Estacao == i)
     anos <- unique(lubridate::year(auxEst$Data))
-    datas <- as.Date(paste0(ano_hidro,"-",anos), "%d-%m-%Y")
-    datas <- data.frame(datas, datas + lubridate::years(1) - 1)
-    colnames(datas) <- c("inicio", "fim")
+    datasAux <- as.Date(paste0(ano_hidro,"-",anos), "%d-%m-%Y")
+    datasAux <- data.frame(datasAux, datasAux + lubridate::years(1) - 1)
+    colnames(datasAux) <- c("inicio", "fim")
     # Criando os valores máximos e períodos
     min_ano <- c()
     periodo <- c()
-    for(j in 1:nrow(datas)){
-      auxAno <- dplyr::filter(auxEst, Data >= datas$inicio[j] &
-                                Data <= datas$fim[j])
+    for(j in 1:nrow(datasAux)){
+      auxAno <- dplyr::filter(auxEst, Data >= datasAux$inicio[j] &
+                                Data <= datasAux$fim[j])
       periodo <- rbind(periodo,
                        ifelse(ano_hidro != "01-01",
-                              paste0(lubridate::year(datas$inicio[j]),
+                              paste0(lubridate::year(datasAux$inicio[j]),
                                      "-",
-                                     lubridate::year(datas$fim[j])),
-                              lubridate::year(datas$inicio[j])))
+                                     lubridate::year(datasAux$fim[j])),
+                              lubridate::year(datasAux$inicio[j])))
       if (nrow(auxAno) != 0){
         min_ano <- rbind(min_ano, min(auxAno$Valores))
       } else {
@@ -76,21 +76,21 @@ medAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
     # Criando os intervalos de datas
     auxEst <- dplyr::filter(dados, Estacao == i)
     anos <- unique(lubridate::year(auxEst$Data))
-    datas <- as.Date(paste0(ano_hidro,"-",anos), "%d-%m-%Y")
-    datas <- data.frame(datas, datas + lubridate::years(1) - 1)
-    colnames(datas) <- c("inicio", "fim")
+    datasAux <- as.Date(paste0(ano_hidro,"-",anos), "%d-%m-%Y")
+    datasAux <- data.frame(datasAux, datasAux + lubridate::years(1) - 1)
+    colnames(datasAux) <- c("inicio", "fim")
     # Criando os valores máximos e períodos
     med_ano <- c()
     periodo <- c()
-    for(j in 1:nrow(datas)){
-      auxAno <- dplyr::filter(auxEst, Data >= datas$inicio[j] &
-                                Data <= datas$fim[j])
+    for(j in 1:nrow(datasAux)){
+      auxAno <- dplyr::filter(auxEst, Data >= datasAux$inicio[j] &
+                                Data <= datasAux$fim[j])
       periodo <- rbind(periodo,
                        ifelse(ano_hidro != "01-01",
-                              paste0(lubridate::year(datas$inicio[j]),
+                              paste0(lubridate::year(datasAux$inicio[j]),
                                      "-",
-                                     lubridate::year(datas$fim[j])),
-                              lubridate::year(datas$inicio[j])))
+                                     lubridate::year(datasAux$fim[j])),
+                              lubridate::year(datasAux$inicio[j])))
       if (nrow(auxAno) != 0){
         med_ano <- rbind(med_ano, mean(auxAno$Valores))
       } else {
