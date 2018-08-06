@@ -13,4 +13,5 @@ Imports: dplyr,
     tidyr,
     lubridate,
     fitdistrplus,
+    zoo,
     FAdist
