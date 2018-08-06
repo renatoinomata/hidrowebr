@@ -1,20 +1,20 @@
 importar <- function(txt){
-  # VerificaÃ§Ã£o do tipo de arquivo
+  # Verificação do tipo de arquivo
   if(is.character(txt) == FALSE){
-    warning("VariÃ¡vel nÃ£o Ã© do tipo chr", call. = FALSE)
+    warning("Variável não é do tipo chr", call. = FALSE)
   } else {
-    # VerificaÃ§Ã£o da existÃªncia dos arquivos
+    # Verificação da existência dos arquivos
     remove_txt <- c()
     for(i in 1:length(txt)){
       if(file.exists(txt[i]) == FALSE){
-        warning(paste0("Arquivo '", txt[i], "' nÃ£o existe"))
+        warning(paste0("Arquivo '", txt[i], "' não existe"))
         remove_txt <- c(remove_txt, i)
       }
     }
     if(is.null(remove_txt) == FALSE){
       txt <- txt[-remove_txt]
     }
-      # ImportaÃ§Ã£o dos dados
+      # Importação dos dados
       dados <- data.frame()
       for(i in 1:length(txt)){
         dados_aux <- read.table(txt[i],
