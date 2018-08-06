@@ -7,7 +7,7 @@ maxAnuais <- function(dados, ano_hidro = "01-01"){
     datas <- as.Date(paste0(ano_hidro,"-",anos), "%d-%m-%Y")
     datas <- data.frame(datas, datas + lubridate::years(1) - 1)
     colnames(datas) <- c("inicio", "fim")
-    # Criando os valores mÃ¡ximos e perÃ­odos
+    # Criando os valores máximos e períodos
     max_ano <- c()
     periodo <- c()
     for(j in 1:nrow(datas)){
@@ -19,10 +19,14 @@ maxAnuais <- function(dados, ano_hidro = "01-01"){
                                      "-",
                                      lubridate::year(datas$fim[j])),
                               lubridate::year(datas$inicio[j])))
-      if(any(colnames(dados) == "Q")){
-        max_ano <- rbind(max_ano, max(auxAno$Q))
+      if (nrow(auxAno) != 0){
+        if(any(colnames(dados) == "Q")){
+          max_ano <- rbind(max_ano, max(auxAno$Q))
+        } else {
+          max_ano <- rbind(max_ano, max(auxAno$P))
+        }
       } else {
-        max_ano <- rbind(max_ano, max(auxAno$P))
+        max_ano <- rbind(max_ano, NA)
       }
     }
     anuais <- rbind(anuais, data.frame(i, periodo, max_ano))
@@ -40,7 +44,7 @@ minAnuais <- function(dados, ano_hidro = "01-01"){
     datas <- as.Date(paste0(ano_hidro,"-",anos), "%d-%m-%Y")
     datas <- data.frame(datas, datas + lubridate::years(1) - 1)
     colnames(datas) <- c("inicio", "fim")
-    # Criando os valores mÃ¡ximos e perÃ­odos
+    # Criando os valores máximos e períodos
     min_ano <- c()
     periodo <- c()
     for(j in 1:nrow(datas)){
@@ -52,10 +56,14 @@ minAnuais <- function(dados, ano_hidro = "01-01"){
                                      "-",
                                      lubridate::year(datas$fim[j])),
                               lubridate::year(datas$inicio[j])))
-      if(any(colnames(dados) == "Q")){
-        min_ano <- rbind(min_ano, min(auxAno$Q))
+      if (nrow(auxAno) != 0){
+        if(any(colnames(dados) == "Q")){
+          min_ano <- rbind(min_ano, min(auxAno$Q))
+        } else {
+          min_ano <- rbind(min_ano, min(auxAno$P))
+        }
       } else {
-        min_ano <- rbind(min_ano, min(auxAno$P))
+        min_ano <- rbind(min_ano, NA)
       }
     }
     anuais <- rbind(anuais, data.frame(i, periodo, min_ano))
@@ -73,7 +81,7 @@ medAnuais <- function(dados, ano_hidro = "01-01"){
     datas <- as.Date(paste0(ano_hidro,"-",anos), "%d-%m-%Y")
     datas <- data.frame(datas, datas + lubridate::years(1) - 1)
     colnames(datas) <- c("inicio", "fim")
-    # Criando os valores mÃ¡ximos e perÃ­odos
+    # Criando os valores máximos e períodos
     med_ano <- c()
     periodo <- c()
     for(j in 1:nrow(datas)){
@@ -85,10 +93,14 @@ medAnuais <- function(dados, ano_hidro = "01-01"){
                                      "-",
                                      lubridate::year(datas$fim[j])),
                               lubridate::year(datas$inicio[j])))
-      if(any(colnames(dados) == "Q")){
-        med_ano <- rbind(med_ano, mean(auxAno$Q))
+      if (nrow(auxAno) != 0){
+        if(any(colnames(dados) == "Q")){
+          med_ano <- rbind(med_ano, mean(auxAno$Q))
+        } else {
+          med_ano <- rbind(med_ano, mean(auxAno$P))
+        }
       } else {
-        med_ano <- rbind(med_ano, mean(auxAno$P))
+        med_ano <- rbind(med_ano, NA)
       }
     }
     anuais <- rbind(anuais, data.frame(i, periodo, med_ano))
