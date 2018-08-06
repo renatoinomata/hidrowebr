@@ -1,4 +1,6 @@
-maxAnuais <- function(dados, ano_hidro = "01-01"){
+maxAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
+  dados <- data.frame(estacoes, datas, valores)
+  colnames(dados) <- c("Estacao", "Data", "Valores")
   anuais <- data.frame()
   for(i in unique(dados$Estacao)){
     # Criando os intervalos de datas
@@ -20,11 +22,7 @@ maxAnuais <- function(dados, ano_hidro = "01-01"){
                                      lubridate::year(datas$fim[j])),
                               lubridate::year(datas$inicio[j])))
       if (nrow(auxAno) != 0){
-        if(any(colnames(dados) == "Q")){
-          max_ano <- rbind(max_ano, max(auxAno$Q))
-        } else {
-          max_ano <- rbind(max_ano, max(auxAno$P))
-        }
+        max_ano <- rbind(max_ano, max(auxAno$Valores))
       } else {
         max_ano <- rbind(max_ano, NA)
       }
@@ -35,7 +33,9 @@ maxAnuais <- function(dados, ano_hidro = "01-01"){
   return(anuais)
 }
 
-minAnuais <- function(dados, ano_hidro = "01-01"){
+minAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
+  dados <- data.frame(estacoes, datas, valores)
+  colnames(dados) <- c("Estacao", "Data", "Valores")
   anuais <- data.frame()
   for(i in unique(dados$Estacao)){
     # Criando os intervalos de datas
@@ -57,11 +57,7 @@ minAnuais <- function(dados, ano_hidro = "01-01"){
                                      lubridate::year(datas$fim[j])),
                               lubridate::year(datas$inicio[j])))
       if (nrow(auxAno) != 0){
-        if(any(colnames(dados) == "Q")){
-          min_ano <- rbind(min_ano, min(auxAno$Q))
-        } else {
-          min_ano <- rbind(min_ano, min(auxAno$P))
-        }
+        min_ano <- rbind(min_ano, min(auxAno$Valores))
       } else {
         min_ano <- rbind(min_ano, NA)
       }
@@ -72,7 +68,9 @@ minAnuais <- function(dados, ano_hidro = "01-01"){
   return(anuais)
 }
 
-medAnuais <- function(dados, ano_hidro = "01-01"){
+medAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
+  dados <- data.frame(estacoes, datas, valores)
+  colnames(dados) <- c("Estacao", "Data", "Valores")
   anuais <- data.frame()
   for(i in unique(dados$Estacao)){
     # Criando os intervalos de datas
@@ -94,11 +92,7 @@ medAnuais <- function(dados, ano_hidro = "01-01"){
                                      lubridate::year(datas$fim[j])),
                               lubridate::year(datas$inicio[j])))
       if (nrow(auxAno) != 0){
-        if(any(colnames(dados) == "Q")){
-          med_ano <- rbind(med_ano, mean(auxAno$Q))
-        } else {
-          med_ano <- rbind(med_ano, mean(auxAno$P))
-        }
+        med_ano <- rbind(med_ano, mean(auxAno$Valores))
       } else {
         med_ano <- rbind(med_ano, NA)
       }
