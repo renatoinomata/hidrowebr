@@ -1,14 +1,14 @@
 cperm <- function(dados, posPlot = "weibull", pad = NULL){
   if (posPlot != "weibull" & posPlot != "gringorten" & posPlot != "blom" &
       posPlot != "hazen" & posPlot != "cunnane"){
-    warning("FÃ³rmula de posiÃ§Ã£o de plotagem invÃ¡lida. Utilizando a fÃ³rmula de
+    warning("Fórmula de posição de plotagem inválida. Utilizando a fórmula de
             Weibull.")
     posPlot <- "weibull"
   }
   if(is.null(pad) == FALSE){
     if(pad != "media" & pad != "mediana"){
-      warning("Valor para 'pad' invÃ¡lido. NÃ£o serÃ¡ realizado a
-              padronizaÃ§Ã£o das vazÃµes")
+      warning("Valor para 'pad' inválido. Não será realizado a
+              padronização das vazÃµes")
       pad <- NULL
     }
   }
@@ -19,7 +19,7 @@ cperm <- function(dados, posPlot = "weibull", pad = NULL){
     aux <- dplyr::arrange(aux, desc(Q))
     Ordem <- 1:nrow(aux)
     aux <- cbind(aux, Ordem)
-    # CÃ¡lculo da frequÃªncia
+    # Cálculo da frequência
     if(posPlot == "weibull"){
       aux <- cbind(aux, 100 * aux[, "Ordem"] / (nrow(aux) + 1))
     }
