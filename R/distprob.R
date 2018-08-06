@@ -1,7 +1,7 @@
 distprob <- function(valores, dist, prob){
   if(all(dist != c("norm", "lnorm", "gumbel",
                    "weibull", "pearson3", "logpear3"))){
-    stop("Valores incorretos para o parÃ¢metro dist")
+    stop("Valores incorretos para o parâmetro dist")
   }
 
   valores <- valores[!is.na(valores)]
