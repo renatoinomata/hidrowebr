@@ -1,4 +1,8 @@
 maxAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
+  if (is.na(as.Date(paste0(ano_hidro, "-", 2000), "%d-%m-%Y"))){
+    warning("Data para ano hidrológico inválida.")
+    ano_hidro <- "01-01"
+  }
   dados <- data.frame(estacoes, datas, valores)
   colnames(dados) <- c("Estacao", "Data", "Valores")
   anuais <- data.frame()
@@ -34,6 +38,10 @@ maxAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
 }
 
 minAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
+  if (is.na(as.Date(paste0(ano_hidro, "-", 2000), "%d-%m-%Y"))){
+    warning("Data para ano hidrológico inválida.")
+    ano_hidro <- "01-01"
+  }
   dados <- data.frame(estacoes, datas, valores)
   colnames(dados) <- c("Estacao", "Data", "Valores")
   anuais <- data.frame()
@@ -69,6 +77,10 @@ minAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
 }
 
 medAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
+  if (is.na(as.Date(paste0(ano_hidro, "-", 2000), "%d-%m-%Y"))){
+    warning("Data para ano hidrológico inválida.")
+    ano_hidro <- "01-01"
+  }
   dados <- data.frame(estacoes, datas, valores)
   colnames(dados) <- c("Estacao", "Data", "Valores")
   anuais <- data.frame()
