@@ -38,10 +38,10 @@ cperm <- function(dados, posPlot = "weibull", pad = NULL){
     # Curva padronizada
     if(is.null(pad) == FALSE){
       if(pad == "media"){
-        aux$Q <- aux$Q / mean(aux$Q)
+        aux$Q <- aux$Q / mean(aux$Q) * 100
       }
       if(pad == "mediana"){
-        aux$Q <- aux$Q / median(aux$Q)
+        aux$Q <- aux$Q / median(aux$Q) * 100
       }
     }
 
