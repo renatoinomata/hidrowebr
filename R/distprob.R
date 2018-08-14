@@ -1,8 +1,13 @@
 distprob <- function(valores, dist, prob){
-  if(all(dist != c("norm", "lnorm", "gumbel",
-                   "weibull", "pearson3", "logpear3"))){
-    stop("Valores incorretos para o parâmetro dist")
+  for (i in 1:length(dist)){
+    if(all(dist[i] != c("norm", "lnorm", "gumbel", "weibull", "gamma3", "lgamma3")))
+      stop("Valores incorretos para o parâmetro dist")
   }
+
+  if (any(dist == "gumbel") || any(dist == "gamma3") || any(dist == "lgamma3"))
+    if("package:FAdist" %in% search() == FALSE)
+      stop("Algumas distribuições escolhidas requerem o pacote FAdist carregado.")
+
 
   valores <- valores[!is.na(valores)]
 
@@ -38,14 +43,11 @@ distprob <- function(valores, dist, prob){
   }
 
   if(any(dist == "gumbel")){
-    dgumbel <- FAdist::dgumbel
-    pgumbel <- FAdist::pgumbel
-    qgumbel <- FAdist::qgumbel
     fit <- fitdistrplus::fitdist(valores, "gumbel", start=list(scale=10,
-                                                               location=10))
+                                                                 location=10))
     gof <- fitdistrplus::gofstat(fit, fitnames = "gumbel")
     estimado <- FAdist::qgumbel(prob, scale = coef(fit)[1],
-                       location = coef(fit)[2])
+                                location = coef(fit)[2])
     coefs <- list(as.numeric(coef(fit)[1]), as.numeric(coef(fit)[2]))
     names(coefs) <- c("scale", "location")
     KS <- as.numeric(gof$ks)
@@ -59,7 +61,7 @@ distprob <- function(valores, dist, prob){
     fit <- fitdistrplus::fitdist(valores, "weibull")
     gof <- fitdistrplus::gofstat(fit, fitnames = "weibull")
     estimado <- qweibull(prob, shape = coef(fit)[1],
-                      scale = coef(fit)[2])
+                         scale = coef(fit)[2])
     coefs <- list(as.numeric(coef(fit)[1]), as.numeric(coef(fit)[2]))
     names(coefs) <- c("shape", "scale")
     KS <- as.numeric(gof$ks)
@@ -69,42 +71,56 @@ distprob <- function(valores, dist, prob){
     nomesDist <- c(nomesDist,"weibull")
   }
 
-  if(any(dist == "pearson3")){
-    dpearson3 <- FAdist::dgamma3
-    ppearson3 <- FAdist::pgamma3
-    qpearson3 <- FAdist::qgamma3
-    fit <- fitdistrplus::fitdist(valores, "pearson3",
+  if(any(dist == "gamma3")){
+    fit <- fitdistrplus::fitdist(valores, "gamma3",
                                  start=list(shape=10, scale=10))
-    gof <- fitdistrplus::gofstat(fit, fitnames = "pearson3")
+    gof <- fitdistrplus::gofstat(fit, fitnames = "gamma3")
     estimado <- FAdist::qgamma3(prob, shape = coef(fit)[1],
                                 scale = coef(fit)[2])
     coefs <- list(as.numeric(coef(fit)[1]), as.numeric(coef(fit)[2]))
     names(coefs) <- c("shape", "scale")
     KS <- as.numeric(gof$ks)
-    pearson3 <- list(coefs, KS, as.numeric(estimado))
-    names(pearson3) <- c("coefs", "KS", "estimado")
-    distribuicao[["pearson3"]] <- pearson3
-    nomesDist <- c(nomesDist, "pearson3")
+    gamma3 <- list(coefs, KS, as.numeric(estimado))
+    names(gamma3) <- c("coefs", "KS", "estimado")
+    distribuicao[["gamma3"]] <- gamma3
+    nomesDist <- c(nomesDist, "gamma3")
   }
 
-  if(any(dist == "logpear3")){
-    dlogpear3 <- FAdist::dlgamma3
-    plogpear3 <- FAdist::plgamma3
-    qlogpear3 <- FAdist::qlgamma3
-    fit <- fitdistrplus::fitdist(valores, "logpear3",
+  if(any(dist == "lgamma3")){
+    fit <- fitdistrplus::fitdist(valores, "lgamma3",
                                  start=list(shape=10, scale=10))
-    gof <- fitdistrplus::gofstat(fit, fitnames = "logpear3")
+    gof <- fitdistrplus::gofstat(fit, fitnames = "lgamma3")
     estimado <- FAdist::qlgamma3(prob, shape = coef(fit)[1],
-                                scale = coef(fit)[2])
+                                 scale = coef(fit)[2])
     coefs <- list(as.numeric(coef(fit)[1]), as.numeric(coef(fit)[2]))
     names(coefs) <- c("shape", "scale")
     KS <- as.numeric(gof$ks)
-    logpear3 <- list(coefs, KS, as.numeric(estimado))
-    names(logpear3) <- c("coefs", "KS", "estimado")
-    distribuicao[["logpear3"]] <- logpear3
-    nomesDist <- c(nomesDist, "logpear3")
+    lgamma3 <- list(coefs, KS, as.numeric(estimado))
+    names(lgamma3) <- c("coefs", "KS", "estimado")
+    distribuicao[["lgamma3"]] <- lgamma3
+    nomesDist <- c(nomesDist, "lgamma3")
   }
 
   names(distribuicao) <- nomesDist
+  class(distribuicao) <- c("distprob.hidrowebr", "distprob")
   return(distribuicao)
+}
+
+print.distprob.hidrowebr <- function(x, ...){
+  if (!inherits(x, "distprob.hidrowebr"))
+    stop("Use somente com objetos 'distprob.hidrowebr'.")
+  numDist <- length(x)
+  namesDist <- names(x)
+  KS <- c()
+  estimado <- c()
+  for(i in 1:numDist){
+    KS <- c(KS, x[[i]]$KS)
+    estimado <- c(estimado, x[[i]]$estimado)
+  }
+  names(KS) <- namesDist
+  names(estimado) <- namesDist
+  cat("Teste Kolmogorov-Smirnov\n")
+  print(KS)
+  cat("\nValores estimados\n")
+  print(estimado)
 }
