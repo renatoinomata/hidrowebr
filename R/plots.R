@@ -92,8 +92,76 @@ plot.histograma <- function(valores, estacoes, tipo = "Q", colunas = 10){
   return(Plot)
 }
 
-# plot.dist <- function(valores, estacoes, dist){
-#   dados <- data.frame(estacoes, valores)
-#   fitnorm <- fitdistrplus::fitdist(valores, "norm")
-#   dados$norm <-
-# }
+plot.dist <- function(valores, dist, tipo = "Q"){
+  for (i in 1:length(dist)){
+    if(all(dist[i] != c("norm", "lnorm", "gumbel", "weibull", "gamma3", "lgamma3")))
+      stop("Valores incorretos para o parâmetro dist")
+  }
+
+  distr <- list()
+  i <- 1
+
+  if(any(dist == "norm")){
+    distr[[i]] <- fitdistrplus::fitdist(valores, "norm")
+    i <- i + 1
+  }
+
+  if(any(dist == "lnorm")){
+    distr[[i]] <- fitdistrplus::fitdist(valores, "lnorm")
+    i <- i + 1
+  }
+
+  if(any(dist == "gumbel")){
+    distr[[i]] <- fitdistrplus::fitdist(valores, "gumbel",
+                                        start = c(scale = 1, location = 0))
+    i <- i + 1
+  }
+
+  if(any(dist == "weibull")){
+    distr[[i]] <- fitdistrplus::fitdist(valores, "weibull")
+    i <- i + 1
+  }
+
+  if(any(dist == "gamma3")){
+    distr[[i]] <- fitdistrplus::fitdist(valores, "gamma3",
+                                        start = c(shape = 2, scale = 2))
+    i <- i + 1
+  }
+
+  if(any(dist == "lgamma3")){
+    distr[[i]] <- fitdistrplus::fitdist(valores, "lgamma3",
+                                      start = c(shape = 1, scale = 1))
+    i <- i + 1
+  }
+
+  densPlot <- fitdistrplus::denscomp(distr, legendtext = dist,
+                                     plotstyle = "ggplot") +
+    ggplot2::theme_bw() +
+    ggplot2::labs(title = "Histograma e densidades teóricas") +
+    ggplot2::ylab("Densidade")
+
+  if(tipo == "Q")
+    densPlot <- densPlot + ggplot2::xlab("Q (m³/s)")
+  if(tipo == "P")
+    densPlot <- densPlot + ggplot2::xlab("P (mm)")
+
+  cdfPlot <- fitdistrplus::cdfcomp(distr, legendtext = dist,
+                                   plotstyle = "ggplot") +
+    ggplot2::theme_bw() +
+    ggplot2::labs(title = "Funções de probabilidades empíricas e teóricas") +
+    ggplot2::ylab("Probabilidade")
+
+  if(tipo == "Q")
+    cdfPlot <- cdfPlot + ggplot2::xlab("Q (m³/s)")
+  if(tipo == "P")
+    cdfPlot <- cdfPlot + ggplot2::xlab("P (mm)")
+
+  Plot <- list(densPlot, cdfPlot)
+
+  grid::grid.newpage()
+  grid::pushViewport(grid::viewport(layout = grid::grid.layout(1, 2)))
+  print(Plot[[1]], vp = grid::viewport(layout.pos.row = 1, layout.pos.col = 1))
+  print(Plot[[2]], vp = grid::viewport(layout.pos.row = 1, layout.pos.col = 2))
+
+  # return(Plot)
+}
