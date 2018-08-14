@@ -98,6 +98,10 @@ plot.dist <- function(valores, dist, tipo = "Q"){
       stop("Valores incorretos para o parâmetro dist")
   }
 
+  if (any(dist == "gumbel") || any(dist == "gamma3") || any(dist == "lgamma3"))
+    if("package:FAdist" %in% search() == FALSE)
+      stop("Algumas distribuições escolhidas requerem o pacote FAdist carregado.")
+
   distr <- list()
   i <- 1
 
@@ -162,6 +166,4 @@ plot.dist <- function(valores, dist, tipo = "Q"){
   grid::pushViewport(grid::viewport(layout = grid::grid.layout(1, 2)))
   print(Plot[[1]], vp = grid::viewport(layout.pos.row = 1, layout.pos.col = 1))
   print(Plot[[2]], vp = grid::viewport(layout.pos.row = 1, layout.pos.col = 2))
-
-  # return(Plot)
 }
