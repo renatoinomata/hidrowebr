@@ -1,12 +1,21 @@
+#' Função para ajuste de distribuições de probabilidades e
+#' estimação de parâmetros.
+#'
+#' @param valores Um vetor numérico com os valores a serem ajustados.
+#' @param dist Um vetor de caracteres com os nomes das distribuições de
+#' probabilidade a serem utilizadas.
+#' @param prob Um valor numérico, correspondente à probabilidade a qual o
+#' parâmetro (vazão ou precipitação) será estimado.
+
 distprob <- function(valores, dist, prob){
   for (i in 1:length(dist)){
     if(all(dist[i] != c("norm", "lnorm", "gumbel", "weibull", "gamma3", "lgamma3")))
-      stop("Valores incorretos para o par�metro dist")
+      stop("Valores incorretos para o parâmetro dist")
   }
 
   if (any(dist == "gumbel") || any(dist == "gamma3") || any(dist == "lgamma3"))
     if("package:FAdist" %in% search() == FALSE)
-      stop("Algumas distribui��es escolhidas requerem o pacote FAdist carregado.")
+      stop("Algumas distribuições escolhidas requerem o pacote FAdist carregado.")
 
 
   valores <- valores[!is.na(valores)]
