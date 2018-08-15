@@ -1,6 +1,6 @@
 maxAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
   if (is.na(as.Date(paste0(ano_hidro, "-", 2000), "%d-%m-%Y"))){
-    warning("Data para ano hidrológico inválida.")
+    warning("Data para ano hidrolÃ³gico invÃ¡lida.")
     ano_hidro <- "01-01"
   }
   dados <- data.frame(estacoes, datas, valores)
@@ -13,7 +13,7 @@ maxAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
     datasAux <- as.Date(paste0(ano_hidro,"-",anos), "%d-%m-%Y")
     datasAux <- data.frame(datasAux, datasAux + lubridate::years(1) - 1)
     colnames(datasAux) <- c("inicio", "fim")
-    # Criando os valores máximos e períodos
+    # Criando os valores mÃ¡ximos e perÃ­odos
     max_ano <- c()
     periodo <- c()
     for(j in 1:nrow(datasAux)){
@@ -39,7 +39,7 @@ maxAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
 
 minAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
   if (is.na(as.Date(paste0(ano_hidro, "-", 2000), "%d-%m-%Y"))){
-    warning("Data para ano hidrológico inválida.")
+    warning("Data para ano hidrolÃ³gico invÃ¡lida.")
     ano_hidro <- "01-01"
   }
   dados <- data.frame(estacoes, datas, valores)
@@ -52,7 +52,7 @@ minAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
     datasAux <- as.Date(paste0(ano_hidro,"-",anos), "%d-%m-%Y")
     datasAux <- data.frame(datasAux, datasAux + lubridate::years(1) - 1)
     colnames(datasAux) <- c("inicio", "fim")
-    # Criando os valores máximos e períodos
+    # Criando os valores mÃ¡ximos e perÃ­odos
     min_ano <- c()
     periodo <- c()
     for(j in 1:nrow(datasAux)){
@@ -78,7 +78,7 @@ minAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
 
 medAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
   if (is.na(as.Date(paste0(ano_hidro, "-", 2000), "%d-%m-%Y"))){
-    warning("Data para ano hidrológico inválida.")
+    warning("Data para ano hidrolÃ³gico invÃ¡lida.")
     ano_hidro <- "01-01"
   }
   dados <- data.frame(estacoes, datas, valores)
@@ -91,7 +91,7 @@ medAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
     datasAux <- as.Date(paste0(ano_hidro,"-",anos), "%d-%m-%Y")
     datasAux <- data.frame(datasAux, datasAux + lubridate::years(1) - 1)
     colnames(datasAux) <- c("inicio", "fim")
-    # Criando os valores máximos e períodos
+    # Criando os valores mÃ¡ximos e perÃ­odos
     med_ano <- c()
     periodo <- c()
     for(j in 1:nrow(datasAux)){
