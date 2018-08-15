@@ -1,10 +1,10 @@
 plot.hidrograma <- function(valores, datas, estacoes){
   dados <- data.frame(estacoes ,datas, valores)
-  colnames(dados) <- c("Estação", "Data", "Q")
+  colnames(dados) <- c("Estacao", "Data", "Q")
   Plot <- ggplot2::ggplot(dados, ggplot2::aes(x = Data, y = Q)) +
-    ggplot2::geom_line(ggplot2:: aes(color = Estação)) +
+    ggplot2::geom_line(ggplot2:: aes(color = Estacao)) +
     ggplot2::theme_bw() +
-    ggplot2::labs(title = "Hidrograma", x = "Data", y = "Q (m³/s)")
+    ggplot2::labs(title = "Hidrograma", x = "Data", y = "Q (mÂ³/s)")
   return(Plot)
 }
 
@@ -18,8 +18,8 @@ plot.cperm <- function(cperm, pad = FALSE){
                                                                 function(x) 10^x),
                                   labels = scales::trans_format("log10",
                                                                 scales::math_format(10^.x))) +
-      ggplot2::labs(x = "Frequência (%)", y = "Q (m³/s)",
-                    title = paste0("Curva de permanência")) +
+      ggplot2::labs(x = "FrequÃªncia (%)", y = "Q (mÂ³/s)",
+                    title = paste0("Curva de permanÃªncia")) +
       ggplot2::theme_bw() +
       ggplot2::annotation_logticks(sides = "l", scaled = FALSE)
   } else {
@@ -33,8 +33,8 @@ plot.cperm <- function(cperm, pad = FALSE){
                                                               big.mark = ".",
                                                               decimal.mark = ",",
                                                               scientific = FALSE)) +
-      ggplot2::labs(x = "Frequência (%)", y = "Q (%)",
-                    title = paste0("Curva de permanência")) +
+      ggplot2::labs(x = "FrequÃªncia (%)", y = "Q (%)",
+                    title = paste0("Curva de permanÃªncia")) +
       ggplot2::theme_bw() +
       ggplot2::annotation_logticks(sides = "l", scaled = FALSE)
   }
@@ -43,48 +43,48 @@ plot.cperm <- function(cperm, pad = FALSE){
 
 plot.boxplot <- function(valores, estacoes, tipo = "Q"){
   if (tipo != "Q" & tipo != "P"){
-    warning("Valor incorreto para a variável 'tipo'.")
+    warning("Valor incorreto para a variÃ¡vel 'tipo'.")
     tipo <- "Q"
   }
   dados <- data.frame(valores, estacoes)
-  colnames(dados) <- c(tipo, "Estação")
+  colnames(dados) <- c(tipo, "Estacao")
   if(any(colnames(dados) == "Q")){
-    Plot <- ggplot2::ggplot(dados, ggplot2::aes(x = Estação, y = Q)) +
+    Plot <- ggplot2::ggplot(dados, ggplot2::aes(x = Estacao, y = Q)) +
       ggplot2::geom_boxplot() +
       ggplot2::theme_bw() +
-      ggplot2::labs(title = "Boxplot", x = "Estação", y = "Q (m³/s)")
+      ggplot2::labs(title = "Boxplot", x = "Estacao", y = "Q (mÂ³/s)")
   }
   if(any(colnames(dados) == "P")){
-    Plot <- ggplot2::ggplot(dados, ggplot2::aes(x = Estação, y = P)) +
+    Plot <- ggplot2::ggplot(dados, ggplot2::aes(x = Estacao, y = P)) +
       ggplot2::geom_boxplot() +
       ggplot2::theme_bw() +
-      ggplot2::labs(title = "Boxplot", x = "Estação", y = "P (mm)")
+      ggplot2::labs(title = "Boxplot", x = "Estacao", y = "P (mm)")
   }
   return(Plot)
 }
 
 plot.histograma <- function(valores, estacoes, tipo = "Q", colunas = 10){
   if (tipo != "Q" & tipo != "P"){
-    warning("Valor incorreto para a variável 'tipo'.")
+    warning("Valor incorreto para a variÃ¡vel 'tipo'.")
     tipo <- "Q"
   }
   dados <- data.frame(valores, estacoes)
-  colnames(dados) <- c(tipo, "Estação")
-  est <- unique(dados$Estação)
+  colnames(dados) <- c(tipo, "Estacao")
+  est <- unique(dados$Estacao)
   if(any(colnames(dados) == "Q")){
     Plot <- ggplot2::ggplot(dados, ggplot2::aes(x = Q)) +
       ggplot2::geom_histogram(alpha = 1/length(est),
                               position = "identity",
-                              ggplot2::aes(fill = Estação),
+                              ggplot2::aes(fill = Estacao),
                               bins = colunas) +
       ggplot2::theme_bw() +
-      ggplot2::labs(title = "Histograma", x = "Q (m³/s)", y = "n")
+      ggplot2::labs(title = "Histograma", x = "Q (mÂ³/s)", y = "n")
   }
   if(any(colnames(dados) == "P")){
     Plot <- ggplot2::ggplot(dados, ggplot2::aes(x = P)) +
       ggplot2::geom_histogram(alpha = 1/length(est),
                               position = "identity",
-                              ggplot2::aes(fill = Estação),
+                              ggplot2::aes(fill = Estacao),
                               bins = colunas) +
       ggplot2::theme_bw() +
       ggplot2::labs(title = "Histograma", x = "P (mm)", y = "n")
@@ -95,12 +95,12 @@ plot.histograma <- function(valores, estacoes, tipo = "Q", colunas = 10){
 plot.dist <- function(valores, dist, tipo = "Q"){
   for (i in 1:length(dist)){
     if(all(dist[i] != c("norm", "lnorm", "gumbel", "weibull", "gamma3", "lgamma3")))
-      stop("Valores incorretos para o parâmetro dist")
+      stop("Valores incorretos para o parÃ¢metro dist")
   }
 
   if (any(dist == "gumbel") || any(dist == "gamma3") || any(dist == "lgamma3"))
     if("package:FAdist" %in% search() == FALSE)
-      stop("Algumas distribuições escolhidas requerem o pacote FAdist carregado.")
+      stop("Algumas distribuiÃ§Ãµes escolhidas requerem o pacote FAdist carregado.")
 
   distr <- list()
   i <- 1
@@ -141,22 +141,22 @@ plot.dist <- function(valores, dist, tipo = "Q"){
   densPlot <- fitdistrplus::denscomp(distr, legendtext = dist,
                                      plotstyle = "ggplot") +
     ggplot2::theme_bw() +
-    ggplot2::labs(title = "Histograma e densidades teóricas") +
+    ggplot2::labs(title = "Histograma e densidades teÃ³ricas") +
     ggplot2::ylab("Densidade")
 
   if(tipo == "Q")
-    densPlot <- densPlot + ggplot2::xlab("Q (m³/s)")
+    densPlot <- densPlot + ggplot2::xlab("Q (mÂ³/s)")
   if(tipo == "P")
     densPlot <- densPlot + ggplot2::xlab("P (mm)")
 
   cdfPlot <- fitdistrplus::cdfcomp(distr, legendtext = dist,
                                    plotstyle = "ggplot") +
     ggplot2::theme_bw() +
-    ggplot2::labs(title = "Funções de probabilidades empíricas e teóricas") +
+    ggplot2::labs(title = "FunÃ§Ãµes de probabilidades empÃ­ricas e teÃ³ricas") +
     ggplot2::ylab("Probabilidade")
 
   if(tipo == "Q")
-    cdfPlot <- cdfPlot + ggplot2::xlab("Q (m³/s)")
+    cdfPlot <- cdfPlot + ggplot2::xlab("Q (mÂ³/s)")
   if(tipo == "P")
     cdfPlot <- cdfPlot + ggplot2::xlab("P (mm)")
 
