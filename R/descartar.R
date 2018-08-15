@@ -1,6 +1,6 @@
 descartar <- function(dados, falhas = 5, modo = "anual"){
   if(falhas < 0 | falhas >= 100){
-    warning("Valor para porcentagem de falhas incorreto", call. = FALSE)
+    stop("Valor para porcentagem de falhas incorreto", call. = FALSE)
   } else {
     dadosAux <- data.frame()
     est <- unique(dados$Estacao)
