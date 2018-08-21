@@ -1,3 +1,29 @@
+#' Função para a construção da curva de permanência.
+#'
+#' @param  dados Corresponde à data frame obtida após o uso da função
+#'   \code{organizar}.
+#' @param posPlot Variável do tipo \code{chr} que representa a fórmula de
+#'   posição de plotagem a ser utilizada. Tem como padrão a fórmula de Weibull.
+#' @param pad Variável do tipo \code{chr} que refere-se a padronização das
+#'   vazões. Tem como padrão o valor \code{NULL}.
+#'
+#' @details Para a utilização desta função, deve-se utilizar os dados obtidos
+#'   após a função de \code{organizar}, com as colunas de \code{Q}, \code{Data}
+#'   e \code{Estacao}.
+#'
+#'   No argumento posição de plotagem, as opções para fórmulas de posição de
+#'   plotagem são: \code{weibull}, \code{gringorten}, \code{blom}, \code{hazen}
+#'   e \code{cunnane}.
+#'
+#'   No argumento \code{pad}, define-se o método para realizar a padronização
+#'   das vazões, sendo as opções \code{media} ou \code{mediana}. Caso não seja
+#'   necessário realizar essa padronização, a variável \code{pad} deve receber o
+#'   valor \code{NULL}.
+#'
+#'   A função retornará uma data frame com  as colunas de \code{Estacao},
+#'   \code{Data}, \code{Q}, \code{Ordem} e \code{Freq}. A coluna \code{Ordem}
+#'   corresponde a ordem decrescente que o valor de vazão se encontra na série,
+#'   enquanto que \code{Freq} corresponde ao seu valor de frequência acumulada.
 cperm <- function(dados, posPlot = "weibull", pad = NULL){
   if (posPlot != "weibull" & posPlot != "gringorten" & posPlot != "blom" &
       posPlot != "hazen" & posPlot != "cunnane"){
