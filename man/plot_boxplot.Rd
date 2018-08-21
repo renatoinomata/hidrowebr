@@ -22,5 +22,5 @@ Funções de plotagem de boxplots.
 }
 \details{
 O boxplot gerado separa os dados por estação. Os gráficos são feitos
-  com auxílio do pacote \code{\link[ggplot2]{ggplot2}}.
+  com auxílio do pacote \code{\link[ggplot2]{ggplot2-package}}.
 }

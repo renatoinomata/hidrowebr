@@ -19,5 +19,5 @@ Funções de plotagem de hidrogramas.
 }
 \details{
 O hidrograma gerado separa as diferentes estações por cores. Os
-  gráficos são feitos com auxílio do pacote \code{\link[ggplot2]{ggplot2}}.
+  gráficos são feitos com auxílio do pacote \code{\link[ggplot2]{ggplot2-package}}.
 }

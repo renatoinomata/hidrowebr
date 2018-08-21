@@ -1,4 +1,8 @@
-#' Funções para determinar os valores máximos, mínimos ou médios anuais.
+#' Funções para determinar os valores máximos, mínimos ou médios anuais
+#'
+#' @description Determina os valores máximos, mínimos ou médios de cada período
+#'   e estação. O período pode ser tanto ano civil quanto ano hidrológico
+#'   definido pelo usuário.
 #'
 #' @param valores Vetor numérico com os valores de vazão ou precipitação.
 #' @param datas Vetor de datas correspondentes aos dados.
@@ -14,7 +18,6 @@
 #'   fevereiro, por exemplo. Caso o valor para o ano hidrológico seja uma data
 #'   inválida, a função utilizará o dia "01-01" para determinar os valores
 #'   anuais.
-
 #' @export
 maxAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
   if (is.na(as.Date(paste0(ano_hidro, "-", 2000), "%d-%m-%Y"))){
@@ -55,6 +58,8 @@ maxAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
   return(anuais)
 }
 
+#' @describeIn maxAnuais Função para determinar os valores mínimos anuais.
+#'
 #' @export
 minAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
   if (is.na(as.Date(paste0(ano_hidro, "-", 2000), "%d-%m-%Y"))){
@@ -94,7 +99,8 @@ minAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
   names(anuais) <- c("Estacao", "Periodo", "Minima")
   return(anuais)
 }
-
+#' @describeIn maxAnuais Função para determinar os valores médios anuais.
+#'
 #' @export
 medAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
   if (is.na(as.Date(paste0(ano_hidro, "-", 2000), "%d-%m-%Y"))){

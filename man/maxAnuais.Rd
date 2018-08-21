@@ -2,9 +2,15 @@
 % Please edit documentation in R/anuais.R
 \name{maxAnuais}
 \alias{maxAnuais}
-\title{Funções para determinar os valores máximos, mínimos ou médios anuais.}
+\alias{minAnuais}
+\alias{medAnuais}
+\title{Funções para determinar os valores máximos, mínimos ou médios anuais}
 \usage{
 maxAnuais(valores, datas, estacoes, ano_hidro = "01-01")
+
+minAnuais(valores, datas, estacoes, ano_hidro = "01-01")
+
+medAnuais(valores, datas, estacoes, ano_hidro = "01-01")
 }
 \arguments{
 \item{valores}{Vetor numérico com os valores de vazão ou precipitação.}
@@ -19,7 +25,9 @@ utilizado como início do ano hidrológico. Tem como padrão o dia primeiro de
 janeiro ("01-01").}
 }
 \description{
-Funções para determinar os valores máximos, mínimos ou médios anuais.
+Determina os valores máximos, mínimos ou médios de cada período
+  e estação. O período pode ser tanto ano civil quanto ano hidrológico
+  definido pelo usuário.
 }
 \details{
 No argumento \code{ano_hidro} deve-se repassar uma variável do tipo
@@ -29,3 +37,10 @@ No argumento \code{ano_hidro} deve-se repassar uma variável do tipo
   inválida, a função utilizará o dia "01-01" para determinar os valores
   anuais.
 }
+\section{Functions}{
+\itemize{
+\item \code{minAnuais}: Função para determinar os valores mínimos anuais.
+
+\item \code{medAnuais}: Função para determinar os valores médios anuais.
+}}
+

@@ -11,7 +11,8 @@ importar(arq)
 arquivo a ser importado.}
 }
 \description{
-Função de importação dos dados de arquivos \code{txt} e \code{csv}.
+Importa os dados dos arquivos disponibilizados pela Hidroweb
+  para o R.
 }
 \details{
 Por meio dessa função serão importados os dados tais quais estão

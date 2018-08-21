@@ -13,10 +13,10 @@ qx(dados, x = 7)
 série de vazões Q7.}
 }
 \description{
-Função de vazões médias em dias consecutivos.
+Calcula a média das vazões a cada \code{x} dias consecutivos.
 }
 \details{
 A função retorna uma data frame com as colunas de \code{Estacao},
-  \code{Data} e \code{Qx}. As médias só serão realizadas caso existam
-  \code{x} dias consecutivos.
+  \code{Data} e \code{Qx}. A média só será realizada caso existam \code{x}
+  dias consecutivos.
 }

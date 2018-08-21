@@ -1,12 +1,14 @@
 #' Função de vazões médias em dias consecutivos.
 #'
+#' @description Calcula a média das vazões a cada \code{x} dias consecutivos.
+#'
 #' @param dados Data frame obtida após o uso da função \code{\link{organizar}}
 #' @param x Número de dias consecutivos. O valor padrão é 7, correspondendo a
 #'   série de vazões Q7.
 #'
 #' @details A função retorna uma data frame com as colunas de \code{Estacao},
-#'   \code{Data} e \code{Qx}. As médias só serão realizadas caso existam
-#'   \code{x} dias consecutivos.
+#'   \code{Data} e \code{Qx}. A média só será realizada caso existam \code{x}
+#'   dias consecutivos.
 #'
 #' @export
 qx <- function(dados, x = 7){

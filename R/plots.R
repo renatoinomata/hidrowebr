@@ -6,7 +6,7 @@
 #'   leituras.
 #'
 #' @details O hidrograma gerado separa as diferentes estações por cores. Os
-#'   gráficos são feitos com auxílio do pacote \code{\link[ggplot2]{ggplot2}}.
+#'   gráficos são feitos com auxílio do pacote \code{\link[ggplot2]{ggplot2-package}}.
 #'
 #' @export
 plot_hidrograma <- function(valores, datas, estacoes){
@@ -27,7 +27,7 @@ plot_hidrograma <- function(valores, datas, estacoes){
 #'
 #' @details A curva de permanência gerada separa as diferentes estações por
 #'   cores. Os gráficos são feitos com auxílio do pacote
-#'   \code{\link[ggplot2]{ggplot2}}. A curva de permanência é plotada em escala
+#'   \code{\link[ggplot2]{ggplot2-package}}. A curva de permanência é plotada em escala
 #'   logarítmica.
 #'
 #' @export
@@ -74,7 +74,7 @@ plot_cperm <- function(cperm, pad = FALSE){
 #'   \code{Q} ou \code{P}, para vazões ou precipitações, respectivamente.
 #'
 #' @details O boxplot gerado separa os dados por estação. Os gráficos são feitos
-#'   com auxílio do pacote \code{\link[ggplot2]{ggplot2}}.
+#'   com auxílio do pacote \code{\link[ggplot2]{ggplot2-package}}.
 #'
 #' @export
 plot_boxplot <- function(valores, estacoes, tipo = "Q"){
@@ -110,7 +110,7 @@ plot_boxplot <- function(valores, estacoes, tipo = "Q"){
 #' @param colunas Número de colunas a serem plotadas.
 #'
 #' @details O histograma gerado separa por cores os dados por estação. Os
-#'   gráficos são feitos com auxílio do pacote \code{\link[ggplot2]{ggplot2}}.
+#'   gráficos são feitos com auxílio do pacote \code{\link[ggplot2]{ggplot2-package}}.
 #'
 #' @export
 plot_histograma <- function(valores, estacoes, tipo = "Q", colunas = 10){
@@ -151,7 +151,7 @@ plot_histograma <- function(valores, estacoes, tipo = "Q", colunas = 10){
 #'
 #' @details São gerados: um gráfico com o histograma e densidades teóricas e um
 #'   gráfico com as funções de probabilidade empíricas e teóricas. Os gráficos
-#'   são feitos com auxílio do pacote \code{\link[ggplot2]{ggplot2}} e das
+#'   são feitos com auxílio do pacote \code{\link[ggplot2]{ggplot2-package}} e das
 #'   funções \code{\link[fitdistrplus]{denscomp}} e
 #'   \code{\link[fitdistrplus]{cdfcomp}}. As distribuições suportadas são as
 #'   mesmas da função \code{\link{distprob}}, sendo necessário carregar o pacote

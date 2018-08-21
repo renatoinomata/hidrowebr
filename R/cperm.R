@@ -1,4 +1,10 @@
-#' Função para a construção da curva de permanência.
+#' Função para a construção da curva de permanência
+#'
+#' @description A função retornará uma data frame com  as colunas de
+#'   \code{Estacao}, \code{Data}, \code{Q}, \code{Ordem} e \code{Freq}. A coluna
+#'   \code{Ordem} corresponde a ordem decrescente que o valor de vazão se
+#'   encontra na série, enquanto que \code{Freq} corresponde ao seu valor de
+#'   frequência acumulada.
 #'
 #' @param  dados Corresponde à data frame obtida após o uso da função
 #'   \code{organizar}.
@@ -19,11 +25,6 @@
 #'   das vazões, sendo as opções \code{media} ou \code{mediana}. Caso não seja
 #'   necessário realizar essa padronização, a variável \code{pad} deve receber o
 #'   valor \code{NULL}.
-#'
-#'   A função retornará uma data frame com  as colunas de \code{Estacao},
-#'   \code{Data}, \code{Q}, \code{Ordem} e \code{Freq}. A coluna \code{Ordem}
-#'   corresponde a ordem decrescente que o valor de vazão se encontra na série,
-#'   enquanto que \code{Freq} corresponde ao seu valor de frequência acumulada.
 #'
 #'   @export
 cperm <- function(dados, posPlot = "weibull", pad = NULL){

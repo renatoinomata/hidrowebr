@@ -2,7 +2,7 @@
 % Please edit documentation in R/organizar.R
 \name{organizar}
 \alias{organizar}
-\title{Função de organização dos dados.}
+\title{Função de organização dos dados}
 \usage{
 organizar(dados)
 }
@@ -10,7 +10,8 @@ organizar(dados)
 \item{dados}{Os dados brutos obtidos após a função de \code{\link{importar}}.}
 }
 \description{
-Função de organização dos dados.
+Organiza os dados em colunas de Estação, Data e
+  Vazão/Precipitação.
 }
 \details{
 Os dados brutos são organizados em uma data frame com: colunas de

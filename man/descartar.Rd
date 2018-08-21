@@ -16,7 +16,8 @@ permitidas no mês/ano.}
 \item{modo}{Define se o modo de descarte é \code{anual} ou \code{mensal}.}
 }
 \description{
-Função de descarte de anos ou meses que apresentam falhas.
+Descarta anos ou meses que apresentarem porcentagem de falhas
+  superiores às especificadas pelo usuário.
 }
 \details{
 Existem dois modos de descartes realizados: \code{anual} ou

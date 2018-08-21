@@ -20,7 +20,7 @@ Funções de plotagem das distribuições de probabilidade empíricas e teórica
 \details{
 São gerados: um gráfico com o histograma e densidades teóricas e um
   gráfico com as funções de probabilidade empíricas e teóricas. Os gráficos
-  são feitos com auxílio do pacote \code{\link[ggplot2]{ggplot2}} e das
+  são feitos com auxílio do pacote \code{\link[ggplot2]{ggplot2-package}} e das
   funções \code{\link[fitdistrplus]{denscomp}} e
   \code{\link[fitdistrplus]{cdfcomp}}. As distribuições suportadas são as
   mesmas da função \code{\link{distprob}}, sendo necessário carregar o pacote

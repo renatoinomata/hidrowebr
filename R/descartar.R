@@ -1,5 +1,8 @@
 #' Função de descarte de anos ou meses que apresentam falhas.
 #'
+#' @description Descarta anos ou meses que apresentarem porcentagem de falhas
+#'   superiores às especificadas pelo usuário.
+#'
 #' @param dados Corresponde à data frame obtida após o uso da função
 #'   \code{organizar}.
 #' @param falhas Valor numérico correspondente à porcentagem de falhas

@@ -1,6 +1,9 @@
 #' Função para ajuste de distribuições de probabilidades e estimação de
 #' parâmetros.
 #'
+#' @description Realiza os ajustes de probabilidade especificados pelo usuário e
+#'   dada a probabilidade do evento, estima o valor da precipitação/vazão.
+#'
 #' @param valores Um vetor numérico com os valores a serem ajustados.
 #' @param dist Um vetor de caracteres com os nomes das distribuições de
 #'   probabilidade a serem utilizadas.
@@ -10,8 +13,7 @@
 #' @details No argumento \code{dist} podem ser utilizadas as seguintes
 #'   distribuições:
 #'
-#'   \itemize{
-#'   \item Normal "\code{norm}";
+#'   \itemize{ \item Normal "\code{norm}";
 #'
 #'   \item Log-Normal "\code{lnorm}";
 #'
@@ -21,8 +23,7 @@
 #'
 #'   \item Gamma de 3 valores "\code{gamma3}" e
 #'
-#'   \item Log-Gamma de 3 valores "\code{lgamma3}".
-#'   }
+#'   \item Log-Gamma de 3 valores "\code{lgamma3}". }
 #'
 #'   Para a utilização das distribuições \code{gumbel}, \code{gamma3} e
 #'   \code{lgamma3} é necessário carregar o pacote \code{\link[FAdist]{FAdist}}.

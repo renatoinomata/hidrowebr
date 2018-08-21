@@ -1,5 +1,8 @@
 #' Função de importação dos dados de arquivos \code{txt} e \code{csv}.
 #'
+#' @description Importa os dados dos arquivos disponibilizados pela Hidroweb
+#'   para o R.
+#'
 #' @param arq Variável do tipo \code{chr}. Corresponde ao nome ou caminho do
 #'   arquivo a ser importado.
 #'

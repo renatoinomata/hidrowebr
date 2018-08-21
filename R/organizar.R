@@ -1,4 +1,7 @@
-#' Função de organização dos dados.
+#' Função de organização dos dados
+#'
+#' @description Organiza os dados em colunas de Estação, Data e
+#'   Vazão/Precipitação.
 #'
 #' @param dados Os dados brutos obtidos após a função de \code{\link{importar}}.
 #'

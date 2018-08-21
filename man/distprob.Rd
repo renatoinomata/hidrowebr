@@ -17,15 +17,14 @@ probabilidade a serem utilizadas.}
 parâmetro (vazão ou precipitação) será estimado.}
 }
 \description{
-Função para ajuste de distribuições de probabilidades e estimação de
-parâmetros.
+Realiza os ajustes de probabilidade especificados pelo usuário e
+  dada a probabilidade do evento, estima o valor da precipitação/vazão.
 }
 \details{
 No argumento \code{dist} podem ser utilizadas as seguintes
   distribuições:
 
-  \itemize{
-  \item Normal "\code{norm}";
+  \itemize{ \item Normal "\code{norm}";
 
   \item Log-Normal "\code{lnorm}";
 
@@ -35,8 +34,7 @@ No argumento \code{dist} podem ser utilizadas as seguintes
 
   \item Gamma de 3 valores "\code{gamma3}" e
 
-  \item Log-Gamma de 3 valores "\code{lgamma3}".
-  }
+  \item Log-Gamma de 3 valores "\code{lgamma3}". }
 
   Para a utilização das distribuições \code{gumbel}, \code{gamma3} e
   \code{lgamma3} é necessário carregar o pacote \code{\link[FAdist]{FAdist}}.

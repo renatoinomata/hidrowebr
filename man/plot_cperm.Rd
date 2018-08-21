@@ -18,6 +18,6 @@ Funções de plotagem de curvas de permanência
 \details{
 A curva de permanência gerada separa as diferentes estações por
   cores. Os gráficos são feitos com auxílio do pacote
-  \code{\link[ggplot2]{ggplot2}}. A curva de permanência é plotada em escala
+  \code{\link[ggplot2]{ggplot2-package}}. A curva de permanência é plotada em escala
   logarítmica.
 }

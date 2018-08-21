@@ -24,5 +24,5 @@ Funções de plotagem de histogramas.
 }
 \details{
 O histograma gerado separa por cores os dados por estação. Os
-  gráficos são feitos com auxílio do pacote \code{\link[ggplot2]{ggplot2}}.
+  gráficos são feitos com auxílio do pacote \code{\link[ggplot2]{ggplot2-package}}.
 }
