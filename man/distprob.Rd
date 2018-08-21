@@ -2,8 +2,8 @@
 % Please edit documentation in R/distprob.R
 \name{distprob}
 \alias{distprob}
-\title{Função para ajuste de distribuições de probabilidades e
-estimação de parâmetros.}
+\title{Função para ajuste de distribuições de probabilidades e estimação de
+parâmetros.}
 \usage{
 distprob(valores, dist, prob)
 }
@@ -17,6 +17,32 @@ probabilidade a serem utilizadas.}
 parâmetro (vazão ou precipitação) será estimado.}
 }
 \description{
-Função para ajuste de distribuições de probabilidades e
-estimação de parâmetros.
+Função para ajuste de distribuições de probabilidades e estimação de
+parâmetros.
+}
+\details{
+No argumento \code{dist} podem ser utilizadas as seguintes
+  distribuições:
+
+  \itemize{
+  \item Normal "\code{norm}";
+
+  \item Log-Normal "\code{lnorm}";
+
+  \item Gumbel para valores máximos "\code{gumbel}";
+
+  \item Weibull "\code{weibull}";
+
+  \item Gamma de 3 valores "\code{gamma3}" e
+
+  \item Log-Gamma de 3 valores "\code{lgamma3}".
+  }
+
+  Para a utilização das distribuições \code{gumbel}, \code{gamma3} e
+  \code{lgamma3} é necessário carregar o pacote \code{\link[FAdist]{FAdist}}.
+
+  A função retornará uma lista separada de acordo com as distribuições, os
+  coeficientes encontrados do ajuste "\code{coefs}", o valor obtido do teste
+  de Kolmogorov-Smirnov "\code{KS}", e o valor estimado para a dada
+  probabilidade "\code{estimado}".
 }
