@@ -7,6 +7,8 @@
 #'
 #' @details O hidrograma gerado separa as diferentes estações por cores. Os
 #'   gráficos são feitos com auxílio do pacote \code{\link[ggplot2]{ggplot2}}.
+#'
+#' @export
 plot_hidrograma <- function(valores, datas, estacoes){
   dados <- data.frame(estacoes ,datas, valores)
   colnames(dados) <- c("Estacao", "Data", "Q")
@@ -27,6 +29,8 @@ plot_hidrograma <- function(valores, datas, estacoes){
 #'   cores. Os gráficos são feitos com auxílio do pacote
 #'   \code{\link[ggplot2]{ggplot2}}. A curva de permanência é plotada em escala
 #'   logarítmica.
+#'
+#' @export
 plot_cperm <- function(cperm, pad = FALSE){
   if(pad == FALSE) {
     Plot <- ggplot2::ggplot(dplyr::filter(cperm, Q>0), ggplot2::aes(x = Freq, y = Q)) +
@@ -71,6 +75,8 @@ plot_cperm <- function(cperm, pad = FALSE){
 #'
 #' @details O boxplot gerado separa os dados por estação. Os gráficos são feitos
 #'   com auxílio do pacote \code{\link[ggplot2]{ggplot2}}.
+#'
+#' @export
 plot_boxplot <- function(valores, estacoes, tipo = "Q"){
   if (tipo != "Q" & tipo != "P"){
     warning("Valor incorreto para a variável 'tipo'.")
@@ -105,6 +111,8 @@ plot_boxplot <- function(valores, estacoes, tipo = "Q"){
 #'
 #' @details O histograma gerado separa por cores os dados por estação. Os
 #'   gráficos são feitos com auxílio do pacote \code{\link[ggplot2]{ggplot2}}.
+#'
+#' @export
 plot_histograma <- function(valores, estacoes, tipo = "Q", colunas = 10){
   if (tipo != "Q" & tipo != "P"){
     warning("Valor incorreto para a variável 'tipo'.")
@@ -148,6 +156,8 @@ plot_histograma <- function(valores, estacoes, tipo = "Q", colunas = 10){
 #'   \code{\link[fitdistrplus]{cdfcomp}}. As distribuições suportadas são as
 #'   mesmas da função \code{\link{distprob}}, sendo necessário carregar o pacote
 #'   \code{FAdist} para o uso de algumas distribuições.
+#'
+#' @export
 plot_dist <- function(valores, dist, tipo = "Q"){
   for (i in 1:length(dist)){
     if(all(dist[i] != c("norm", "lnorm", "gumbel", "weibull", "gamma3", "lgamma3")))

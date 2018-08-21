@@ -24,6 +24,8 @@
 #'   \code{Data}, \code{Q}, \code{Ordem} e \code{Freq}. A coluna \code{Ordem}
 #'   corresponde a ordem decrescente que o valor de vazão se encontra na série,
 #'   enquanto que \code{Freq} corresponde ao seu valor de frequência acumulada.
+#'
+#'   @export
 cperm <- function(dados, posPlot = "weibull", pad = NULL){
   if (posPlot != "weibull" & posPlot != "gringorten" & posPlot != "blom" &
       posPlot != "hazen" & posPlot != "cunnane"){

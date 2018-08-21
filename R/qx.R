@@ -7,6 +7,8 @@
 #' @details A função retorna uma data frame com as colunas de \code{Estacao},
 #'   \code{Data} e \code{Qx}. As médias só serão realizadas caso existam
 #'   \code{x} dias consecutivos.
+#'
+#' @export
 qx <- function(dados, x = 7){
   est <- unique(dados$Estacao)
   dadosQx <- data.frame()

@@ -11,6 +11,8 @@
 #'   \code{mensal}. Serão descartados os anos/meses que possuirem valores acima
 #'   do indicado pela variável \code{falhas}. O valor padrão para \code{falhas}
 #'   é de 5\%.
+#'
+#'   @export
 descartar <- function(dados, falhas = 5, modo = "anual"){
   if(falhas < 0 | falhas >= 100){
     stop("Valor para porcentagem de falhas incorreto", call. = FALSE)

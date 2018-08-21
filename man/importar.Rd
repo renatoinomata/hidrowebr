@@ -2,7 +2,7 @@
 % Please edit documentation in R/importar.R
 \name{importar}
 \alias{importar}
-\title{Função que importar os dados de arquivos \code{.arq}.}
+\title{Função que importar os dados de arquivos \code{.txt} e \code{.csv}.}
 \usage{
 importar(arq)
 }
@@ -11,7 +11,7 @@ importar(arq)
 arquivo a ser importado.}
 }
 \description{
-Função que importar os dados de arquivos \code{.arq}.
+Função que importar os dados de arquivos \code{.txt} e \code{.csv}.
 }
 \details{
 Por meio dessa função serão importados os dados tais quais estão

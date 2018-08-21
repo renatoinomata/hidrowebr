@@ -37,4 +37,6 @@ Para a utilização desta função, deve-se utilizar os dados obtidos
   \code{Data}, \code{Q}, \code{Ordem} e \code{Freq}. A coluna \code{Ordem}
   corresponde a ordem decrescente que o valor de vazão se encontra na série,
   enquanto que \code{Freq} corresponde ao seu valor de frequência acumulada.
+
+  @export
 }

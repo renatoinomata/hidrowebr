@@ -1,10 +1,12 @@
-#' Função que importar os dados de arquivos \code{.arq}.
+#' Função que importar os dados de arquivos \code{.txt} e \code{.csv}.
 #'
 #' @param arq Variável do tipo \code{chr}. Corresponde ao nome ou caminho do
 #'   arquivo a ser importado.
 #'
 #' @details Por meio dessa função serão importados os dados tais quais estão
 #'   dispostos no arquivo original do portal Hidroweb.
+#'
+#' @export
 importar <- function(arq){
   # Verificação do tipo de arquivo
   if(is.character(arq) == FALSE){

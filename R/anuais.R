@@ -14,6 +14,8 @@
 #'   fevereiro, por exemplo. Caso o valor para o ano hidrológico seja uma data
 #'   inválida, a função utilizará o dia "01-01" para determinar os valores
 #'   anuais.
+
+#' @export
 maxAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
   if (is.na(as.Date(paste0(ano_hidro, "-", 2000), "%d-%m-%Y"))){
     warning("Data para ano hidrológico inválida.")
@@ -53,6 +55,7 @@ maxAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
   return(anuais)
 }
 
+#' @export
 minAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
   if (is.na(as.Date(paste0(ano_hidro, "-", 2000), "%d-%m-%Y"))){
     warning("Data para ano hidrológico inválida.")
@@ -92,6 +95,7 @@ minAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
   return(anuais)
 }
 
+#' @export
 medAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
   if (is.na(as.Date(paste0(ano_hidro, "-", 2000), "%d-%m-%Y"))){
     warning("Data para ano hidrológico inválida.")

@@ -25,4 +25,6 @@ Existem dois modos de descartes realizados: \code{anual} ou
   \code{mensal}. Serão descartados os anos/meses que possuirem valores acima
   do indicado pela variável \code{falhas}. O valor padrão para \code{falhas}
   é de 5\%.
+
+  @export
 }
