@@ -5,8 +5,8 @@
 #'
 #' @details Os dados brutos são organizados em uma data frame com: colunas de
 #'   \code{Estacao}, que representa o código da estação; \code{Data}, que é a
-#'   data da leitura; e \code{Q} ou \code{P}, valores de vazão ou precipitação,
-#'   respectivamente.
+#'   data da leitura; e \code{Q} ou \code{P}, valores de vazão (m³/s) ou
+#'   precipitação (mm), respectivamente.
 organizar <- function(dados){
   # Limpando os dados
   if(grepl("Vazao", names(dados)[17]))

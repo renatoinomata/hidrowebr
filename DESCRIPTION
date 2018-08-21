@@ -1,20 +1,21 @@
 Package: hidrowebr
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Title: hidrowebr: uma ferramenta para análise estatística de séries hidrológicas
+Version: 0.8.1
+Author: Renato Inomata
+Maintainer: Renato Inomata <renato.inomata@gmail.com>
+Description: Pacote para importação e processamento de séries hidrológicas 
+    disponibilizados pelo portal Hidroweb.
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
+Depends: R (>= 3.5.0)
 Imports: dplyr,
-    tidyr,
-    lubridate,
+    FAdist,
     fitdistrplus,
-    zoo,
     ggplot2,
     grid,
-    FAdist
+    lubridate,
+    tidyr,
+    zoo
 RoxygenNote: 6.1.0
