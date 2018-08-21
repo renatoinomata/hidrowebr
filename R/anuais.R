@@ -1,3 +1,19 @@
+#' Funções para determinar os valores máximos, mínimos ou médios anuais.
+#'
+#' @param valores Vetor numérico com os valores de vazão ou precipitação.
+#' @param datas Vetor de datas correspondentes aos dados.
+#' @param estacoes Vetor com as correspondentes estações de cada um dos
+#'   elementos dos vetores anteriores.
+#' @param ano_hidro Variável do tipo \code{chr} que contém o dia e mês a ser
+#'   utilizado como início do ano hidrológico. Tem como padrão o dia primeiro de
+#'   janeiro ("01-01").
+#'
+#' @details No argumento \code{ano_hidro} deve-se repassar uma variável do tipo
+#'   \code{chr} com o dia e o mês a ser utilizado para iniciar o ano
+#'   hidrológico. Dessa maneira, a data ("15-02") corresponderia ao dia 15 de
+#'   fevereiro, por exemplo. Caso o valor para o ano hidrológico seja uma data
+#'   inválida, a função utilizará o dia "01-01" para determinar os valores
+#'   anuais.
 maxAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
   if (is.na(as.Date(paste0(ano_hidro, "-", 2000), "%d-%m-%Y"))){
     warning("Data para ano hidrológico inválida.")
