@@ -1,5 +1,4 @@
-#' Função que organiza os dados brutos em uma data frame com datas,
-#' vazões/precipitações e estação.
+#' Função de organização dos dados.
 #'
 #' @param dados Os dados brutos obtidos após a função de \code{\link{importar}}.
 #'

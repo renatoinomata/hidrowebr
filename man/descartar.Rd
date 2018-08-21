@@ -2,8 +2,7 @@
 % Please edit documentation in R/descartar.R
 \name{descartar}
 \alias{descartar}
-\title{Função para descartar anos ou meses que apresentam certa porcentagem de
-falhas.}
+\title{Função de descarte de anos ou meses que apresentam falhas.}
 \usage{
 descartar(dados, falhas = 5, modo = "anual")
 }
@@ -17,14 +16,11 @@ permitidas no mês/ano.}
 \item{modo}{Define se o modo de descarte é \code{anual} ou \code{mensal}.}
 }
 \description{
-Função para descartar anos ou meses que apresentam certa porcentagem de
-falhas.
+Função de descarte de anos ou meses que apresentam falhas.
 }
 \details{
 Existem dois modos de descartes realizados: \code{anual} ou
   \code{mensal}. Serão descartados os anos/meses que possuirem valores acima
   do indicado pela variável \code{falhas}. O valor padrão para \code{falhas}
   é de 5\%.
-
-  @export
 }

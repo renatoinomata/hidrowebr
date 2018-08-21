@@ -1,5 +1,4 @@
-#' Função para descartar anos ou meses que apresentam certa porcentagem de
-#' falhas.
+#' Função de descarte de anos ou meses que apresentam falhas.
 #'
 #' @param dados Corresponde à data frame obtida após o uso da função
 #'   \code{organizar}.
@@ -12,7 +11,7 @@
 #'   do indicado pela variável \code{falhas}. O valor padrão para \code{falhas}
 #'   é de 5\%.
 #'
-#'   @export
+#' @export
 descartar <- function(dados, falhas = 5, modo = "anual"){
   if(falhas < 0 | falhas >= 100){
     stop("Valor para porcentagem de falhas incorreto", call. = FALSE)

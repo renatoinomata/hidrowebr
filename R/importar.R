@@ -1,4 +1,4 @@
-#' Função que importar os dados de arquivos \code{.txt} e \code{.csv}.
+#' Função de importação dos dados de arquivos \code{txt} e \code{csv}.
 #'
 #' @param arq Variável do tipo \code{chr}. Corresponde ao nome ou caminho do
 #'   arquivo a ser importado.
