@@ -1,4 +1,13 @@
-plot.hidrograma <- function(valores, datas, estacoes){
+#' Funções de plotagem de hidrogramas.
+#'
+#' @param valores Vetor numérico com as leituras a serem plotadas.
+#' @param datas Vetor com as datas das leituras.
+#' @param estacoes Vetor com as estações correspondentes a cada uma das
+#'   leituras.
+#'
+#' @details O hidrograma gerado separa as diferentes estações por cores. Os
+#'   gráficos são feitos com auxílio do pacote \code{\link[ggplot2]{ggplot2}}.
+plot_hidrograma <- function(valores, datas, estacoes){
   dados <- data.frame(estacoes ,datas, valores)
   colnames(dados) <- c("Estacao", "Data", "Q")
   Plot <- ggplot2::ggplot(dados, ggplot2::aes(x = Data, y = Q)) +
@@ -8,7 +17,17 @@ plot.hidrograma <- function(valores, datas, estacoes){
   return(Plot)
 }
 
-plot.cperm <- function(cperm, pad = FALSE){
+#' Funções de plotagem de curvas de permanência
+#'
+#' @param cperm Data frame obtida após a função \code{\link{cperm}}.
+#' @param pad Variável para indicar a padronização das vazões. As opções
+#'   disponíveis são \code{media}, \code{mediana} ou \code{NULL}
+#'
+#' @details A curva de permanência gerada separa as diferentes estações por
+#'   cores. Os gráficos são feitos com auxílio do pacote
+#'   \code{\link[ggplot2]{ggplot2}}. A curva de permanência é plotada em escala
+#'   logarítmica.
+plot_cperm <- function(cperm, pad = FALSE){
   if(pad == FALSE) {
     Plot <- ggplot2::ggplot(dplyr::filter(cperm, Q>0), ggplot2::aes(x = Freq, y = Q)) +
       ggplot2::geom_line(ggplot2::aes(color = Estacao)) +
@@ -41,7 +60,18 @@ plot.cperm <- function(cperm, pad = FALSE){
   return(Plot)
 }
 
-plot.boxplot <- function(valores, estacoes, tipo = "Q"){
+#' Funções de plotagem de boxplots.
+#'
+#' @param valores Vetor numérico com as leituras a serem plotadas.
+#' @param datas Vetor com as datas das leituras.
+#' @param estacoes Vetor com as estações correspondentes a cada uma das
+#'   leituras.
+#' @param tipo Variável que corresponde ao tipo de leitura, as opções são:
+#'   \code{Q} ou \code{P}, para vazões ou precipitações, respectivamente.
+#'
+#' @details O boxplot gerado separa os dados por estação. Os gráficos são feitos
+#'   com auxílio do pacote \code{\link[ggplot2]{ggplot2}}.
+plot_boxplot <- function(valores, estacoes, tipo = "Q"){
   if (tipo != "Q" & tipo != "P"){
     warning("Valor incorreto para a variável 'tipo'.")
     tipo <- "Q"
@@ -63,7 +93,19 @@ plot.boxplot <- function(valores, estacoes, tipo = "Q"){
   return(Plot)
 }
 
-plot.histograma <- function(valores, estacoes, tipo = "Q", colunas = 10){
+#' Funções de plotagem de histogramas.
+#'
+#' @param valores Vetor numérico com as leituras a serem plotadas.
+#' @param datas Vetor com as datas das leituras.
+#' @param estacoes Vetor com as estações correspondentes a cada uma das
+#'   leituras.
+#' @param tipo Variável que corresponde ao tipo de leitura, as opções são:
+#'   \code{Q} ou \code{P}, para vazões ou precipitações, respectivamente.
+#' @param colunas Número de colunas a serem plotadas.
+#'
+#' @details O histograma gerado separa por cores os dados por estação. Os
+#'   gráficos são feitos com auxílio do pacote \code{\link[ggplot2]{ggplot2}}.
+plot_histograma <- function(valores, estacoes, tipo = "Q", colunas = 10){
   if (tipo != "Q" & tipo != "P"){
     warning("Valor incorreto para a variável 'tipo'.")
     tipo <- "Q"
@@ -92,7 +134,21 @@ plot.histograma <- function(valores, estacoes, tipo = "Q", colunas = 10){
   return(Plot)
 }
 
-plot.dist <- function(valores, dist, tipo = "Q"){
+#' Funções de plotagem das distribuições de probabilidade empíricas e teóricas.
+#'
+#' @param valores Vetor numérico com as leituras a serem plotadas.
+#' @param dist Vetor com o nome das distribuições a serem utilizadas.
+#' @param tipo Variável que corresponde ao tipo de leitura, as opções são:
+#'   \code{Q} ou \code{P}, para vazões ou precipitações, respectivamente.
+#'
+#' @details São gerados: um gráfico com o histograma e densidades teóricas e um
+#'   gráfico com as funções de probabilidade empíricas e teóricas. Os gráficos
+#'   são feitos com auxílio do pacote \code{\link[ggplot2]{ggplot2}} e das
+#'   funções \code{\link[fitdistrplus]{denscomp}} e
+#'   \code{\link[fitdistrplus]{cdfcomp}}. As distribuições suportadas são as
+#'   mesmas da função \code{\link{distprob}}, sendo necessário carregar o pacote
+#'   \code{FAdist} para o uso de algumas distribuições.
+plot_dist <- function(valores, dist, tipo = "Q"){
   for (i in 1:length(dist)){
     if(all(dist[i] != c("norm", "lnorm", "gumbel", "weibull", "gamma3", "lgamma3")))
       stop("Valores incorretos para o parâmetro dist")
