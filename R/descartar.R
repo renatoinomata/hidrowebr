@@ -1,3 +1,16 @@
+#' Função para descartar anos ou meses que apresentam certa porcentagem de
+#' falhas.
+#'
+#' @param dados Corresponde à data frame obtida após o uso da função
+#'   \code{organizar}.
+#' @param falhas Valor numérico correspondente à porcentagem de falhas
+#'   permitidas no mês/ano.
+#' @param modo Define se o modo de descarte é \code{anual} ou \code{mensal}.
+#'
+#' @details Existem dois modos de descartes realizados: \code{anual} ou
+#'   \code{mensal}. Serão descartados os anos/meses que possuirem valores acima
+#'   do indicado pela variável \code{falhas}. O valor padrão para \code{falhas}
+#'   é de 5\%.
 descartar <- function(dados, falhas = 5, modo = "anual"){
   if(falhas < 0 | falhas >= 100){
     stop("Valor para porcentagem de falhas incorreto", call. = FALSE)
