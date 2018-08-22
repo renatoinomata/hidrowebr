@@ -4,7 +4,7 @@
 \alias{organizar}
 \title{Função de organização dos dados}
 \usage{
-organizar(dados, formato_data = "\%d/\%m/\%Y")
+organizar(dados, formato_data = c("Ano", "Mes", "Dia"))
 }
 \arguments{
 \item{dados}{Os dados brutos obtidos após a função de \code{\link{importar}}.}
@@ -21,7 +21,7 @@ Os dados brutos são organizados em uma data frame com: colunas de
   data da leitura; e \code{Q} ou \code{P}, valores de vazão (m³/s) ou
   precipitação (mm), respectivamente.
 
-  O valor padrão para a variável \code{formato_data} é %d/%m/%Y, ou seja,
-  dd/mm/AAAA. Para mais informações consulte a classe
-  \code{\link[base]{Dates}}.
+  O valor padrão para a variável \code{formato_data} é \code{Ano}, \code{Mes}
+  e \code{Dia}. Deve-se ordernar esses três componentes conforme a formatação
+  que estiver presente no arquivo do portal Hidroweb.
 }
