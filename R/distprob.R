@@ -34,7 +34,7 @@
 #'   probabilidade "\code{estimado}".
 #' @export
 #' @exportClass distprob.hidrowebr
-#' @exportMethod  print.distprob.hidrowebr
+#' @method distprob print.distprob.hidrowebr
 distprob <- function(valores, dist, prob){
   for (i in 1:length(dist)){
     if(all(dist[i] != c("norm", "lnorm", "gumbel", "weibull", "gamma3", "lgamma3")))
