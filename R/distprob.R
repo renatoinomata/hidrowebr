@@ -33,6 +33,8 @@
 #'   de Kolmogorov-Smirnov "\code{KS}", e o valor estimado para a dada
 #'   probabilidade "\code{estimado}".
 #' @export
+#' @exportClass distprob.hidrowebr
+#' @exportClass distprob
 distprob <- function(valores, dist, prob){
   for (i in 1:length(dist)){
     if(all(dist[i] != c("norm", "lnorm", "gumbel", "weibull", "gamma3", "lgamma3")))
