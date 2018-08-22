@@ -5,7 +5,7 @@
 \title{Função para ajuste de distribuições de probabilidades e estimação de
 parâmetros.}
 \usage{
-\method{distprob}{print.distprob.hidrowebr}(valores, dist, prob)
+\method{print}{distprob.hidrowebr}(valores, dist, prob)
 }
 \arguments{
 \item{valores}{Um vetor numérico com os valores a serem ajustados.}

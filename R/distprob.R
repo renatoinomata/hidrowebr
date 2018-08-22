@@ -32,9 +32,11 @@
 #'   coeficientes encontrados do ajuste "\code{coefs}", o valor obtido do teste
 #'   de Kolmogorov-Smirnov "\code{KS}", e o valor estimado para a dada
 #'   probabilidade "\code{estimado}".
-#' @export
+#'
+#' @export distprob
 #' @exportClass distprob.hidrowebr
-#' @method distprob print.distprob.hidrowebr
+#' @method print distprob.hidrowebr
+#' @export
 distprob <- function(valores, dist, prob){
   for (i in 1:length(dist)){
     if(all(dist[i] != c("norm", "lnorm", "gumbel", "weibull", "gamma3", "lgamma3")))
