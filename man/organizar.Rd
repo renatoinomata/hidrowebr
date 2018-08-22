@@ -4,10 +4,12 @@
 \alias{organizar}
 \title{Função de organização dos dados}
 \usage{
-organizar(dados)
+organizar(dados, formato_data = "\%d/\%m/\%Y")
 }
 \arguments{
 \item{dados}{Os dados brutos obtidos após a função de \code{\link{importar}}.}
+
+\item{formato_data}{Formatação das datas no arquivo.}
 }
 \description{
 Organiza os dados em colunas de Estação, Data e
@@ -18,4 +20,8 @@ Os dados brutos são organizados em uma data frame com: colunas de
   \code{Estacao}, que representa o código da estação; \code{Data}, que é a
   data da leitura; e \code{Q} ou \code{P}, valores de vazão (m³/s) ou
   precipitação (mm), respectivamente.
+
+  O valor padrão para a variável \code{formato_data} é %d/%m/%Y, ou seja,
+  dd/mm/AAAA. Para mais informações consulte a classe
+  \code{\link[base]{Dates}}.
 }

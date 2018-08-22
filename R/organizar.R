@@ -4,14 +4,19 @@
 #'   Vazão/Precipitação.
 #'
 #' @param dados Os dados brutos obtidos após a função de \code{\link{importar}}.
+#' @param formato_data Formatação das datas no arquivo.
 #'
 #' @details Os dados brutos são organizados em uma data frame com: colunas de
 #'   \code{Estacao}, que representa o código da estação; \code{Data}, que é a
 #'   data da leitura; e \code{Q} ou \code{P}, valores de vazão (m³/s) ou
 #'   precipitação (mm), respectivamente.
 #'
+#'   O valor padrão para a variável \code{formato_data} é %d/%m/%Y, ou seja,
+#'   dd/mm/AAAA. Para mais informações consulte a classe
+#'   \code{\link[base]{Dates}}.
+#'
 #' @export
-organizar <- function(dados){
+organizar <- function(dados, formato_data = "%d/%m/%Y"){
   # Limpando os dados
   if(grepl("Vazao", names(dados)[17]))
     valor <- "Q"
@@ -33,7 +38,7 @@ organizar <- function(dados){
     dados <- dplyr::filter(dados, !is.na(Q))
   else
     dados <- dplyr::filter(dados, !is.na(P))
-  dados$Data <- as.Date(dados$Data, "%d/%m/%Y")
+  dados$Data <- as.Date(dados$Data, format = formato_data)
   if(length(unique(dados$Estacao)) > 1){
     dados_bkp <- dados
     dados <- NULL
