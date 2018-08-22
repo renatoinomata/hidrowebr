@@ -18,10 +18,11 @@
 #' @export
 organizar <- function(dados, formato_data = "%d/%m/%Y"){
   # Limpando os dados
-  if(grepl("Vazao", names(dados)[17]))
+  if(grepl("Vazao", names(dados)[17])){
     valor <- "Q"
-  else
+  } else {
     valor <- "P"
+  }
   dados <- dados[c(1, 3, 17:47)]
   names(dados) <- c("Estacao", "Data", 1:31)
   dados <- tidyr::separate(dados, Data, into = c("Ano", "Mes", "Dia"))
@@ -34,10 +35,11 @@ organizar <- function(dados, formato_data = "%d/%m/%Y"){
     dados <- tidyr::gather(dados, "Dia", "P", 4:34)
   dados <- dplyr::arrange(dados, Ano, Mes)
   dados <- tidyr::unite(dados, Dia, Mes, Ano, col = "Data", sep = "/")
-  if(valor == "Q")
+  if(valor == "Q"){
     dados <- dplyr::filter(dados, !is.na(Q))
-  else
+  } else{
     dados <- dplyr::filter(dados, !is.na(P))
+  }
   dados$Data <- as.Date(dados$Data, format = formato_data)
   if(length(unique(dados$Estacao)) > 1){
     dados_bkp <- dados
