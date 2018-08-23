@@ -3,19 +3,21 @@
 #' As funções do hidrowebr são divididas em três categorias: pré-processamento,
 #' processamento e análise.
 #'
-#' @section Pré-processamento:
-#' As funções de pré-processamento organizam os dados brutos
+#' @section Pré-processamento: Na etapa de pré-processamento o usuário insere as
+#'   séries históricas no R para que possam ser organizadas na etapa de
+#'   processamento. Fazem parte desse grupo as funções \code{\link{importar}},
+#'   \code{\link{organizar}} e \code{\link{descartar}}.
 #'
-#' \code{\link{importar}}
-#' \code{\link{organizar}}
-#' \code{\link{descartar}}
+#' @section Processamento: Nessa etapa, os dados pré-processados são
+#'   reorganizados para os processos de análise. fazem parte desse grupo as
+#'   funções \code{\link{cperm}}, \code{\link{qx}}, \code{\link{maxAnuais}},
+#'   \code{\link{medAnuais}} e \code{\link{minAnuais}}.
 #'
-#' @section Processamento:
-#' As funções de processamento
-#'
-#' @section Análise:
-#' As funções de análise
-#' \code{\link{distprob}}
+#' @section Análise: Nessa etapa, são extraídas informações numéricas e gráficas
+#'   acerca do conjunto de dados. Fazem parte desse grupo as funções
+#'   \code{\link{distprob}}, \code{\link{plot_hidrograma}},
+#'   \code{\link{plot_histograma}}, \code{\link{plot_boxplot}},
+#'   \code{\link{plot_cperm}} e \code{\link{plot_dist}}.
 #'
 #' @docType package
 #' @name hidrowebr
