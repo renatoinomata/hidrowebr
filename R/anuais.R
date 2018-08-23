@@ -55,6 +55,7 @@ maxAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
     anuais <- rbind(anuais, data.frame(i, periodo, max_ano))
   }
   names(anuais) <- c("Estacao", "Periodo", "Maxima")
+  anuais <- anuais[!is.na(anuais$Maxima), ]
   return(anuais)
 }
 
@@ -97,6 +98,7 @@ minAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
     anuais <- rbind(anuais, data.frame(i, periodo, min_ano))
   }
   names(anuais) <- c("Estacao", "Periodo", "Minima")
+  anuais <- anuais[!is.na(anuais$Minima), ]
   return(anuais)
 }
 #' @describeIn maxAnuais Função para determinar os valores médios anuais.
@@ -138,5 +140,6 @@ medAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
     anuais <- rbind(anuais, data.frame(i, periodo, med_ano))
   }
   names(anuais) <- c("Estacao", "Periodo", "Media")
+  anuais <- anuais[!is.na(anuais$Media), ]
   return(anuais)
 }
