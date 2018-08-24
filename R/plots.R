@@ -11,9 +11,9 @@
 #' @export
 plot_hidrograma <- function(valores, datas, estacoes){
   dados <- data.frame(estacoes ,datas, valores)
-  colnames(dados) <- c("Estacao", "Data", "Q")
+  colnames(dados) <- c("Estação", "Data", "Q")
   Plot <- ggplot2::ggplot(dados, ggplot2::aes(x = Data, y = Q)) +
-    ggplot2::geom_line(ggplot2:: aes(color = Estacao)) +
+    ggplot2::geom_line(ggplot2:: aes(color = Estação)) +
     ggplot2::theme_bw() +
     ggplot2::labs(title = "Hidrograma", x = "Data", y = "Q (m³/s)")
   return(Plot)
@@ -32,9 +32,10 @@ plot_hidrograma <- function(valores, datas, estacoes){
 #'
 #' @export
 plot_cperm <- function(cperm, pad = FALSE){
+  names(cperm)[1] <- "Estação"
   if(pad == FALSE) {
     Plot <- ggplot2::ggplot(dplyr::filter(cperm, Q>0), ggplot2::aes(x = Freq, y = Q)) +
-      ggplot2::geom_line(ggplot2::aes(color = Estacao)) +
+      ggplot2::geom_line(ggplot2::aes(color = Estação)) +
       ggplot2::coord_trans(y = "log10", limy = c(0.01, max(cperm$Q)),
                            limx = c(0, 100)) +
       ggplot2::scale_y_continuous(breaks = scales::trans_breaks("log10",
@@ -47,7 +48,7 @@ plot_cperm <- function(cperm, pad = FALSE){
       ggplot2::annotation_logticks(sides = "l", scaled = FALSE)
   } else {
     Plot <- ggplot2::ggplot(dplyr::filter(cperm, Q>0), ggplot2::aes(x = Freq, y = Q)) +
-      ggplot2::geom_line(ggplot2::aes(color = Estacao)) +
+      ggplot2::geom_line(ggplot2::aes(color = Estação)) +
       ggplot2::coord_trans(y = "log10", limy = c(0.01, max(cperm$Q)),
                            limx = c(0, 100)) +
       ggplot2::scale_y_continuous(breaks = scales::trans_breaks("log10",
@@ -83,18 +84,18 @@ plot_boxplot <- function(valores, estacoes, tipo = "Q"){
     tipo <- "Q"
   }
   dados <- data.frame(valores, estacoes)
-  colnames(dados) <- c(tipo, "Estacao")
+  colnames(dados) <- c(tipo, "Estação")
   if(any(colnames(dados) == "Q")){
-    Plot <- ggplot2::ggplot(dados, ggplot2::aes(x = Estacao, y = Q)) +
+    Plot <- ggplot2::ggplot(dados, ggplot2::aes(x = Estação, y = Q)) +
       ggplot2::geom_boxplot() +
       ggplot2::theme_bw() +
-      ggplot2::labs(title = "Boxplot", x = "Estacao", y = "Q (m³/s)")
+      ggplot2::labs(title = "Boxplot", x = "Estação", y = "Q (m³/s)")
   }
   if(any(colnames(dados) == "P")){
-    Plot <- ggplot2::ggplot(dados, ggplot2::aes(x = Estacao, y = P)) +
+    Plot <- ggplot2::ggplot(dados, ggplot2::aes(x = Estação, y = P)) +
       ggplot2::geom_boxplot() +
       ggplot2::theme_bw() +
-      ggplot2::labs(title = "Boxplot", x = "Estacao", y = "P (mm)")
+      ggplot2::labs(title = "Boxplot", x = "Estação", y = "P (mm)")
   }
   return(Plot)
 }
@@ -119,13 +120,13 @@ plot_histograma <- function(valores, estacoes, tipo = "Q", colunas = 10){
     tipo <- "Q"
   }
   dados <- data.frame(valores, estacoes)
-  colnames(dados) <- c(tipo, "Estacao")
-  est <- unique(dados$Estacao)
+  colnames(dados) <- c(tipo, "Estação")
+  est <- unique(dados$Estação)
   if(any(colnames(dados) == "Q")){
     Plot <- ggplot2::ggplot(dados, ggplot2::aes(x = Q)) +
       ggplot2::geom_histogram(alpha = 1/length(est),
                               position = "identity",
-                              ggplot2::aes(fill = Estacao),
+                              ggplot2::aes(fill = Estação),
                               bins = colunas) +
       ggplot2::theme_bw() +
       ggplot2::labs(title = "Histograma", x = "Q (m³/s)", y = "n")
@@ -134,7 +135,7 @@ plot_histograma <- function(valores, estacoes, tipo = "Q", colunas = 10){
     Plot <- ggplot2::ggplot(dados, ggplot2::aes(x = P)) +
       ggplot2::geom_histogram(alpha = 1/length(est),
                               position = "identity",
-                              ggplot2::aes(fill = Estacao),
+                              ggplot2::aes(fill = Estação),
                               bins = colunas) +
       ggplot2::theme_bw() +
       ggplot2::labs(title = "Histograma", x = "P (mm)", y = "n")
