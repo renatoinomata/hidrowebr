@@ -44,3 +44,13 @@ No argumento \code{ano_hidro} deve-se repassar uma variável do tipo
 \item \code{medAnuais}: Função para determinar os valores médios anuais.
 }}
 
+\examples{
+# Cálculo das vazões máximas de fluviópolis:
+maxAnuais(valores = fluviopolis$Q, datas = fluviopolis$Data,
+estacoes = fluviopolis$Est)
+
+# Especificando data para começo do ano hidrológico (26 de junho):
+maxAnuais(valores = fluviopolis$Q, datas = fluviopolis$Data,
+estacoes = fluviopolis$Est, ano_hidro = "26-06")
+
+}

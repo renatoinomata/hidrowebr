@@ -18,6 +18,15 @@
 #'   fevereiro, por exemplo. Caso o valor para o ano hidrológico seja uma data
 #'   inválida, a função utilizará o dia "01-01" para determinar os valores
 #'   anuais.
+#'
+#' @examples # Cálculo das vazões máximas de fluviópolis:
+#' maxAnuais(valores = fluviopolis$Q, datas = fluviopolis$Data,
+#' estacoes = fluviopolis$Est)
+#'
+#' # Especificando data para começo do ano hidrológico (26 de junho):
+#' maxAnuais(valores = fluviopolis$Q, datas = fluviopolis$Data,
+#' estacoes = fluviopolis$Est, ano_hidro = "26-06")
+#'
 #' @export
 maxAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
   if (is.na(as.Date(paste0(ano_hidro, "-", 2000), "%d-%m-%Y"))){

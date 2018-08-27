@@ -36,4 +36,13 @@ Para a utilização desta função, deve-se utilizar os dados obtidos
  vazões, sendo as opções \code{media} ou \code{mediana}. Caso não seja
  necessário realizar essa padronização, a variável \code{pad} deve receber o
  valor \code{NULL}.
+
+ @examples # Cálculo da curva de permanência:
+ cperm(fluviopolis)
+
+ # Curva de permanência padronizada (média):
+ cperm(fluviopolis, pad = "media")
+
+ # Curva de permanência pela fórmula de gringorten:
+ cperm(fluviopolis, posPlot = "gringorten")
 }

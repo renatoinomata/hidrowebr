@@ -26,6 +26,15 @@
 #'  necessário realizar essa padronização, a variável \code{pad} deve receber o
 #'  valor \code{NULL}.
 #'
+#'  @examples # Cálculo da curva de permanência:
+#'  cperm(fluviopolis)
+#'
+#'  # Curva de permanência padronizada (média):
+#'  cperm(fluviopolis, pad = "media")
+#'
+#'  # Curva de permanência pela fórmula de gringorten:
+#'  cperm(fluviopolis, posPlot = "gringorten")
+#'
 #'@export
 cperm <- function(dados, posPlot = "weibull", pad = NULL){
   if (posPlot != "weibull" & posPlot != "gringorten" & posPlot != "blom" &
