@@ -134,7 +134,7 @@ plot_boxplot <- function(valores, estacoes, tipo = "Q"){
 #'
 #' @examples
 #' # Histograma da estação de Fluviópolis:
-#' plot_hidrograma(valores = fluviopolis$Q, estacoes = fluviopolis$Est)
+#' plot_histograma(valores = fluviopolis$Q, estacoes = fluviopolis$Est)
 #'
 #' @export
 plot_histograma <- function(valores, estacoes, tipo = "Q", colunas = 10){

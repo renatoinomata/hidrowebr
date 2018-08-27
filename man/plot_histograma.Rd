@@ -28,6 +28,6 @@ O histograma gerado separa por cores os dados por estação. Os
 }
 \examples{
 # Histograma da estação de Fluviópolis:
-plot_hidrograma(valores = fluviopolis$Q, estacoes = fluviopolis$Est)
+plot_histograma(valores = fluviopolis$Q, estacoes = fluviopolis$Est)
 
 }
