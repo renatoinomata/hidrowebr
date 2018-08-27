@@ -7,7 +7,7 @@
 #' @param formato_data Formatação das datas no arquivo.
 #'
 #' @details Os dados brutos são organizados em uma data frame com: colunas de
-#'   \code{Estacao}, que representa o código da estação; \code{Data}, que é a
+#'   \code{Est}, que representa o código da estação; \code{Data}, que é a
 #'   data da leitura; e \code{Q} ou \code{P}, valores de vazão (m³/s) ou
 #'   precipitação (mm), respectivamente.
 #'
@@ -24,7 +24,7 @@ organizar <- function(dados, formato_data =  c("Ano", "Mes", "Dia")){
     valor <- "P"
   }
   dados <- dados[c(1, 3, 17:47)]
-  names(dados) <- c("Estacao", "Data", 1:31)
+  names(dados) <- c("Est", "Data", 1:31)
   dados <- tidyr::separate(dados, Data, into = formato_data)
   dados["Dia"] <- NULL
 
@@ -41,15 +41,15 @@ organizar <- function(dados, formato_data =  c("Ano", "Mes", "Dia")){
     dados <- dplyr::filter(dados, !is.na(P))
   }
   dados$Data <- as.Date(dados$Data, format = "%d/%m/%Y")
-  if(length(unique(dados$Estacao)) > 1){
+  if(length(unique(dados$Est)) > 1){
     dados_bkp <- dados
     dados <- NULL
-    for(i in unique(dados_bkp$Estacao)){
-      dados_aux <- dplyr::filter(dados_bkp, Estacao == i)
+    for(i in unique(dados_bkp$Est)){
+      dados_aux <- dplyr::filter(dados_bkp, Est == i)
       dados_aux <- dados_aux[!duplicated(dados_aux$Data), ]
       dados <- rbind(dados, dados_aux)
     }
   }
-  dados$Estacao <- as.factor(dados$Estacao)
+  dados$Est <- as.factor(dados$Est)
   return(dados)
 }

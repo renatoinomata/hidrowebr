@@ -11,10 +11,10 @@
 #'
 #' @export
 qref <- function(cperm, ref){
-  est <- unique(cperm$Estacao)
+  est <- unique(cperm$Est)
   qrefs <- data.frame()
   for (i in  1:length(est)){
-    cperm_aux <- dplyr::filter(cperm, Estacao == est[i])
+    cperm_aux <- dplyr::filter(cperm, Est == est[i])
     for (j in 1:length(ref)){
       inferior <- min(dplyr::filter(cperm, Freq <= ref[j])$Q)
       superior <- max(dplyr::filter(cperm, Freq >= ref[j])$Q)
@@ -22,6 +22,6 @@ qref <- function(cperm, ref){
       qrefs <- rbind(qrefs, aux)
     }
   }
-  names(qrefs) <- c("Estacao", "Q", "Ref")
+  names(qrefs) <- c("Est", "Q", "Ref")
   return(qrefs)
 }

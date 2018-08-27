@@ -25,11 +25,11 @@ maxAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
     ano_hidro <- "01-01"
   }
   dados <- data.frame(estacoes, datas, valores)
-  colnames(dados) <- c("Estacao", "Data", "Valores")
+  colnames(dados) <- c("Est", "Data", "Valores")
   anuais <- data.frame()
-  for(i in unique(dados$Estacao)){
+  for(i in unique(dados$Est)){
     # Criando os intervalos de datas
-    auxEst <- dplyr::filter(dados, Estacao == i)
+    auxEst <- dplyr::filter(dados, Est == i)
     anos <- unique(lubridate::year(auxEst$Data))
     datasAux <- as.Date(paste0(ano_hidro,"-",anos), "%d-%m-%Y")
     datasAux <- data.frame(datasAux, datasAux + lubridate::years(1) - 1)
@@ -54,7 +54,7 @@ maxAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
     }
     anuais <- rbind(anuais, data.frame(i, periodo, max_ano))
   }
-  names(anuais) <- c("Estacao", "Periodo", "Maxima")
+  names(anuais) <- c("Est", "Periodo", "Maxima")
   anuais <- anuais[!is.na(anuais$Maxima), ]
   return(anuais)
 }
@@ -68,11 +68,11 @@ minAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
     ano_hidro <- "01-01"
   }
   dados <- data.frame(estacoes, datas, valores)
-  colnames(dados) <- c("Estacao", "Data", "Valores")
+  colnames(dados) <- c("Est", "Data", "Valores")
   anuais <- data.frame()
-  for(i in unique(dados$Estacao)){
+  for(i in unique(dados$Est)){
     # Criando os intervalos de datas
-    auxEst <- dplyr::filter(dados, Estacao == i)
+    auxEst <- dplyr::filter(dados, Est == i)
     anos <- unique(lubridate::year(auxEst$Data))
     datasAux <- as.Date(paste0(ano_hidro,"-",anos), "%d-%m-%Y")
     datasAux <- data.frame(datasAux, datasAux + lubridate::years(1) - 1)
@@ -97,7 +97,7 @@ minAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
     }
     anuais <- rbind(anuais, data.frame(i, periodo, min_ano))
   }
-  names(anuais) <- c("Estacao", "Periodo", "Minima")
+  names(anuais) <- c("Est", "Periodo", "Minima")
   anuais <- anuais[!is.na(anuais$Minima), ]
   return(anuais)
 }
@@ -110,11 +110,11 @@ medAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
     ano_hidro <- "01-01"
   }
   dados <- data.frame(estacoes, datas, valores)
-  colnames(dados) <- c("Estacao", "Data", "Valores")
+  colnames(dados) <- c("Est", "Data", "Valores")
   anuais <- data.frame()
-  for(i in unique(dados$Estacao)){
+  for(i in unique(dados$Est)){
     # Criando os intervalos de datas
-    auxEst <- dplyr::filter(dados, Estacao == i)
+    auxEst <- dplyr::filter(dados, Est == i)
     anos <- unique(lubridate::year(auxEst$Data))
     datasAux <- as.Date(paste0(ano_hidro,"-",anos), "%d-%m-%Y")
     datasAux <- data.frame(datasAux, datasAux + lubridate::years(1) - 1)
@@ -139,7 +139,7 @@ medAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
     }
     anuais <- rbind(anuais, data.frame(i, periodo, med_ano))
   }
-  names(anuais) <- c("Estacao", "Periodo", "Media")
+  names(anuais) <- c("Est", "Periodo", "Media")
   anuais <- anuais[!is.na(anuais$Media), ]
   return(anuais)
 }

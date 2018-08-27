@@ -1,7 +1,7 @@
 #'Função para a construção da curva de permanência
 #'
 #'@description A função retornará uma data frame com  as colunas de
-#'  \code{Estacao}, \code{Data}, \code{Q}, \code{Ordem} e \code{Freq}. A coluna
+#'  \code{Est}, \code{Data}, \code{Q}, \code{Ordem} e \code{Freq}. A coluna
 #'  \code{Ordem} corresponde a ordem decrescente que o valor de vazão se
 #'  encontra na série, enquanto que \code{Freq} corresponde ao seu valor de
 #'  frequência acumulada.
@@ -15,7 +15,7 @@
 #'
 #'@details Para a utilização desta função, deve-se utilizar os dados obtidos
 #'  após a função de \code{organizar}, com as colunas de \code{Q}, \code{Data} e
-#'  \code{Estacao}.
+#'  \code{Est}.
 #'
 #'  No argumento posição de plotagem, as opções para fórmulas de posição de
 #'  plotagem são: \code{weibull}, \code{gringorten}, \code{blom}, \code{hazen} e
@@ -43,8 +43,8 @@ cperm <- function(dados, posPlot = "weibull", pad = NULL){
   }
 
   cPerm <- data.frame()
-  for (i in unique(dados$Estacao)){
-    aux <- dplyr::filter(dados, Estacao == i)
+  for (i in unique(dados$Est)){
+    aux <- dplyr::filter(dados, Est == i)
     aux <- dplyr::arrange(aux, desc(Q))
     Ordem <- 1:nrow(aux)
     aux <- cbind(aux, Ordem)
@@ -74,7 +74,7 @@ cperm <- function(dados, posPlot = "weibull", pad = NULL){
       }
     }
 
-    names(aux) <- c("Estacao", "Data", "Q", "Ordem", "Freq")
+    names(aux) <- c("Est", "Data", "Q", "Ordem", "Freq")
     aux <- aux[c(1, 4, 2, 3, 5)]
     cPerm <- rbind(cPerm, aux)
   }

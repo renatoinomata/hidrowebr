@@ -18,7 +18,7 @@ vazões. Tem como padrão o valor \code{NULL}.}
 }
 \description{
 A função retornará uma data frame com  as colunas de
- \code{Estacao}, \code{Data}, \code{Q}, \code{Ordem} e \code{Freq}. A coluna
+ \code{Est}, \code{Data}, \code{Q}, \code{Ordem} e \code{Freq}. A coluna
  \code{Ordem} corresponde a ordem decrescente que o valor de vazão se
  encontra na série, enquanto que \code{Freq} corresponde ao seu valor de
  frequência acumulada.
@@ -26,7 +26,7 @@ A função retornará uma data frame com  as colunas de
 \details{
 Para a utilização desta função, deve-se utilizar os dados obtidos
  após a função de \code{organizar}, com as colunas de \code{Q}, \code{Data} e
- \code{Estacao}.
+ \code{Est}.
 
  No argumento posição de plotagem, as opções para fórmulas de posição de
  plotagem são: \code{weibull}, \code{gringorten}, \code{blom}, \code{hazen} e

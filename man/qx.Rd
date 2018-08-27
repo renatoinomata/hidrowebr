@@ -16,7 +16,7 @@ série de vazões Q7.}
 Calcula a média das vazões a cada \code{x} dias consecutivos.
 }
 \details{
-A função retorna uma data frame com as colunas de \code{Estacao},
+A função retorna uma data frame com as colunas de \code{Est},
   \code{Data} e \code{Qx}. A média só será realizada caso existam \code{x}
   dias consecutivos.
 }

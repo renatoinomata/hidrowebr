@@ -6,20 +6,20 @@
 #' @param x Número de dias consecutivos. O valor padrão é 7, correspondendo a
 #'   série de vazões Q7.
 #'
-#' @details A função retorna uma data frame com as colunas de \code{Estacao},
+#' @details A função retorna uma data frame com as colunas de \code{Est},
 #'   \code{Data} e \code{Qx}. A média só será realizada caso existam \code{x}
 #'   dias consecutivos.
 #'
 #' @export
 qx <- function(dados, x = 7){
-  est <- unique(dados$Estacao)
+  est <- unique(dados$Est)
   dadosQx <- data.frame()
   for (i in est){
-    auxEst <- dplyr::filter(dados, Estacao == i)
+    auxEst <- dplyr::filter(dados, Est == i)
     periodo <- seq(min(auxEst$Data), max(auxEst$Data), by = "days")
     aux <- data.frame(i, periodo)
     aux$Q <- NA
-    colnames(aux) <- c("Estacao", "Data", "Q")
+    colnames(aux) <- c("Est", "Data", "Q")
     aux <- rbind(auxEst, aux)
     aux <- aux[!duplicated(aux$Data), ]
     aux <- dplyr::arrange(aux, Data)

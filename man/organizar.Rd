@@ -17,7 +17,7 @@ Organiza os dados em colunas de Estação, Data e
 }
 \details{
 Os dados brutos são organizados em uma data frame com: colunas de
-  \code{Estacao}, que representa o código da estação; \code{Data}, que é a
+  \code{Est}, que representa o código da estação; \code{Data}, que é a
   data da leitura; e \code{Q} ou \code{P}, valores de vazão (m³/s) ou
   precipitação (mm), respectivamente.
 

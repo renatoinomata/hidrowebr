@@ -20,9 +20,9 @@ descartar <- function(dados, falhas = 5, modo = "anual"){
     stop("Valor para porcentagem de falhas incorreto", call. = FALSE)
   } else {
     dadosAux <- data.frame()
-    est <- unique(dados$Estacao)
+    est <- unique(dados$Est)
   for(i in est){
-      auxEst <- dplyr::filter(dados, Estacao == i)
+      auxEst <- dplyr::filter(dados, Est == i)
 
       # Para descartar por ano
       if(modo == "anual"){
