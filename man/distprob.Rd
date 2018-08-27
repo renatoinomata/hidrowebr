@@ -44,3 +44,13 @@ No argumento \code{dist} podem ser utilizadas as seguintes
   de Kolmogorov-Smirnov "\code{KS}", e o valor estimado para a dada
   probabilidade "\code{estimado}".
 }
+\examples{
+# Cálculo de vazões máximas:
+qmax <- maxAnuais(valores = fluviopolis$Q, datas = fluviopolis$Data,
+estacoes = fluviopolis$Est)
+
+# Estimativa da vazão máxima para o período de retorno de 10 anos com a
+# distribuição log-normal:
+distprob(valores = qmax$Maxima, dist = "lnorm", prob = 0.1)
+
+}

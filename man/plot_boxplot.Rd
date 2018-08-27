@@ -24,3 +24,8 @@ Funções de plotagem de boxplots.
 O boxplot gerado separa os dados por estação. Os gráficos são feitos
   com auxílio do pacote \code{\link[ggplot2]{ggplot2-package}}.
 }
+\examples{
+# Boxplot da estação de Fluviópolis:
+plot_boxplot(valores = fluviopolis$Q, estacoes = fluviopolis$Est)
+
+}

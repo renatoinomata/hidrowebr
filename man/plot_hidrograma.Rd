@@ -19,5 +19,12 @@ Funções de plotagem de hidrogramas.
 }
 \details{
 O hidrograma gerado separa as diferentes estações por cores. Os
-  gráficos são feitos com auxílio do pacote \code{\link[ggplot2]{ggplot2-package}}.
+  gráficos são feitos com auxílio do pacote
+  \code{\link[ggplot2]{ggplot2-package}}.
+}
+\examples{
+# Hidrograma da estação de Fluviópolis:
+plot_hidrograma(valores = fluviopolis$Q, datas = fluviopolis$Data,
+estacoes = fluviopolis$Est)
+
 }

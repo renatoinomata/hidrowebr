@@ -1,10 +1,9 @@
 #'Função para a construção da curva de permanência
 #'
-#'@description A função retornará uma data frame com  as colunas de
-#'  \code{Est}, \code{Data}, \code{Q}, \code{Ordem} e \code{Freq}. A coluna
-#'  \code{Ordem} corresponde a ordem decrescente que o valor de vazão se
-#'  encontra na série, enquanto que \code{Freq} corresponde ao seu valor de
-#'  frequência acumulada.
+#'@description A função retornará uma data frame com  as colunas de \code{Est},
+#'  \code{Data}, \code{Q}, \code{Ordem} e \code{Freq}. A coluna \code{Ordem}
+#'  corresponde a ordem decrescente que o valor de vazão se encontra na série,
+#'  enquanto que \code{Freq} corresponde ao seu valor de frequência acumulada.
 #'
 #'@param  dados Corresponde à data frame obtida após o uso da função
 #'  \code{organizar}.
@@ -26,14 +25,15 @@
 #'  necessário realizar essa padronização, a variável \code{pad} deve receber o
 #'  valor \code{NULL}.
 #'
-#'  @examples # Cálculo da curva de permanência:
-#'  cperm(fluviopolis)
+#' @examples
+#' # Cálculo da curva de permanência:
+#' cperm(fluviopolis)
 #'
-#'  # Curva de permanência padronizada (média):
-#'  cperm(fluviopolis, pad = "media")
+#' # Curva de permanência padronizada (média):
+#' cperm(fluviopolis, pad = "media")
 #'
-#'  # Curva de permanência pela fórmula de gringorten:
-#'  cperm(fluviopolis, posPlot = "gringorten")
+#' # Curva de permanência pela fórmula de gringorten:
+#' cperm(fluviopolis, posPlot = "gringorten")
 #'
 #'@export
 cperm <- function(dados, posPlot = "weibull", pad = NULL){

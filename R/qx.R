@@ -10,6 +10,13 @@
 #'   \code{Data} e \code{Qx}. A média só será realizada caso existam \code{x}
 #'   dias consecutivos.
 #'
+#' @examples
+#' # Cálculo das Q7:
+#' qx(fluviopolis)
+#'
+#' # Cálculo de Q15:
+#' qx(fluviopolis, x = 15)
+#'
 #' @export
 qx <- function(dados, x = 7){
   est <- unique(dados$Est)

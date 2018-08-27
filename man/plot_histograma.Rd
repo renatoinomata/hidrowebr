@@ -26,3 +26,8 @@ Funções de plotagem de histogramas.
 O histograma gerado separa por cores os dados por estação. Os
   gráficos são feitos com auxílio do pacote \code{\link[ggplot2]{ggplot2-package}}.
 }
+\examples{
+# Histograma da estação de Fluviópolis:
+plot_hidrograma(valores = fluviopolis$Q, estacoes = fluviopolis$Est)
+
+}

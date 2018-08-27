@@ -20,3 +20,11 @@ A função retorna uma data frame com as colunas de \code{Est},
   \code{Data} e \code{Qx}. A média só será realizada caso existam \code{x}
   dias consecutivos.
 }
+\examples{
+# Cálculo das Q7:
+qx(fluviopolis)
+
+# Cálculo de Q15:
+qx(fluviopolis, x = 15)
+
+}

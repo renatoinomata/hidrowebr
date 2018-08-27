@@ -17,11 +17,10 @@ de plotagem a ser utilizada. Tem como padrão a fórmula de Weibull.}
 vazões. Tem como padrão o valor \code{NULL}.}
 }
 \description{
-A função retornará uma data frame com  as colunas de
- \code{Est}, \code{Data}, \code{Q}, \code{Ordem} e \code{Freq}. A coluna
- \code{Ordem} corresponde a ordem decrescente que o valor de vazão se
- encontra na série, enquanto que \code{Freq} corresponde ao seu valor de
- frequência acumulada.
+A função retornará uma data frame com  as colunas de \code{Est},
+ \code{Data}, \code{Q}, \code{Ordem} e \code{Freq}. A coluna \code{Ordem}
+ corresponde a ordem decrescente que o valor de vazão se encontra na série,
+ enquanto que \code{Freq} corresponde ao seu valor de frequência acumulada.
 }
 \details{
 Para a utilização desta função, deve-se utilizar os dados obtidos
@@ -36,13 +35,15 @@ Para a utilização desta função, deve-se utilizar os dados obtidos
  vazões, sendo as opções \code{media} ou \code{mediana}. Caso não seja
  necessário realizar essa padronização, a variável \code{pad} deve receber o
  valor \code{NULL}.
+}
+\examples{
+# Cálculo da curva de permanência:
+cperm(fluviopolis)
 
- @examples # Cálculo da curva de permanência:
- cperm(fluviopolis)
+# Curva de permanência padronizada (média):
+cperm(fluviopolis, pad = "media")
 
- # Curva de permanência padronizada (média):
- cperm(fluviopolis, pad = "media")
+# Curva de permanência pela fórmula de gringorten:
+cperm(fluviopolis, posPlot = "gringorten")
 
- # Curva de permanência pela fórmula de gringorten:
- cperm(fluviopolis, posPlot = "gringorten")
 }

@@ -21,3 +21,13 @@ A curva de permanência gerada separa as diferentes estações por
   \code{\link[ggplot2]{ggplot2-package}}. A curva de permanência é plotada em escala
   logarítmica.
 }
+\examples{
+# Curva de permanência da estação de Fluviópolis:
+curvaPerm <- cperm(fluviopolis)
+plot_cperm(curvaPerm)
+
+# Curva de permanência padronizada:
+cPad <- cperm(fluviopolis, pad = "media")
+plot_cperm(cPad, pad = TRUE)
+
+}

@@ -25,3 +25,11 @@ Existem dois modos de descartes realizados: \code{anual} ou
   do indicado pela variável \code{falhas}. O valor padrão para \code{falhas}
   é de 5\%.
 }
+\examples{
+# Descartando anos com falhas iguais ou superiores a 5\%:
+descartar(fluviopolis, falhas = 5, modo = "anual")
+
+# Descartando meses com falhas iguais ou superiores a 10\%:
+descartar(fluviopolis, falhas = 10, modo = "mensal")
+
+}

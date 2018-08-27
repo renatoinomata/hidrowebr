@@ -6,7 +6,13 @@
 #'   leituras.
 #'
 #' @details O hidrograma gerado separa as diferentes estações por cores. Os
-#'   gráficos são feitos com auxílio do pacote \code{\link[ggplot2]{ggplot2-package}}.
+#'   gráficos são feitos com auxílio do pacote
+#'   \code{\link[ggplot2]{ggplot2-package}}.
+#'
+#' @examples
+#' # Hidrograma da estação de Fluviópolis:
+#' plot_hidrograma(valores = fluviopolis$Q, datas = fluviopolis$Data,
+#' estacoes = fluviopolis$Est)
 #'
 #' @export
 plot_hidrograma <- function(valores, datas, estacoes){
@@ -29,6 +35,15 @@ plot_hidrograma <- function(valores, datas, estacoes){
 #'   cores. Os gráficos são feitos com auxílio do pacote
 #'   \code{\link[ggplot2]{ggplot2-package}}. A curva de permanência é plotada em escala
 #'   logarítmica.
+#'
+#' @examples
+#' # Curva de permanência da estação de Fluviópolis:
+#' curvaPerm <- cperm(fluviopolis)
+#' plot_cperm(curvaPerm)
+#'
+#' # Curva de permanência padronizada:
+#' cPad <- cperm(fluviopolis, pad = "media")
+#' plot_cperm(cPad, pad = TRUE)
 #'
 #' @export
 plot_cperm <- function(cperm, pad = FALSE){
@@ -77,6 +92,10 @@ plot_cperm <- function(cperm, pad = FALSE){
 #' @details O boxplot gerado separa os dados por estação. Os gráficos são feitos
 #'   com auxílio do pacote \code{\link[ggplot2]{ggplot2-package}}.
 #'
+#' @examples
+#' # Boxplot da estação de Fluviópolis:
+#' plot_boxplot(valores = fluviopolis$Q, estacoes = fluviopolis$Est)
+#'
 #' @export
 plot_boxplot <- function(valores, estacoes, tipo = "Q"){
   if (tipo != "Q" & tipo != "P"){
@@ -112,6 +131,10 @@ plot_boxplot <- function(valores, estacoes, tipo = "Q"){
 #'
 #' @details O histograma gerado separa por cores os dados por estação. Os
 #'   gráficos são feitos com auxílio do pacote \code{\link[ggplot2]{ggplot2-package}}.
+#'
+#' @examples
+#' # Histograma da estação de Fluviópolis:
+#' plot_hidrograma(valores = fluviopolis$Q, estacoes = fluviopolis$Est)
 #'
 #' @export
 plot_histograma <- function(valores, estacoes, tipo = "Q", colunas = 10){
@@ -157,6 +180,14 @@ plot_histograma <- function(valores, estacoes, tipo = "Q", colunas = 10){
 #'   \code{\link[fitdistrplus]{cdfcomp}}. As distribuições suportadas são as
 #'   mesmas da função \code{\link{distprob}}, sendo necessário carregar o pacote
 #'   \code{FAdist} para o uso de algumas distribuições.
+#'
+#' @examples
+#' # Distribuições de probabilidade para os valores máximos de Fluviópolis:
+#' qmax <- maxAnuais(valores = fluviopolis$Q, datas = fluviopolis$Data,
+#' estacoes = fluviopolis$Est)
+#' distribuicoes <- c("norm", "lnorm", "gamma3", "lgamma3")
+#'
+#' plot_dist(valores = qmax$Maxima, dist = distribuicoes)
 #'
 #' @export
 plot_dist <- function(valores, dist, tipo = "Q"){
