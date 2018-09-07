@@ -26,7 +26,7 @@ processamento e análise.
 \section{Análise}{
  Nessa etapa, são extraídas informações numéricas e gráficas
   acerca do conjunto de dados. Fazem parte desse grupo as funções
-  \code{\link{distprob}}, \code{\link{plot_hidrograma}},
+  \code{\link{distprob}}, \code{\link{qperm}}, \code{\link{plot_hidrograma}},
   \code{\link{plot_histograma}}, \code{\link{plot_boxplot}},
   \code{\link{plot_cperm}} e \code{\link{plot_dist}}.
 }
