@@ -7,16 +7,17 @@
 #' @param formato_data Formatação das datas no arquivo.
 #'
 #' @details Os dados brutos são organizados em uma data frame com: colunas de
-#'   \code{Est}, que representa o código da estação; \code{Data}, que é a
-#'   data da leitura; e \code{Q} ou \code{P}, valores de vazão (m³/s) ou
-#'   precipitação (mm), respectivamente.
+#'   \code{Est}, que representa o código da estação; \code{Data}, que é a data
+#'   da leitura; e \code{Q} ou \code{P}, valores de vazão (m³/s) ou precipitação
+#'   (mm), respectivamente.
 #'
-#'   O valor padrão para a variável \code{formato_data} é \code{Ano}, \code{Mes}
-#'   e \code{Dia}. Deve-se ordernar esses três componentes conforme a formatação
-#'   que estiver presente no arquivo do portal Hidroweb.
+#'   O valor padrão para a variável \code{formato_data} é \code{Dia}, \code{Mes}
+#'   e \code{Ano}. Deve-se ordernar esses três componentes conforme a formatação
+#'   que estiver presente no arquivo do portal Hidroweb. A partir da versão
+#'   2.0.0, o Hidroweb tem como padrão as datas na forma dd/mm/YYYY.
 #'
 #' @export
-organizar <- function(dados, formato_data =  c("Ano", "Mes", "Dia")){
+organizar <- function(dados, formato_data =  c("Dia", "Mes", "Ano")){
   # Limpando os dados
   if(grepl("Vazao", names(dados)[17])){
     valor <- "Q"
