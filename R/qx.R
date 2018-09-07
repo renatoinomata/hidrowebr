@@ -6,7 +6,7 @@
 #' @param x Número de dias consecutivos. O valor padrão é 7, correspondendo a
 #'   série de vazões Q7.
 #'
-#' @details A função retorna uma data frame com as colunas de \code{Est},
+#' @return A função retorna uma data frame com as colunas de \code{Est},
 #'   \code{Data} e \code{Qx}. A média só será realizada caso existam \code{x}
 #'   dias consecutivos.
 #'

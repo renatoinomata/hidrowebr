@@ -16,11 +16,14 @@ de plotagem a ser utilizada. Tem como padrão a fórmula de Weibull.}
 \item{pad}{Variável do tipo \code{chr} que refere-se a padronização das
 vazões. Tem como padrão o valor \code{NULL}.}
 }
-\description{
+\value{
 A função retornará uma data frame com  as colunas de \code{Est},
  \code{Data}, \code{Q}, \code{Ordem} e \code{Freq}. A coluna \code{Ordem}
  corresponde a ordem decrescente que o valor de vazão se encontra na série,
  enquanto que \code{Freq} corresponde ao seu valor de frequência acumulada.
+}
+\description{
+A função elabora a curva de permanência de um conjunto de dados.
 }
 \details{
 Para a utilização desta função, deve-se utilizar os dados obtidos

@@ -28,9 +28,9 @@
 #'   Para a utilização das distribuições \code{gumbel}, \code{gamma3} e
 #'   \code{lgamma3} é necessário carregar o pacote \code{\link[FAdist]{FAdist}}.
 #'
-#'   A função retornará uma lista separada de acordo com as distribuições, os
-#'   coeficientes encontrados do ajuste "\code{coefs}", o valor obtido do teste
-#'   de Kolmogorov-Smirnov "\code{KS}", e o valor estimado para a dada
+#' @return A função retornará uma lista separada de acordo com as distribuições,
+#'   os coeficientes encontrados do ajuste "\code{coefs}", o valor obtido do
+#'   teste de Kolmogorov-Smirnov "\code{KS}", e o valor estimado para a dada
 #'   probabilidade "\code{estimado}".
 #'
 #' @examples

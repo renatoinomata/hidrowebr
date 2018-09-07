@@ -10,11 +10,11 @@ importar(arq)
 \item{arq}{Variável do tipo \code{chr}. Corresponde ao nome ou caminho do
 arquivo a ser importado.}
 }
+\value{
+Por meio dessa função serão importados os dados tais quais estão
+  dispostos no arquivo original do portal Hidroweb.
+}
 \description{
 Importa os dados dos arquivos disponibilizados pela Hidroweb
   para o R.
-}
-\details{
-Por meio dessa função serão importados os dados tais quais estão
-  dispostos no arquivo original do portal Hidroweb.
 }

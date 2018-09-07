@@ -16,6 +16,12 @@ probabilidade a serem utilizadas.}
 \item{prob}{Um valor numérico, correspondente à probabilidade a qual o
 parâmetro (vazão ou precipitação) será estimado.}
 }
+\value{
+A função retornará uma lista separada de acordo com as distribuições,
+  os coeficientes encontrados do ajuste "\code{coefs}", o valor obtido do
+  teste de Kolmogorov-Smirnov "\code{KS}", e o valor estimado para a dada
+  probabilidade "\code{estimado}".
+}
 \description{
 Realiza os ajustes de probabilidade especificados pelo usuário e
   dada a probabilidade do evento, estima o valor da precipitação/vazão.
@@ -38,11 +44,6 @@ No argumento \code{dist} podem ser utilizadas as seguintes
 
   Para a utilização das distribuições \code{gumbel}, \code{gamma3} e
   \code{lgamma3} é necessário carregar o pacote \code{\link[FAdist]{FAdist}}.
-
-  A função retornará uma lista separada de acordo com as distribuições, os
-  coeficientes encontrados do ajuste "\code{coefs}", o valor obtido do teste
-  de Kolmogorov-Smirnov "\code{KS}", e o valor estimado para a dada
-  probabilidade "\code{estimado}".
 }
 \examples{
 # Cálculo de vazões máximas:

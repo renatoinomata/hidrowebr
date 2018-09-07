@@ -6,7 +6,7 @@
 #' @param arq Variável do tipo \code{chr}. Corresponde ao nome ou caminho do
 #'   arquivo a ser importado.
 #'
-#' @details Por meio dessa função serão importados os dados tais quais estão
+#' @return Por meio dessa função serão importados os dados tais quais estão
 #'   dispostos no arquivo original do portal Hidroweb.
 #'
 #' @export

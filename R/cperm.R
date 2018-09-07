@@ -1,6 +1,8 @@
 #'Função para a construção da curva de permanência
 #'
-#'@description A função retornará uma data frame com  as colunas de \code{Est},
+#'@description A função elabora a curva de permanência de um conjunto de dados.
+#'
+#'@return A função retornará uma data frame com  as colunas de \code{Est},
 #'  \code{Data}, \code{Q}, \code{Ordem} e \code{Freq}. A coluna \code{Ordem}
 #'  corresponde a ordem decrescente que o valor de vazão se encontra na série,
 #'  enquanto que \code{Freq} corresponde ao seu valor de frequência acumulada.
