@@ -10,39 +10,32 @@
 #'   dispostos no arquivo original do portal Hidroweb.
 #'
 #' @export
-importar <- function(arq){
+importar <- function(arq, skip = 13){
   # Verificação do tipo de arquivo
-  if(is.character(arq) == FALSE){
-    stop("Variável não é do tipo chr", call. = FALSE)
-  } else {
-    # Verificação da existência dos arquivos
-    remove_arq <- c()
-    for(i in 1:length(arq)){
-      if(file.exists(arq[i]) == FALSE){
-        warning(paste0("Arquivo '", arq[i], "' não existe"))
-        remove_arq <- c(remove_arq, i)
-      }
+  if(!is.character(arq))
+    stop("Variável não é do tipo chr.", call. = FALSE)
+
+  # Verificação da existência dos arquivos
+  remove_arq <- c()
+  for(i in 1:length(arq)){
+    if(file.exists(arq[i]) == FALSE){
+      warning(paste0("Arquivo '", arq[i], "' não existe"))
+      remove_arq <- c(remove_arq, i)
     }
-    if(is.null(remove_arq) == FALSE){
-      arq <- arq[-remove_arq]
-    }
-      # Importação dos dados
-      dados <- data.frame()
-      for(i in 1:length(arq)){
-        if(grepl("csv", arq[i]))
-          dados_aux <- read.csv(arq[i],
-                                skip = 15,
-                                header = TRUE,
-                                sep = ";",
-                                dec = ",")
-        else
-          dados_aux <- read.table(arq[i],
-                                  skip = 15,
-                                  header = TRUE,
-                                  sep = ";",
-                                  dec = ",")
-        dados <- rbind(dados, dados_aux)
-      }
-      return(dados)
   }
+  if(is.null(remove_arq) == FALSE){
+    arq <- arq[-remove_arq]
+  }
+    # Importação dos dados
+    dados <- data.frame()
+    for(i in 1:length(arq)){
+      dados_aux <- readr::read_delim(arq[i],
+                                     ";", escape_double = FALSE,
+                                      locale = locale(decimal_mark = ",",
+                                                      grouping_mark = "."),
+                                      trim_ws = TRUE,
+                                      skip = skip)
+      dados <- rbind(dados, dados_aux)
+    }
+    return(dados)
 }
