@@ -17,5 +17,6 @@ Imports: dplyr,
     grid,
     lubridate,
     tidyr,
-    zoo
+    zoo,
+    readr
 RoxygenNote: 6.1.0
