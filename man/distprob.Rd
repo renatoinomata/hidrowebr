@@ -5,10 +5,12 @@
 \title{Função para ajuste de distribuições de probabilidades e estimação de
 parâmetros.}
 \usage{
-\method{print}{distprob.hidrowebr}(valores, dist, prob)
+distprob(dados, col_valores, dist, prob)
 }
 \arguments{
-\item{valores}{Um vetor numérico com os valores a serem ajustados.}
+\item{dados}{Data frame com a série hidrológica a ser utilizada.}
+
+\item{col_valores}{O nome da coluna com os valores a serem utilizados.}
 
 \item{dist}{Um vetor de caracteres com os nomes das distribuições de
 probabilidade a serem utilizadas.}
@@ -17,10 +19,11 @@ probabilidade a serem utilizadas.}
 parâmetro (vazão ou precipitação) será estimado.}
 }
 \value{
-A função retornará uma lista separada de acordo com as distribuições,
-  os coeficientes encontrados do ajuste "\code{coefs}", o valor obtido do
-  teste de Kolmogorov-Smirnov "\code{KS}", e o valor estimado para a dada
-  probabilidade "\code{estimado}".
+A função retornará uma data frame com as seguintes colunas:
+  \code{Est}, o código da estação; \code{Dist} a distribuição utilizada;
+  \code{Coef1} e \code{Coef2}, os parâmetros da distribuição; \code{KS} o
+  valor obtido do teste de Kolmogorov-Smirnov; e \code{Estimado}, o valor
+  estimado para a dada probabilidade.
 }
 \description{
 Realiza os ajustes de probabilidade especificados pelo usuário e
@@ -47,11 +50,10 @@ No argumento \code{dist} podem ser utilizadas as seguintes
 }
 \examples{
 # Cálculo de vazões máximas:
-qmax <- maxAnuais(valores = fluviopolis$Q, datas = fluviopolis$Data,
-estacoes = fluviopolis$Est)
+qmax <- maxAnuais(fluviopolis, "Q")
 
 # Estimativa da vazão máxima para o período de retorno de 10 anos com a
 # distribuição log-normal:
-distprob(valores = qmax$Maxima, dist = "lnorm", prob = 0.1)
+distprob(dados = qmax, col_valores = "Maxima", dist = "lnorm", prob = 0.1)
 
 }
