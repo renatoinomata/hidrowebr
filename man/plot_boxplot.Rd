@@ -4,18 +4,12 @@
 \alias{plot_boxplot}
 \title{Funções de plotagem de boxplots.}
 \usage{
-plot_boxplot(valores, estacoes, tipo = "Q")
+plot_boxplot(dados, col_valores)
 }
 \arguments{
-\item{valores}{Vetor numérico com as leituras a serem plotadas.}
+\item{dados}{Data frame com a série hidrológica a ser utilizada.}
 
-\item{estacoes}{Vetor com as estações correspondentes a cada uma das
-leituras.}
-
-\item{tipo}{Variável que corresponde ao tipo de leitura, as opções são:
-\code{Q} ou \code{P}, para vazões ou precipitações, respectivamente.}
-
-\item{datas}{Vetor com as datas das leituras.}
+\item{col_valores}{O nome da coluna com os valores a serem utilizados.}
 }
 \description{
 Funções de plotagem de boxplots.
@@ -26,6 +20,6 @@ O boxplot gerado separa os dados por estação. Os gráficos são feitos
 }
 \examples{
 # Boxplot da estação de Fluviópolis:
-plot_boxplot(valores = fluviopolis$Q, estacoes = fluviopolis$Est)
+plot_boxplot(fluviopolis, col_valores = "Q")
 
 }

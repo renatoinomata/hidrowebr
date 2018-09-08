@@ -1,9 +1,7 @@
 #' Funções de plotagem de hidrogramas.
 #'
-#' @param valores Vetor numérico com as leituras a serem plotadas.
-#' @param datas Vetor com as datas das leituras.
-#' @param estacoes Vetor com as estações correspondentes a cada uma das
-#'   leituras.
+#' @param dados Data frame com a série hidrológica a ser utilizada.
+#' @param col_valores O nome da coluna com os valores a serem utilizados.
 #'
 #' @details O hidrograma gerado separa as diferentes estações por cores. Os
 #'   gráficos são feitos com auxílio do pacote
@@ -11,13 +9,24 @@
 #'
 #' @examples
 #' # Hidrograma da estação de Fluviópolis:
-#' plot_hidrograma(valores = fluviopolis$Q, datas = fluviopolis$Data,
-#' estacoes = fluviopolis$Est)
+#' plot_hidrograma(fluviopolis, col_valores = "Q")
 #'
 #' @export
-plot_hidrograma <- function(valores, datas, estacoes){
-  dados <- data.frame(estacoes ,datas, valores)
-  colnames(dados) <- c("Est", "Data", "Q")
+plot_hidrograma <- function(dados, col_valores){
+  # Conferindo valores para col_valores
+  if (is.null(col_valores))
+    stop("Inserir argumento 'col_valores'.")
+
+  if (!is.character(col_valores))
+    stop("Inserir variável do tipo 'chr'.")
+
+  if (col_valores == "Data" || col_valores == "Est")
+    stop("Variável incorreta para 'col_valores'.")
+
+  if (!any(colnames(dados) == col_valores))
+    stop("Não há colunas com valores iguais a 'col_valores'.")
+
+  colnames(dados)[which(colnames(dados) == col_valores)] <- "Q"
   Plot <- ggplot2::ggplot(dados, ggplot2::aes(x = Data, y = Q)) +
     ggplot2::geom_line(ggplot2:: aes(color = Est)) +
     ggplot2::theme_bw() +
@@ -82,51 +91,47 @@ plot_cperm <- function(cperm, pad = FALSE){
 
 #' Funções de plotagem de boxplots.
 #'
-#' @param valores Vetor numérico com as leituras a serem plotadas.
-#' @param datas Vetor com as datas das leituras.
-#' @param estacoes Vetor com as estações correspondentes a cada uma das
-#'   leituras.
-#' @param tipo Variável que corresponde ao tipo de leitura, as opções são:
-#'   \code{Q} ou \code{P}, para vazões ou precipitações, respectivamente.
+#' @param dados Data frame com a série hidrológica a ser utilizada.
+#' @param col_valores O nome da coluna com os valores a serem utilizados.
 #'
 #' @details O boxplot gerado separa os dados por estação. Os gráficos são feitos
 #'   com auxílio do pacote \code{\link[ggplot2]{ggplot2-package}}.
 #'
 #' @examples
 #' # Boxplot da estação de Fluviópolis:
-#' plot_boxplot(valores = fluviopolis$Q, estacoes = fluviopolis$Est)
+#' plot_boxplot(fluviopolis, col_valores = "Q")
 #'
 #' @export
-plot_boxplot <- function(valores, estacoes, tipo = "Q"){
-  if (tipo != "Q" & tipo != "P"){
-    warning("Valor incorreto para a variável 'tipo'.")
-    tipo <- "Q"
-  }
-  dados <- data.frame(valores, estacoes)
-  colnames(dados) <- c(tipo, "Est")
-  if(any(colnames(dados) == "Q")){
-    Plot <- ggplot2::ggplot(dados, ggplot2::aes(x = Est, y = Q)) +
-      ggplot2::geom_boxplot() +
-      ggplot2::theme_bw() +
-      ggplot2::labs(title = "Boxplot", x = "Est", y = "Q (m³/s)")
-  }
-  if(any(colnames(dados) == "P")){
-    Plot <- ggplot2::ggplot(dados, ggplot2::aes(x = Est, y = P)) +
-      ggplot2::geom_boxplot() +
-      ggplot2::theme_bw() +
-      ggplot2::labs(title = "Boxplot", x = "Est", y = "P (mm)")
-  }
+plot_boxplot <- function(dados, col_valores){
+  # Conferindo valores para col_valores
+  if (is.null(col_valores))
+    stop("Inserir argumento 'col_valores'.")
+
+  if (!is.character(col_valores))
+    stop("Inserir variável do tipo 'chr'.")
+
+  if (col_valores == "Data" || col_valores == "Est")
+    stop("Variável incorreta para 'col_valores'.")
+
+  if (!any(colnames(dados) == col_valores))
+    stop("Não há colunas com valores iguais a 'col_valores'.")
+
+  # Reconstruindo dados
+  dados <- data.frame(dados$Est, dados$Data, dados[col_valores])
+  colnames(dados) <- c("Est", "Data", "Valores")
+
+  Plot <- ggplot2::ggplot(dados, ggplot2::aes(x = Est, y = Valores)) +
+    ggplot2::geom_boxplot() +
+    ggplot2::theme_bw() +
+    ggplot2::labs(title = "Boxplot", x = "Est", y = col_valores)
+
   return(Plot)
 }
 
 #' Funções de plotagem de histogramas.
 #'
-#' @param valores Vetor numérico com as leituras a serem plotadas.
-#' @param datas Vetor com as datas das leituras.
-#' @param estacoes Vetor com as estações correspondentes a cada uma das
-#'   leituras.
-#' @param tipo Variável que corresponde ao tipo de leitura, as opções são:
-#'   \code{Q} ou \code{P}, para vazões ou precipitações, respectivamente.
+#' @param dados Data frame com a série hidrológica a ser utilizada.
+#' @param col_valores O nome da coluna com os valores a serem utilizados.
 #' @param colunas Número de colunas a serem plotadas.
 #'
 #' @details O histograma gerado separa por cores os dados por estação. Os
@@ -134,35 +139,35 @@ plot_boxplot <- function(valores, estacoes, tipo = "Q"){
 #'
 #' @examples
 #' # Histograma da estação de Fluviópolis:
-#' plot_histograma(valores = fluviopolis$Q, estacoes = fluviopolis$Est)
+#' plot_histograma(fluviopolis, col_valores = "Q", colunas = 10)
 #'
 #' @export
-plot_histograma <- function(valores, estacoes, tipo = "Q", colunas = 10){
-  if (tipo != "Q" & tipo != "P"){
-    warning("Valor incorreto para a variável 'tipo'.")
-    tipo <- "Q"
-  }
-  dados <- data.frame(valores, estacoes)
-  colnames(dados) <- c(tipo, "Est")
+plot_histograma <- function(dados, col_valores, colunas = 10){
+  # Conferindo valores para col_valores
+  if (is.null(col_valores))
+    stop("Inserir argumento 'col_valores'.")
+
+  if (!is.character(col_valores))
+    stop("Inserir variável do tipo 'chr'.")
+
+  if (col_valores == "Data" || col_valores == "Est")
+    stop("Variável incorreta para 'col_valores'.")
+
+  if (!any(colnames(dados) == col_valores))
+    stop("Não há colunas com valores iguais a 'col_valores'.")
+
+  # Reconstruindo dados
+  dados <- data.frame(dados$Est, dados$Data, dados[col_valores])
+  colnames(dados) <- c("Est", "Data", "Valores")
+
   est <- unique(dados$Est)
-  if(any(colnames(dados) == "Q")){
-    Plot <- ggplot2::ggplot(dados, ggplot2::aes(x = Q)) +
-      ggplot2::geom_histogram(alpha = 1/length(est),
+  Plot <- ggplot2::ggplot(dados, ggplot2::aes(x = Valores)) +
+    ggplot2::geom_histogram(alpha = 1/length(est),
                               position = "identity",
                               ggplot2::aes(fill = Est),
                               bins = colunas) +
-      ggplot2::theme_bw() +
-      ggplot2::labs(title = "Histograma", x = "Q (m³/s)", y = "n")
-  }
-  if(any(colnames(dados) == "P")){
-    Plot <- ggplot2::ggplot(dados, ggplot2::aes(x = P)) +
-      ggplot2::geom_histogram(alpha = 1/length(est),
-                              position = "identity",
-                              ggplot2::aes(fill = Est),
-                              bins = colunas) +
-      ggplot2::theme_bw() +
-      ggplot2::labs(title = "Histograma", x = "P (mm)", y = "n")
-  }
+    ggplot2::theme_bw() +
+    ggplot2::labs(title = "Histograma", x = col_valores, y = "n")
   return(Plot)
 }
 
@@ -175,8 +180,8 @@ plot_histograma <- function(valores, estacoes, tipo = "Q", colunas = 10){
 #'
 #' @details São gerados: um gráfico com o histograma e densidades teóricas e um
 #'   gráfico com as funções de probabilidade empíricas e teóricas. Os gráficos
-#'   são feitos com auxílio do pacote \code{\link[ggplot2]{ggplot2-package}} e das
-#'   funções \code{\link[fitdistrplus]{denscomp}} e
+#'   são feitos com auxílio do pacote \code{\link[ggplot2]{ggplot2-package}} e
+#'   das funções \code{\link[fitdistrplus]{denscomp}} e
 #'   \code{\link[fitdistrplus]{cdfcomp}}. As distribuições suportadas são as
 #'   mesmas da função \code{\link{distprob}}, sendo necessário carregar o pacote
 #'   \code{FAdist} para o uso de algumas distribuições.

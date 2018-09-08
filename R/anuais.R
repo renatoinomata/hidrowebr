@@ -4,10 +4,8 @@
 #'   e estação. O período pode ser tanto ano civil quanto ano hidrológico
 #'   definido pelo usuário.
 #'
-#' @param valores Vetor numérico com os valores de vazão ou precipitação.
-#' @param datas Vetor de datas correspondentes aos dados.
-#' @param estacoes Vetor com as correspondentes estações de cada um dos
-#'   elementos dos vetores anteriores.
+#' @param dados Data frame com a série hidrológica a ser utilizada.
+#' @param col_valores O nome da coluna com os valores a serem utilizados.
 #' @param ano_hidro Variável do tipo \code{chr} que contém o dia e mês a ser
 #'   utilizado como início do ano hidrológico. Tem como padrão o dia primeiro de
 #'   janeiro ("01-01").
@@ -20,21 +18,31 @@
 #'   anuais.
 #'
 #' @examples # Cálculo das vazões máximas de fluviópolis:
-#' maxAnuais(valores = fluviopolis$Q, datas = fluviopolis$Data,
-#' estacoes = fluviopolis$Est)
+#' maxAnuais(fluviopolis, col_valores = "Q")
 #'
 #' # Especificando data para começo do ano hidrológico (26 de junho):
-#' maxAnuais(valores = fluviopolis$Q, datas = fluviopolis$Data,
-#' estacoes = fluviopolis$Est, ano_hidro = "26-06")
+#' maxAnuais(fluviopolis, col_valores = "Q", ano_hidro = "26-06")
 #'
 #' @export
-maxAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
+maxAnuais <- function(dados, col_valores, ano_hidro = "01-01"){
   if (is.na(as.Date(paste0(ano_hidro, "-", 2000), "%d-%m-%Y"))){
     warning("Data para ano hidrológico inválida.")
     ano_hidro <- "01-01"
   }
-  dados <- data.frame(estacoes, datas, valores)
-  colnames(dados) <- c("Est", "Data", "Valores")
+  # Conferindo valores para col_valores
+  if (is.null(col_valores))
+    stop("Inserir argumento 'col_valores'.")
+
+  if (!is.character(col_valores))
+    stop("Inserir variável do tipo 'chr'.")
+
+  if (col_valores == "Data" || col_valores == "Est")
+    stop("Variável incorreta para 'col_valores'.")
+
+  if (!any(colnames(dados) == col_valores))
+    stop("Não há colunas com valores iguais a 'col_valores'.")
+
+  num_col_valores <- which(colnames(dados) == col_valores)
   anuais <- data.frame()
   for(i in unique(dados$Est)){
     # Criando os intervalos de datas
@@ -56,7 +64,7 @@ maxAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
                                      lubridate::year(datasAux$fim[j])),
                               lubridate::year(datasAux$inicio[j])))
       if (nrow(auxAno) != 0){
-        max_ano <- rbind(max_ano, max(auxAno$Valores))
+        max_ano <- rbind(max_ano, max(auxAno[,num_col_valores]))
       } else {
         max_ano <- rbind(max_ano, NA)
       }
@@ -71,13 +79,25 @@ maxAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
 #' @describeIn maxAnuais Função para determinar os valores mínimos anuais.
 #'
 #' @export
-minAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
+minAnuais <- function(dados, col_valores, ano_hidro = "01-01"){
   if (is.na(as.Date(paste0(ano_hidro, "-", 2000), "%d-%m-%Y"))){
     warning("Data para ano hidrológico inválida.")
     ano_hidro <- "01-01"
   }
-  dados <- data.frame(estacoes, datas, valores)
-  colnames(dados) <- c("Est", "Data", "Valores")
+  # Conferindo valores para col_valores
+  if (is.null(col_valores))
+    stop("Inserir argumento 'col_valores'.")
+
+  if (!is.character(col_valores))
+    stop("Inserir variável do tipo 'chr'.")
+
+  if (col_valores == "Data" || col_valores == "Est")
+    stop("Variável incorreta para 'col_valores'.")
+
+  if (!any(colnames(dados) == col_valores))
+    stop("Não há colunas com valores iguais a 'col_valores'.")
+
+  num_col_valores <- which(colnames(dados) == col_valores)
   anuais <- data.frame()
   for(i in unique(dados$Est)){
     # Criando os intervalos de datas
@@ -99,7 +119,7 @@ minAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
                                      lubridate::year(datasAux$fim[j])),
                               lubridate::year(datasAux$inicio[j])))
       if (nrow(auxAno) != 0){
-        min_ano <- rbind(min_ano, min(auxAno$Valores))
+        min_ano <- rbind(min_ano, min(auxAno[,num_col_valores]))
       } else {
         min_ano <- rbind(min_ano, NA)
       }
@@ -113,13 +133,25 @@ minAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
 #' @describeIn maxAnuais Função para determinar os valores médios anuais.
 #'
 #' @export
-medAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
+medAnuais <- function(dados, col_valores, ano_hidro = "01-01"){
   if (is.na(as.Date(paste0(ano_hidro, "-", 2000), "%d-%m-%Y"))){
     warning("Data para ano hidrológico inválida.")
     ano_hidro <- "01-01"
   }
-  dados <- data.frame(estacoes, datas, valores)
-  colnames(dados) <- c("Est", "Data", "Valores")
+  # Conferindo valores para col_valores
+  if (is.null(col_valores))
+    stop("Inserir argumento 'col_valores'.")
+
+  if (!is.character(col_valores))
+    stop("Inserir variável do tipo 'chr'.")
+
+  if (col_valores == "Data" || col_valores == "Est")
+    stop("Variável incorreta para 'col_valores'.")
+
+  if (!any(colnames(dados) == col_valores))
+    stop("Não há colunas com valores iguais a 'col_valores'.")
+
+  num_col_valores <- which(colnames(dados) == col_valores)
   anuais <- data.frame()
   for(i in unique(dados$Est)){
     # Criando os intervalos de datas
@@ -141,7 +173,7 @@ medAnuais <- function(valores, datas, estacoes, ano_hidro = "01-01"){
                                      lubridate::year(datasAux$fim[j])),
                               lubridate::year(datasAux$inicio[j])))
       if (nrow(auxAno) != 0){
-        med_ano <- rbind(med_ano, mean(auxAno$Valores))
+        med_ano <- rbind(med_ano, mean(auxAno[,num_col_valores]))
       } else {
         med_ano <- rbind(med_ano, NA)
       }

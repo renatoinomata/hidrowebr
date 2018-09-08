@@ -4,20 +4,14 @@
 \alias{plot_histograma}
 \title{Funções de plotagem de histogramas.}
 \usage{
-plot_histograma(valores, estacoes, tipo = "Q", colunas = 10)
+plot_histograma(dados, col_valores, colunas = 10)
 }
 \arguments{
-\item{valores}{Vetor numérico com as leituras a serem plotadas.}
+\item{dados}{Data frame com a série hidrológica a ser utilizada.}
 
-\item{estacoes}{Vetor com as estações correspondentes a cada uma das
-leituras.}
-
-\item{tipo}{Variável que corresponde ao tipo de leitura, as opções são:
-\code{Q} ou \code{P}, para vazões ou precipitações, respectivamente.}
+\item{col_valores}{O nome da coluna com os valores a serem utilizados.}
 
 \item{colunas}{Número de colunas a serem plotadas.}
-
-\item{datas}{Vetor com as datas das leituras.}
 }
 \description{
 Funções de plotagem de histogramas.
@@ -28,6 +22,6 @@ O histograma gerado separa por cores os dados por estação. Os
 }
 \examples{
 # Histograma da estação de Fluviópolis:
-plot_histograma(valores = fluviopolis$Q, estacoes = fluviopolis$Est)
+plot_histograma(fluviopolis, col_valores = "Q", colunas = 10)
 
 }

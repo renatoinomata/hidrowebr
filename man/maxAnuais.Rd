@@ -6,19 +6,16 @@
 \alias{medAnuais}
 \title{Funções para determinar os valores máximos, mínimos ou médios anuais}
 \usage{
-maxAnuais(valores, datas, estacoes, ano_hidro = "01-01")
+maxAnuais(dados, col_valores, ano_hidro = "01-01")
 
-minAnuais(valores, datas, estacoes, ano_hidro = "01-01")
+minAnuais(dados, col_valores, ano_hidro = "01-01")
 
-medAnuais(valores, datas, estacoes, ano_hidro = "01-01")
+medAnuais(dados, col_valores, ano_hidro = "01-01")
 }
 \arguments{
-\item{valores}{Vetor numérico com os valores de vazão ou precipitação.}
+\item{dados}{Data frame com a série hidrológica a ser utilizada.}
 
-\item{datas}{Vetor de datas correspondentes aos dados.}
-
-\item{estacoes}{Vetor com as correspondentes estações de cada um dos
-elementos dos vetores anteriores.}
+\item{col_valores}{O nome da coluna com os valores a serem utilizados.}
 
 \item{ano_hidro}{Variável do tipo \code{chr} que contém o dia e mês a ser
 utilizado como início do ano hidrológico. Tem como padrão o dia primeiro de
@@ -46,11 +43,9 @@ No argumento \code{ano_hidro} deve-se repassar uma variável do tipo
 
 \examples{
 # Cálculo das vazões máximas de fluviópolis:
-maxAnuais(valores = fluviopolis$Q, datas = fluviopolis$Data,
-estacoes = fluviopolis$Est)
+maxAnuais(fluviopolis, col_valores = "Q")
 
 # Especificando data para começo do ano hidrológico (26 de junho):
-maxAnuais(valores = fluviopolis$Q, datas = fluviopolis$Data,
-estacoes = fluviopolis$Est, ano_hidro = "26-06")
+maxAnuais(fluviopolis, col_valores = "Q", ano_hidro = "26-06")
 
 }

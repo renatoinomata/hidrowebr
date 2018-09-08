@@ -4,15 +4,12 @@
 \alias{plot_hidrograma}
 \title{Funções de plotagem de hidrogramas.}
 \usage{
-plot_hidrograma(valores, datas, estacoes)
+plot_hidrograma(dados, col_valores)
 }
 \arguments{
-\item{valores}{Vetor numérico com as leituras a serem plotadas.}
+\item{dados}{Data frame com a série hidrológica a ser utilizada.}
 
-\item{datas}{Vetor com as datas das leituras.}
-
-\item{estacoes}{Vetor com as estações correspondentes a cada uma das
-leituras.}
+\item{col_valores}{O nome da coluna com os valores a serem utilizados.}
 }
 \description{
 Funções de plotagem de hidrogramas.
@@ -24,7 +21,6 @@ O hidrograma gerado separa as diferentes estações por cores. Os
 }
 \examples{
 # Hidrograma da estação de Fluviópolis:
-plot_hidrograma(valores = fluviopolis$Q, datas = fluviopolis$Data,
-estacoes = fluviopolis$Est)
+plot_hidrograma(fluviopolis, col_valores = "Q")
 
 }
