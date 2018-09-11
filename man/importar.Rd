@@ -9,10 +9,14 @@ importar(arq, skip = 13)
 \arguments{
 \item{arq}{Variável do tipo \code{chr}. Corresponde ao nome ou caminho do
 arquivo a ser importado.}
+
+\item{skip}{Número de linhas a serem puladas.}
 }
 \value{
 Por meio dessa função serão importados os dados tais quais estão
-  dispostos no arquivo original do portal Hidroweb.
+  dispostos no arquivo original do portal Hidroweb. Na versão 2.0.0 do
+  Hidroweb, o número de linhas a serem puladas para arquivos de vazão é 13,
+  valor padrão do argumento \code{skip}.
 }
 \description{
 Importa os dados dos arquivos disponibilizados pela Hidroweb
