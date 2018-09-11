@@ -23,12 +23,15 @@ qperm <- function(cperm, ref){
   for (i in  1:length(est)){
     cperm_aux <- dplyr::filter(cperm, Est == est[i])
     for (j in 1:length(ref)){
-      inferior <- min(dplyr::filter(cperm, Freq <= ref[j])$Q)
-      superior <- max(dplyr::filter(cperm, Freq >= ref[j])$Q)
+      inferior <- min(dplyr::filter(dplyr::filter(cperm, Est == est[i]),
+                                    Freq <= ref[j])$Q)
+      superior <- max(dplyr::filter(dplyr::filter(cperm, Est == est[i]),
+                                    Freq >= ref[j])$Q)
       aux <- data.frame(est[i], (superior + inferior)/2, ref[j])
       qperms <- rbind(qperms, aux)
     }
   }
   names(qperms) <- c("Est", "Q", "Ref")
+  qperms$Q <- round(qperms$Q, 2)
   return(qperms)
 }
