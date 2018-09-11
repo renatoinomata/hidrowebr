@@ -64,17 +64,19 @@ descartar <- function(dados, falhas = 5, modo = "anual"){
         aux$ndias <- as.numeric(lubridate::day(aux$ndias))
         aux$mindias <- aux$ndias - ceiling(aux$ndias * falhas / 100)
         falhas_datas <- aux[which(aux$mindias > aux$obs), ]
-        falhas_datas$inicio <- as.Date(paste0(falhas_datas$ano, "-",
-                                              falhas_datas$mes, "-",
-                                      "01"),
-                               "%Y-%m-%d")
-        falhas_datas$fim <- as.Date(paste0(falhas_datas$ano, "-",
-                                    falhas_datas$mes, "-",
-                                    falhas_datas$ndias),
-                            "%Y-%m-%d")
-        for(j in 1:nrow(falhas_datas)){
-          auxEst <- dplyr::filter(auxEst, Data < falhas_datas[j, "inicio"] |
-                                    Data > falhas_datas[j, "fim"])
+        if (nrow(falhas_datas) != 0){
+          falhas_datas$inicio <- as.Date(paste0(falhas_datas$ano, "-",
+                                                falhas_datas$mes, "-",
+                                                "01"),
+                                         "%Y-%m-%d")
+          falhas_datas$fim <- as.Date(paste0(falhas_datas$ano, "-",
+                                             falhas_datas$mes, "-",
+                                             falhas_datas$ndias),
+                                      "%Y-%m-%d")
+          for(j in 1:nrow(falhas_datas)){
+            auxEst <- dplyr::filter(auxEst, Data < falhas_datas[j, "inicio"] |
+                                      Data > falhas_datas[j, "fim"])
+          }
         }
         dadosAux <- rbind(dadosAux, auxEst)
       }
