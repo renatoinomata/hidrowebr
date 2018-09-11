@@ -19,6 +19,7 @@
 #'
 #' @export
 resumoDist <- function(distProb){
+  distProb[which(is.na(distProb$KS)),]$KS <- 1
   distProb <- dplyr::summarise(dplyr::group_by(distProb, Est),
                                Dist = Dist[which.min(KS)],
                                Estimado = Estimado[which.min(KS)])
