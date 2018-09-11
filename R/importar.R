@@ -34,8 +34,8 @@ importar <- function(arq, skip = 13){
     for(i in 1:length(arq)){
       dados_aux <- readr::read_delim(arq[i],
                                      ";", escape_double = FALSE,
-                                      locale = locale(decimal_mark = ",",
-                                                      grouping_mark = "."),
+                                      locale = readr::locale(decimal_mark = ",",
+                                                             grouping_mark = "."),
                                       trim_ws = TRUE,
                                       skip = skip)
       dados <- rbind(dados, dados_aux)
