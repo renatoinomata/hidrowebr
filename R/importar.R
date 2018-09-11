@@ -5,9 +5,12 @@
 #'
 #' @param arq Variável do tipo \code{chr}. Corresponde ao nome ou caminho do
 #'   arquivo a ser importado.
+#' @param skip Número de linhas a serem puladas.
 #'
 #' @return Por meio dessa função serão importados os dados tais quais estão
-#'   dispostos no arquivo original do portal Hidroweb.
+#'   dispostos no arquivo original do portal Hidroweb. Na versão 2.0.0 do
+#'   Hidroweb, o número de linhas a serem puladas para arquivos de vazão é 13,
+#'   valor padrão do argumento \code{skip}.
 #'
 #' @export
 importar <- function(arq, skip = 13){
