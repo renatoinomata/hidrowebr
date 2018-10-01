@@ -16,6 +16,9 @@
 #'   que estiver presente no arquivo do portal Hidroweb. A partir da versão
 #'   2.0.0, o Hidroweb tem como padrão as datas na forma dd/mm/YYYY.
 #'
+#'   A função também exclui os valores repetidos. A preferência é para aqueles
+#'   que possuem nível de consistência 2 (nível consistido).
+#'
 #' @export
 organizar <- function(dados, formato_data =  c("Dia", "Mes", "Ano")){
   # Limpando os dados
@@ -24,6 +27,7 @@ organizar <- function(dados, formato_data =  c("Dia", "Mes", "Ano")){
   } else {
     valor <- "P"
   }
+  dados <- dplyr::arrange(dados, desc(NivelConsistencia))
   dados <- dados[c(1, 3, 17:47)]
   names(dados) <- c("Est", "Data", 1:31)
   dados <- tidyr::separate(dados, Data, into = formato_data)
