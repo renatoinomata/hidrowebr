@@ -25,4 +25,7 @@ Os dados brutos são organizados em uma data frame com: colunas de
   e \code{Ano}. Deve-se ordernar esses três componentes conforme a formatação
   que estiver presente no arquivo do portal Hidroweb. A partir da versão
   2.0.0, o Hidroweb tem como padrão as datas na forma dd/mm/YYYY.
+
+  A função também exclui os valores repetidos. A preferência é para aqueles
+  que possuem nível de consistência 2 (nível consistido).
 }
