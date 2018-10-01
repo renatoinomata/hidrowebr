@@ -1,6 +1,6 @@
 Package: hidrowebr
 Type: Package
-Title: hidrowebr: uma ferramenta para analise estatistica de series hidrologicas
+Title: hidrowebr: uma ferramenta para análise estatística de séries hidrológicas
 Version: 0.9.2
 Author: Renato Inomata
 Maintainer: Renato Inomata <renato.inomata@gmail.com>
