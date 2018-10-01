@@ -55,6 +55,7 @@ descartar <- function(dados, falhas = 5, modo = "anual"){
         aux$ndias <- paste0(aux$ano, "-", aux$mes, "-", aux$obs)
         aux$ndias <- as.Date(aux$ndias, "%Y-%m-%d")
         aux <- data.frame(aux)
+        aux <- aux[which(!is.na(aux$ndias)),]
         for(j in 1:nrow(aux)){
           while(lubridate::month(aux[j, "ndias"]) == aux[j, "mes"]){
             aux[j, "ndias"] <- aux[j, "ndias"] + 1
