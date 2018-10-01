@@ -1,0 +1,66 @@
+---
+title: "Hidrowebr Vignette"
+author: "Renato Inomata"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+A presente vignette apresenta um tutorial para realizar análises estatísticas.
+Em particular, será demonstrado um processo de cálculo de vazões `Q710` para a estação de Fluviópolis (código 65220000).
+
+## Pré-processamento
+Nesta etapa os dados são inseridos no hidrowebr. Utiliza-se a função de `importar` para carregar os dados brutos vindos do portal Hidroweb. A função de `organizar` organiza esses dados em uma data frame de 3 colunas: `Est`, `Data` e `Q` ou `P`.
+
+Para este tutorial, utilizou-se os dados da estação de Fluviopolis, que podem ser acessados por:
+
+    fluviopolis
+
+É bastante comum realizar o descarte de meses que apresentam falhas, dessa maneira, tem-se:
+
+    dados <- descartar(fluviopolis, falhas = 5, modo = "mensal")
+    
+No código acima, realizou-se o descarte dos meses que apresentaram mais que 5% de falhas. É possível realizar o descarte anual, bastando apenas substituir o parâmetro `modo = "mensal"` por `modo = "anual"`. Os dados foram armazenados na variável `dados`.
+
+## Processamento
+
+Para cálculo da `Q710`, necessita-se primeiro obter uma série com as vazões médias de 7 dias consecutivos. Assim:
+
+    q7 <- qx(dados, x = 7)
+    
+O parâmetro `x` refere-se ao número de dias consecutivos utilizados para realizar a média. 
+
+De posse desta série, é necessário obter as vazões mínimas anuais. Portanto:
+
+    q7min <- minAnuais(q7, col_valores = "Qx")
+    
+onde `col_valores` é o nome da coluna que apresenta os valores de vazão para a data.frame de `q7`.
+
+## Análise
+Finalmente, para o cálculo da `Q710` utilizou-se distribuições de probabilidade para estimar a vazão. Usou-se neste exemplo as distribuições Log-Normal, Weibull e Pearson III (Gamma3):
+
+    distribuicoes <- c("lnorm", "weibull", "gamma3")
+    library(FAdist)
+    distProb <- distprob(q7min, col_valores = "Minima", dist = distribuicoes, prob = 0.1)
+    
+Utilizou-se `prob = 0.1` visto que o período de retorno é T = 10 anos. Neste exemplo obteu-se: 
+
+|   Est    |  Dist   |   Coef1  |    Coef2    |     KS     | Estimado |
+|----------|---------|----------|-------------|------------|----------|
+| 65220000 | lnorm   | 4.513113 |   0.3744244 | 0.09818686 | 56.44512 |
+| 65220000 | weibull | 2.691175 | 110.1405925 | 0.14947933 | 47.72977 |
+| 65220000 | gamma3  | 7.261692 |  13.4764214 | 0.10933547 | 55.15069 |
+
+Como `KS` refere-se ao valor obtido pelo teste de Kolmogorov-Smirnov, percebe-se que a distribuição que melhor se ajustou foi a Log-Normal, uma vez que seu `KS` é o menor. Portanto, o valor para a `Q710` é igual a 56.44.
+
+Caso estivessem sendo analisadas diversas estações simultaneamente, o comando `resumoDist` pode ser útil para visualizar apenas a melhor distribuição e os valores estimados.
