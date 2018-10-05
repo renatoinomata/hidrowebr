@@ -9,12 +9,14 @@ qmlp(dados, col_valores)
 \arguments{
 \item{dados}{Data frame com a série hidrológica a ser utilizada.}
 
-\item{col_valores}{O nome da coluna com os valores a serem utilizados.
-
-#' @examples # Cálculo da vazão média de longa permanência de fluviópolis:
-qmlp(fluviopolis, col_valores = "Q")}
+\item{col_valores}{O nome da coluna com os valores a serem utilizados.}
 }
 \description{
 Calcula a vazão média de longa permanência (longo período) por
   estação.
+}
+\examples{
+# Cálculo da vazão média de longa permanência de fluviópolis:
+qmlp(fluviopolis, col_valores = "Q")
+
 }
