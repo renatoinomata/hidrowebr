@@ -28,8 +28,7 @@ São gerados: um gráfico com o histograma e densidades teóricas e um
 }
 \examples{
 # Distribuições de probabilidade para os valores máximos de Fluviópolis:
-qmax <- maxAnuais(valores = fluviopolis$Q, datas = fluviopolis$Data,
-estacoes = fluviopolis$Est)
+qmax <- maxAnuais(fluviopolis, col_valores = "Q")
 distribuicoes <- c("norm", "lnorm", "gamma3", "lgamma3")
 
 plot_dist(valores = qmax$Maxima, dist = distribuicoes)
