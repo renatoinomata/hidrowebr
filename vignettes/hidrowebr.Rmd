@@ -72,6 +72,12 @@ O cálculo da vazão média de longa permanência `Qmlp` é feito simplesmente c
 
     qmlp(fluviopolis, col_valores = "Q")
 
+O resultado obtido foi:
+
+|   Est    |  Qmlp   |
+|----------|---------|
+| 65220000 | 389.26  |
+
 # Cálculo da Q90
 
 Para calcular as vazões de permanência é necessário construir a curva de permanência:
@@ -83,3 +89,9 @@ Por padrão, será utilizado a posição de plotagem de Weibull para o cálculo 
 Assim, para o cálculo da `Q90`, basta:
 
     qperm(cPerm, 90)
+
+O resultado obtido foi:
+
+|   Est    |    Q    |    Ref   |   
+|----------|---------|----------|
+| 65220000 | 109.25  |    90    |
