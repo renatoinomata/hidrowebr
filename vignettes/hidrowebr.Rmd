@@ -4,7 +4,7 @@ author: "Renato Inomata"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{"Hidrowebr"}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -17,8 +17,9 @@ knitr::opts_chunk$set(
 ```
 
 A presente vignette apresenta um tutorial para realizar análises estatísticas.
-Em particular, será demonstrado um processo de cálculo de vazões `Q710` para a estação de Fluviópolis (código 65220000).
+Será demonstrado um processo de cálculo de vazões `Q710`, `Qmlp` e `Q90` para a estação de Fluviópolis (código 65220000).
 
+# Cálculo da Q7,10
 ## Pré-processamento
 Nesta etapa os dados são inseridos no hidrowebr. Utiliza-se a função de `importar` para carregar os dados brutos vindos do portal Hidroweb. A função de `organizar` organiza esses dados em uma data frame de 3 colunas: `Est`, `Data` e `Q` ou `P`.
 
@@ -64,3 +65,21 @@ Utilizou-se `prob = 0.1` visto que o período de retorno é T = 10 anos. Neste e
 Como `KS` refere-se ao valor obtido pelo teste de Kolmogorov-Smirnov, percebe-se que a distribuição que melhor se ajustou foi a Log-Normal, uma vez que seu `KS` é o menor. Portanto, o valor para a `Q710` é igual a 56.44.
 
 Caso estivessem sendo analisadas diversas estações simultaneamente, o comando `resumoDist` pode ser útil para visualizar apenas a melhor distribuição e os valores estimados.
+
+# Cálculo da Qmlp
+
+O cálculo da vazão média de longa permanência `Qmlp` é feito simplesmente com o comando:
+
+    qmlp(fluviopolis, col_valores = "Q")
+
+# Cálculo da Q90
+
+Para calcular as vazões de permanência é necessário construir a curva de permanência:
+
+    cPerm <- cperm(fluviopolis)
+    
+Por padrão, será utilizado a posição de plotagem de Weibull para o cálculo das frequências, mas podem ser utilizadas outras fórmulas, vide documentação da função.
+
+Assim, para o cálculo da `Q90`, basta:
+
+    qperm(cPerm, 90)
