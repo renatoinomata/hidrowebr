@@ -4,19 +4,19 @@
 \alias{qperm}
 \title{Função para cálculo de vazões de permanência}
 \usage{
-qperm(cperm, ref)
+qperm(cperm, freq)
 }
 \arguments{
 \item{cperm}{Data frame obtida pela função de \code{cperm}.}
 
-\item{ref}{Vetor numérico com as frequências para as vazões de permanência.}
+\item{freq}{Vetor numérico com as frequências para as vazões de permanência.}
 }
 \description{
 Calcula as vazões de permanência obtida após a função de
   \code{\link{cperm}}.
 }
 \details{
-As vazões de referência são calculadas como a média do valor
+As vazões de permanência são calculadas como a média do valor
   imediatamente superior e imediatamente inferior à frequência especificada.
 }
 \examples{
