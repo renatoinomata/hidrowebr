@@ -34,23 +34,3 @@ qperm <- function(cperm, freq){
   names(qperms) <- c("Est", paste0("Q", freq))
   return(qperms)
 }
-# qperm <- function(cperm, freq){
-#   est <- unique(cperm$Est)
-#   qperms <- data.frame()
-#   for (i in  1:length(est)){
-#     cperm_aux <- dplyr::filter(cperm, Est == est[i])
-#     for (j in 1:length(freq)){
-#       inferior <- min(dplyr::filter(dplyr::filter(cperm, Est == est[i]),
-#                                     Freq <= freq[j])$Q)
-#       superior <- max(dplyr::filter(dplyr::filter(cperm, Est == est[i]),
-#                                     Freq >= freq[j])$Q)
-#       aux <- data.frame(est[i], (superior + inferior)/2, freq[j])
-#       qperms <- rbind(qperms, aux)
-#     }
-#   }
-#   names(qperms) <- c("Est", "Q", "Freq")
-#   qperms$Q <- round(qperms$Q, 2)
-#   return(qperms)
-# }
-
-
