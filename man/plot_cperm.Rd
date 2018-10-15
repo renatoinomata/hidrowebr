@@ -2,7 +2,7 @@
 % Please edit documentation in R/plots.R
 \name{plot_cperm}
 \alias{plot_cperm}
-\title{Funções de plotagem de curvas de permanência}
+\title{Função de plotagem de curvas de permanência}
 \usage{
 plot_cperm(cperm, pad = FALSE)
 }
@@ -13,7 +13,7 @@ plot_cperm(cperm, pad = FALSE)
 disponíveis são \code{media}, \code{mediana} ou \code{NULL}}
 }
 \description{
-Funções de plotagem de curvas de permanência
+Função de plotagem de curvas de permanência
 }
 \details{
 A curva de permanência gerada separa as diferentes estações por

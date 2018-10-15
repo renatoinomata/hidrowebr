@@ -4,7 +4,7 @@
 \name{hidrowebr}
 \alias{hidrowebr}
 \alias{hidrowebr-package}
-\title{hidrowebr: Uma ferramenta para análise estatística de séries hidrológicas.}
+\title{hidrowebr: Uma ferramenta para análise estatística de séries hidrológicas}
 \description{
 As funções do hidrowebr são divididas em três categorias: pré-processamento,
 processamento e análise.
@@ -26,9 +26,9 @@ processamento e análise.
 \section{Análise}{
  Nessa etapa, são extraídas informações numéricas e gráficas
   acerca do conjunto de dados. Fazem parte desse grupo as funções
-  \code{\link{distprob}}, \code{\link{qperm}}, \code{\link{qmlp}},
-  \code{\link{plot_hidrograma}}, \code{\link{plot_histograma}},
-  \code{\link{plot_boxplot}}, \code{\link{plot_cperm}} e
-  \code{\link{plot_dist}}.
+  \code{\link{distprob}}, \code{\link{resumoDist}}, \code{\link{qperm}},
+  \code{\link{qmlp}}, \code{\link{plot_hidrograma}},
+  \code{\link{plot_histograma}}, \code{\link{plot_boxplot}},
+  \code{\link{plot_cperm}} e \code{\link{plot_dist}}.
 }
 

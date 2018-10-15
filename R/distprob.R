@@ -1,5 +1,5 @@
 #' Função para ajuste de distribuições de probabilidades e estimação de
-#' parâmetros.
+#' parâmetros
 #'
 #' @description Realiza os ajustes de probabilidade especificados pelo usuário e
 #'   dada a probabilidade do evento, estima o valor da precipitação/vazão.

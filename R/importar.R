@@ -1,4 +1,4 @@
-#' Função de importação dos dados de arquivos \code{txt} e \code{csv}.
+#' Função de importação dos dados de arquivos \code{txt} e \code{csv}
 #'
 #' @description Importa os dados dos arquivos disponibilizados pela Hidroweb
 #'   para o R.

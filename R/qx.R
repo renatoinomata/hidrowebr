@@ -1,4 +1,4 @@
-#' Função de vazões médias em dias consecutivos.
+#' Função de vazões médias em dias consecutivos
 #'
 #' @description Calcula a média das vazões a cada \code{x} dias consecutivos.
 #'

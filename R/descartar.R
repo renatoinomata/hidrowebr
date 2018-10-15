@@ -1,4 +1,4 @@
-#' Função de descarte de anos ou meses que apresentam falhas.
+#' Função de descarte de anos ou meses que apresentam falhas
 #'
 #' @description Descarta anos ou meses que apresentarem porcentagem de falhas
 #'   superiores às especificadas pelo usuário.

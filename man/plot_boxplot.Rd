@@ -2,7 +2,7 @@
 % Please edit documentation in R/plots.R
 \name{plot_boxplot}
 \alias{plot_boxplot}
-\title{Funções de plotagem de boxplots.}
+\title{Função de plotagem de boxplots}
 \usage{
 plot_boxplot(dados, col_valores)
 }
@@ -12,7 +12,7 @@ plot_boxplot(dados, col_valores)
 \item{col_valores}{O nome da coluna com os valores a serem utilizados.}
 }
 \description{
-Funções de plotagem de boxplots.
+Função de plotagem de boxplots
 }
 \details{
 O boxplot gerado separa os dados por estação. Os gráficos são feitos

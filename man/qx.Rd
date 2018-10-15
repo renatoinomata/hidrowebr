@@ -2,7 +2,7 @@
 % Please edit documentation in R/qx.R
 \name{qx}
 \alias{qx}
-\title{Função de vazões médias em dias consecutivos.}
+\title{Função de vazões médias em dias consecutivos}
 \usage{
 qx(dados, x = 7)
 }

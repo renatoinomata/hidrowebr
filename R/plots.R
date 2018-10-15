@@ -1,4 +1,4 @@
-#' Funções de plotagem de hidrogramas.
+#' Função de plotagem de hidrogramas
 #'
 #' @param dados Data frame com a série hidrológica a ser utilizada.
 #' @param col_valores O nome da coluna com os valores a serem utilizados.
@@ -34,7 +34,7 @@ plot_hidrograma <- function(dados, col_valores){
   return(Plot)
 }
 
-#' Funções de plotagem de curvas de permanência
+#' Função de plotagem de curvas de permanência
 #'
 #' @param cperm Data frame obtida após a função \code{\link{cperm}}.
 #' @param pad Variável para indicar a padronização das vazões. As opções
@@ -89,7 +89,7 @@ plot_cperm <- function(cperm, pad = FALSE){
   return(Plot)
 }
 
-#' Funções de plotagem de boxplots.
+#' Função de plotagem de boxplots
 #'
 #' @param dados Data frame com a série hidrológica a ser utilizada.
 #' @param col_valores O nome da coluna com os valores a serem utilizados.
@@ -128,7 +128,7 @@ plot_boxplot <- function(dados, col_valores){
   return(Plot)
 }
 
-#' Funções de plotagem de histogramas.
+#' Função de plotagem de histogramas
 #'
 #' @param dados Data frame com a série hidrológica a ser utilizada.
 #' @param col_valores O nome da coluna com os valores a serem utilizados.
@@ -171,7 +171,7 @@ plot_histograma <- function(dados, col_valores, colunas = 10){
   return(Plot)
 }
 
-#' Funções de plotagem das distribuições de probabilidade empíricas e teóricas.
+#' Função de plotagem das distribuições de probabilidade empíricas e teóricas
 #'
 #' @param valores Vetor numérico com as leituras a serem plotadas.
 #' @param dist Vetor com o nome das distribuições a serem utilizadas.

@@ -3,7 +3,7 @@
 \name{distprob}
 \alias{distprob}
 \title{Função para ajuste de distribuições de probabilidades e estimação de
-parâmetros.}
+parâmetros}
 \usage{
 distprob(dados, col_valores, dist, prob)
 }

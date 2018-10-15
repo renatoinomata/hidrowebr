@@ -2,7 +2,7 @@
 % Please edit documentation in R/plots.R
 \name{plot_dist}
 \alias{plot_dist}
-\title{Funções de plotagem das distribuições de probabilidade empíricas e teóricas.}
+\title{Função de plotagem das distribuições de probabilidade empíricas e teóricas}
 \usage{
 plot_dist(valores, dist, tipo = "Q")
 }
@@ -15,7 +15,7 @@ plot_dist(valores, dist, tipo = "Q")
 \code{Q} ou \code{P}, para vazões ou precipitações, respectivamente.}
 }
 \description{
-Funções de plotagem das distribuições de probabilidade empíricas e teóricas.
+Função de plotagem das distribuições de probabilidade empíricas e teóricas
 }
 \details{
 São gerados: um gráfico com o histograma e densidades teóricas e um

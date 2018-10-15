@@ -2,7 +2,7 @@
 % Please edit documentation in R/descartar.R
 \name{descartar}
 \alias{descartar}
-\title{Função de descarte de anos ou meses que apresentam falhas.}
+\title{Função de descarte de anos ou meses que apresentam falhas}
 \usage{
 descartar(dados, falhas = 5, modo = "anual")
 }

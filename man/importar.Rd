@@ -2,7 +2,7 @@
 % Please edit documentation in R/importar.R
 \name{importar}
 \alias{importar}
-\title{Função de importação dos dados de arquivos \code{txt} e \code{csv}.}
+\title{Função de importação dos dados de arquivos \code{txt} e \code{csv}}
 \usage{
 importar(arq, skip = 13)
 }
