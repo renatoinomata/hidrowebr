@@ -2,7 +2,7 @@
 % Please edit documentation in R/plots.R
 \name{plot_histograma}
 \alias{plot_histograma}
-\title{Função de plotagem de histogramas}
+\title{Plotagem de histogramas}
 \usage{
 plot_histograma(dados, col_valores, colunas = 10)
 }
@@ -14,7 +14,7 @@ plot_histograma(dados, col_valores, colunas = 10)
 \item{colunas}{Número de colunas a serem plotadas.}
 }
 \description{
-Função de plotagem de histogramas
+Função de plotagem de histogramas.
 }
 \details{
 O histograma gerado separa por cores os dados por estação. Os

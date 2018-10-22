@@ -1,4 +1,6 @@
-#' Função de plotagem de hidrogramas
+#' Plotagem de hidrogramas
+#'
+#' @description Função de plotagem de hidrogramas.
 #'
 #' @param dados Data frame com a série hidrológica a ser utilizada.
 #' @param col_valores O nome da coluna com os valores a serem utilizados.
@@ -34,16 +36,18 @@ plot_hidrograma <- function(dados, col_valores){
   return(Plot)
 }
 
-#' Função de plotagem de curvas de permanência
+#' Plotagem de curvas de permanência
+#'
+#' @description Função de plotagem de curvas de permanência.
 #'
 #' @param cperm Data frame obtida após a função \code{\link{cperm}}.
-#' @param pad Variável para indicar a padronização das vazões. As opções
-#'   disponíveis são \code{media}, \code{mediana} ou \code{NULL}
+#' @param pad Variável booleana para indicar se há ou não a padronização das
+#'   vazões.
 #'
 #' @details A curva de permanência gerada separa as diferentes estações por
 #'   cores. Os gráficos são feitos com auxílio do pacote
-#'   \code{\link[ggplot2]{ggplot2-package}}. A curva de permanência é plotada em escala
-#'   logarítmica.
+#'   \code{\link[ggplot2]{ggplot2-package}}. A curva de permanência é plotada em
+#'   escala logarítmica.
 #'
 #' @examples
 #' # Curva de permanência da estação de Fluviópolis:
@@ -89,7 +93,9 @@ plot_cperm <- function(cperm, pad = FALSE){
   return(Plot)
 }
 
-#' Função de plotagem de boxplots
+#' Plotagem de boxplots
+#'
+#' @description Função de plotagem de boxplots.
 #'
 #' @param dados Data frame com a série hidrológica a ser utilizada.
 #' @param col_valores O nome da coluna com os valores a serem utilizados.
@@ -128,7 +134,9 @@ plot_boxplot <- function(dados, col_valores){
   return(Plot)
 }
 
-#' Função de plotagem de histogramas
+#' Plotagem de histogramas
+#'
+#' @description Função de plotagem de histogramas.
 #'
 #' @param dados Data frame com a série hidrológica a ser utilizada.
 #' @param col_valores O nome da coluna com os valores a serem utilizados.
@@ -171,7 +179,10 @@ plot_histograma <- function(dados, col_valores, colunas = 10){
   return(Plot)
 }
 
-#' Função de plotagem das distribuições de probabilidade empíricas e teóricas
+#' Plotagem das distribuições de probabilidade empíricas e teóricas
+#'
+#' @description Função de plotagem das distribuições de probabilidade empíricas
+#'   e teóricas.
 #'
 #' @param valores Vetor numérico com as leituras a serem plotadas.
 #' @param dist Vetor com o nome das distribuições a serem utilizadas.

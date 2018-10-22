@@ -1,6 +1,6 @@
-#' Vazão média de longa permanência
+#' Vazão média de longo período
 #'
-#' @description Calcula a vazão média de longa permanência (longo período) por
+#' @description Calcula a vazão média de longo período (longa permanência) por
 #'   estação.
 #'
 #' @param dados Data frame com a série hidrológica a ser utilizada.

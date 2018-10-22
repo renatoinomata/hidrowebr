@@ -2,7 +2,7 @@
 % Please edit documentation in R/plots.R
 \name{plot_hidrograma}
 \alias{plot_hidrograma}
-\title{Função de plotagem de hidrogramas}
+\title{Plotagem de hidrogramas}
 \usage{
 plot_hidrograma(dados, col_valores)
 }
@@ -12,7 +12,7 @@ plot_hidrograma(dados, col_valores)
 \item{col_valores}{O nome da coluna com os valores a serem utilizados.}
 }
 \description{
-Função de plotagem de hidrogramas
+Função de plotagem de hidrogramas.
 }
 \details{
 O hidrograma gerado separa as diferentes estações por cores. Os

@@ -2,24 +2,24 @@
 % Please edit documentation in R/plots.R
 \name{plot_cperm}
 \alias{plot_cperm}
-\title{Função de plotagem de curvas de permanência}
+\title{Plotagem de curvas de permanência}
 \usage{
 plot_cperm(cperm, pad = FALSE)
 }
 \arguments{
 \item{cperm}{Data frame obtida após a função \code{\link{cperm}}.}
 
-\item{pad}{Variável para indicar a padronização das vazões. As opções
-disponíveis são \code{media}, \code{mediana} ou \code{NULL}}
+\item{pad}{Variável booleana para indicar se há ou não a padronização das
+vazões.}
 }
 \description{
-Função de plotagem de curvas de permanência
+Função de plotagem de curvas de permanência.
 }
 \details{
 A curva de permanência gerada separa as diferentes estações por
   cores. Os gráficos são feitos com auxílio do pacote
-  \code{\link[ggplot2]{ggplot2-package}}. A curva de permanência é plotada em escala
-  logarítmica.
+  \code{\link[ggplot2]{ggplot2-package}}. A curva de permanência é plotada em
+  escala logarítmica.
 }
 \examples{
 # Curva de permanência da estação de Fluviópolis:

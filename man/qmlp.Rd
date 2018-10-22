@@ -2,7 +2,7 @@
 % Please edit documentation in R/qmlp.R
 \name{qmlp}
 \alias{qmlp}
-\title{Vazão média de longa permanência}
+\title{Vazão média de longo período}
 \usage{
 qmlp(dados, col_valores)
 }
@@ -12,7 +12,7 @@ qmlp(dados, col_valores)
 \item{col_valores}{O nome da coluna com os valores a serem utilizados.}
 }
 \description{
-Calcula a vazão média de longa permanência (longo período) por
+Calcula a vazão média de longo período (longa permanência) por
   estação.
 }
 \examples{
