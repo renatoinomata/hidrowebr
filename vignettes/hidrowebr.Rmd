@@ -68,7 +68,7 @@ Caso estivessem sendo analisadas diversas estações simultaneamente, o comando 
 
 # Cálculo da Qmlp
 
-O cálculo da vazão média de longa permanência `Qmlp` é feito simplesmente com o comando:
+O cálculo da vazão média de longo período `Qmlp` é feito simplesmente com o comando:
 
     qmlp(fluviopolis, col_valores = "Q")
 
