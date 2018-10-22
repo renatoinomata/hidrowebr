@@ -29,6 +29,9 @@
 #'   Para a utilização das distribuições \code{gumbel}, \code{gamma3} e
 #'   \code{lgamma3} é necessário carregar o pacote \code{\link[FAdist]{FAdist}}.
 #'
+#' @details Para que as distribuições sejam ajustadas é necessário que existam
+#'   pelo menos 10 observações por estação.
+#'
 #' @return A função retornará uma data frame com as seguintes colunas:
 #'   \code{Est}, o código da estação; \code{Dist} a distribuição utilizada;
 #'   \code{Coef1} e \code{Coef2}, os parâmetros da distribuição; \code{KS} o

@@ -47,6 +47,9 @@ No argumento \code{dist} podem ser utilizadas as seguintes
 
   Para a utilização das distribuições \code{gumbel}, \code{gamma3} e
   \code{lgamma3} é necessário carregar o pacote \code{\link[FAdist]{FAdist}}.
+
+Para que as distribuições sejam ajustadas é necessário que existam
+  pelo menos 10 observações por estação.
 }
 \examples{
 # Cálculo de vazões máximas:
