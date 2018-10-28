@@ -21,9 +21,9 @@ parâmetro (vazão ou precipitação) será estimado.}
 \value{
 A função retornará uma data frame com as seguintes colunas:
   \code{Est}, o código da estação; \code{Dist} a distribuição utilizada;
-  \code{Coef1} e \code{Coef2}, os parâmetros da distribuição; \code{KS} o
-  valor obtido do teste de Kolmogorov-Smirnov; e \code{Estimado}, o valor
-  estimado para a dada probabilidade.
+  \code{Coef1}, \code{Coef2} e \code{Coef3}, os parâmetros da distribuição;
+  \code{KS} o valor obtido do teste de Kolmogorov-Smirnov; e \code{Estimado},
+  o valor estimado para a dada probabilidade.
 }
 \description{
 Realiza os ajustes de probabilidade especificados pelo usuário e

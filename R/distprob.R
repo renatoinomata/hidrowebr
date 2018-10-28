@@ -34,9 +34,9 @@
 #'
 #' @return A função retornará uma data frame com as seguintes colunas:
 #'   \code{Est}, o código da estação; \code{Dist} a distribuição utilizada;
-#'   \code{Coef1} e \code{Coef2}, os parâmetros da distribuição; \code{KS} o
-#'   valor obtido do teste de Kolmogorov-Smirnov; e \code{Estimado}, o valor
-#'   estimado para a dada probabilidade.
+#'   \code{Coef1}, \code{Coef2} e \code{Coef3}, os parâmetros da distribuição;
+#'   \code{KS} o valor obtido do teste de Kolmogorov-Smirnov; e \code{Estimado},
+#'   o valor estimado para a dada probabilidade.
 #'
 #' @examples
 #' # Cálculo de vazões máximas:
@@ -70,13 +70,15 @@ distprob <- function(dados, col_valores, dist, prob){
           gof <- fitdistrplus::gofstat(fit, fitnames = "norm")
           estimado <- qnorm(prob, mean = coef(fit)[1],
                             sd = coef(fit)[2])
-          norm <- data.frame(i, "norm", as.numeric(coef(fit)[1]),
-                             as.numeric(coef(fit)[2]), as.numeric(gof$ks),
+          norm <- data.frame(i, "norm",
+                             round(as.numeric(coef(fit)[1]), 4),
+                             round(as.numeric(coef(fit)[2]), 4),
+                             NA, as.numeric(gof$ks),
                              as.numeric(estimado))
         } else {
-          norm <- data.frame(i, "norm", NA, NA, NA, NA)
+          norm <- data.frame(i, "norm", NA, NA, NA, NA, NA)
         }
-        names(norm) <- c("Est", "Dist", "Coef1", "Coef2", "KS", "Estimado")
+        names(norm) <- c("Est", "Dist", "Coef1", "Coef2", "Coef3", "KS", "Estimado")
         distribuicao <- rbind(distribuicao, norm)
       }
 
@@ -86,30 +88,34 @@ distprob <- function(dados, col_valores, dist, prob){
           gof <- fitdistrplus::gofstat(fit, fitnames = "lnorm")
           estimado <- qlnorm(prob, meanlog = coef(fit)[1],
                              sdlog = coef(fit)[2])
-          lnorm <- data.frame(i, "lnorm", as.numeric(coef(fit)[1]),
-                              as.numeric(coef(fit)[2]), as.numeric(gof$ks),
+          lnorm <- data.frame(i, "lnorm",
+                              round(as.numeric(coef(fit)[1]), 4),
+                              round(as.numeric(coef(fit)[2]), 4),
+                              NA, as.numeric(gof$ks),
                               as.numeric(estimado))
         } else {
-          lnorm <- data.frame(i, "lnorm", NA, NA, NA, NA)
+          lnorm <- data.frame(i, "lnorm", NA, NA, NA, NA, NA)
         }
-        names(lnorm) <- c("Est", "Dist", "Coef1", "Coef2", "KS", "Estimado")
+        names(lnorm) <- c("Est", "Dist", "Coef1", "Coef2", "Coef3", "KS", "Estimado")
         distribuicao <- rbind(distribuicao, lnorm)
       }
 
       if(any(dist == "gumbel")){
         fit <- try(fitdistrplus::fitdist(valores, "gumbel",
-                                         start=list(scale=10, location=10)))
+                                         start=list(scale=1, location=0)))
         if(!assertthat::is.error(fit)){
           gof <- fitdistrplus::gofstat(fit, fitnames = "gumbel")
           estimado <- FAdist::qgumbel(prob, scale = coef(fit)[1],
                                       location = coef(fit)[2])
-          gumbel <- data.frame(i, "gumbel", as.numeric(coef(fit)[1]),
-                               as.numeric(coef(fit)[2]), as.numeric(gof$ks),
+          gumbel <- data.frame(i, "gumbel",
+                               round(as.numeric(coef(fit)[1]), 4),
+                               round(as.numeric(coef(fit)[2]), 4),
+                               NA, as.numeric(gof$ks),
                                as.numeric(estimado))
         } else {
-          gumbel <- data.frame(i, "gumbel", NA, NA, NA, NA)
+          gumbel <- data.frame(i, "gumbel", NA, NA, NA, NA, NA)
         }
-        names(gumbel) <- c("Est", "Dist", "Coef1", "Coef2", "KS", "Estimado")
+        names(gumbel) <- c("Est", "Dist", "Coef1", "Coef2", "Coef3", "KS", "Estimado")
         distribuicao <- rbind(distribuicao, gumbel)
       }
 
@@ -120,51 +126,56 @@ distprob <- function(dados, col_valores, dist, prob){
           estimado <- qweibull(prob, shape = coef(fit)[1],
                                scale = coef(fit)[2])
           weibull <- data.frame(i, "weibull", as.numeric(coef(fit)[1]),
-                                as.numeric(coef(fit)[2]), as.numeric(gof$ks),
+                                as.numeric(coef(fit)[2]), NA, as.numeric(gof$ks),
                                 as.numeric(estimado))
         } else {
-          weibull <- data.frame(i, "weibull", NA, NA, NA, NA)
+          weibull <- data.frame(i, "weibull", NA, NA, NA, NA, NA)
         }
-        names(weibull) <- c("Est", "Dist", "Coef1", "Coef2", "KS", "Estimado")
+        names(weibull) <- c("Est", "Dist", "Coef1", "Coef2", "Coef3", "KS", "Estimado")
         distribuicao <- rbind(distribuicao, weibull)
       }
 
       if(any(dist == "gamma3")){
         fit <- try(fitdistrplus::fitdist(valores, "gamma3",
-                                         start=list(shape=10, scale=10)))
+                                         start=list(shape=1, scale=1, thres = 0)))
         if(!assertthat::is.error(fit)){
           gof <- fitdistrplus::gofstat(fit, fitnames = "gamma3")
           estimado <- FAdist::qgamma3(prob, shape = coef(fit)[1],
-                                      scale = coef(fit)[2])
-          gamma3 <- data.frame(i, "gamma3", as.numeric(coef(fit)[1]),
-                               as.numeric(coef(fit)[2]), as.numeric(gof$ks),
-                               as.numeric(estimado))
+                                      scale = coef(fit)[2], thres = coef(fit)[3])
+          gamma3 <- data.frame(i, "gamma3",
+                               round(as.numeric(coef(fit)[1]), 4),
+                               round(as.numeric(coef(fit)[2]), 4),
+                               round(as.numeric(coef(fit)[3]), 4),
+                               as.numeric(gof$ks), as.numeric(estimado))
         } else {
-          gamma3 <- data.frame(i, "gamma3", NA, NA, NA, NA)
+          gamma3 <- data.frame(i, "gamma3", NA, NA, NA, NA, NA)
         }
-        names(gamma3) <- c("Est", "Dist", "Coef1", "Coef2", "KS", "Estimado")
+        names(gamma3) <- c("Est", "Dist", "Coef1", "Coef2", "Coef3", "KS", "Estimado")
         distribuicao <- rbind(distribuicao, gamma3)
       }
 
       if(any(dist == "lgamma3")){
         fit <- try(fitdistrplus::fitdist(valores, "lgamma3",
-                                         start=list(shape=10, scale=10)))
+                                         start=list(shape=1, scale=1, thres = 0)))
         if(!assertthat::is.error(fit)){
           gof <- fitdistrplus::gofstat(fit, fitnames = "lgamma3")
           estimado <- FAdist::qlgamma3(prob, shape = coef(fit)[1],
-                                       scale = coef(fit)[2])
-          lgamma3 <- data.frame(i, "lgamma3", as.numeric(coef(fit)[1]),
-                                as.numeric(coef(fit)[2]), as.numeric(gof$ks),
+                                       scale = coef(fit)[2], thres = coef(fit)[3])
+          lgamma3 <- data.frame(i, "lgamma3",
+                                round(as.numeric(coef(fit)[1]), 4),
+                                round(as.numeric(coef(fit)[2]), 4),
+                                round(as.numeric(coef(fit)[3]), 4),
+                                as.numeric(gof$ks),
                                 as.numeric(estimado))
         } else {
-          lgamma3 <- data.frame(i, "lgamma3", NA, NA, NA, NA)
+          lgamma3 <- data.frame(i, "lgamma3", NA, NA, NA, NA, NA)
         }
-        names(lgamma3) <- c("Est", "Dist", "Coef1", "Coef2", "KS", "Estimado")
+        names(lgamma3) <- c("Est", "Dist", "Coef1", "Coef2", "Coef3", "KS", "Estimado")
         distribuicao <- rbind(distribuicao, lgamma3)
       }
     } else {
-      noDist <- data.frame(i, "número de observações insuficientes", NA, NA, NA, NA)
-      names(noDist) <- c("Est", "Dist", "Coef1", "Coef2", "KS", "Estimado")
+      noDist <- data.frame(i, "número de observações insuficientes", NA, NA, NA, NA, NA)
+      names(noDist) <- c("Est", "Dist", "Coef1", "Coef2", "Coef3", "KS", "Estimado")
       distribuicao <- rbind(distribuicao, noDist)
     }
   }
