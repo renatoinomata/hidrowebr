@@ -179,5 +179,10 @@ distprob <- function(dados, col_valores, dist, prob){
       distribuicao <- rbind(distribuicao, noDist)
     }
   }
+  distribuicao$Coef1 <- round(distribuicao$Coef1, 4)
+  distribuicao$Coef2 <- round(distribuicao$Coef2, 4)
+  distribuicao$Coef3 <- round(distribuicao$Coef3, 4)
+  distribuicao$KS <- round(distribuicao$KS, 4)
+  distribuicao$Estimado <- round(distribuicao$Estimado, 2)
   return(distribuicao)
 }
