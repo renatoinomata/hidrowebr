@@ -156,7 +156,7 @@ distprob <- function(dados, col_valores, dist, prob){
 
       if(any(dist == "lgamma3")){
         fit <- try(fitdistrplus::fitdist(valores, "lgamma3",
-                                         start=list(shape=1, scale=1, thres = 0)))
+                                         start=list(shape=1, scale=1, thres = 1)))
         if(!assertthat::is.error(fit)){
           gof <- fitdistrplus::gofstat(fit, fitnames = "lgamma3")
           estimado <- FAdist::qlgamma3(prob, shape = coef(fit)[1],

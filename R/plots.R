@@ -247,7 +247,7 @@ plot_dist <- function(valores, dist, tipo = "Q"){
 
   if(any(dist == "lgamma3")){
     distr[[i]] <- fitdistrplus::fitdist(valores, "lgamma3",
-                                      start = c(shape = 1, scale = 1, thres = 0))
+                                      start = c(shape = 1, scale = 1, thres = 1))
     i <- i + 1
   }
 
