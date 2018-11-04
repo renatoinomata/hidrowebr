@@ -240,15 +240,23 @@ plot_dist <- function(valores, dist, tipo = "Q"){
   }
 
   if(any(dist == "gamma3")){
-    distr[[i]] <- fitdistrplus::fitdist(valores, "gamma3",
-                                        start = list(shape = 1, scale = 1, thres = 0))
+    distr[[i]] <- try(fitdistrplus::fitdist(valores, "gamma3",
+                                        start = list(shape = 1, scale = 1, thres = 0)))
+    if(!assertthat::is.error(distr[[i]])){
     i <- i + 1
+    } else {
+      dist <- dist[-i]
+    }
   }
 
   if(any(dist == "lgamma3")){
-    distr[[i]] <- fitdistrplus::fitdist(valores, "lgamma3",
-                                      start = list(shape = 1, scale = 1, thres = 1))
+    distr[[i]] <- try(fitdistrplus::fitdist(valores, "lgamma3",
+                                      start = list(shape = 1, scale = 1, thres = 1)))
+    if(!assertthat::is.error(distr[[i]])){
     i <- i + 1
+    } else {
+      dist <- dist[-i]
+    }
   }
 
   densPlot <- fitdistrplus::denscomp(distr, legendtext = dist,
