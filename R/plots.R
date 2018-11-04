@@ -245,6 +245,7 @@ plot_dist <- function(valores, dist, tipo = "Q"){
     if(!assertthat::is.error(distr[[i]])){
     i <- i + 1
     } else {
+      distr[[i]] <- NULL
       dist <- dist[-i]
     }
   }
@@ -255,6 +256,7 @@ plot_dist <- function(valores, dist, tipo = "Q"){
     if(!assertthat::is.error(distr[[i]])){
     i <- i + 1
     } else {
+      distr[[i]] <- NULL
       dist <- dist[-i]
     }
   }
