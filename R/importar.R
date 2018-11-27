@@ -13,7 +13,7 @@
 #'   valor padrão do argumento \code{skip}.
 #'
 #' @export
-importar <- function(arq, skip = 13){
+importar <- function(arq, skip = 9){
   # Verificação do tipo de arquivo
   if(!is.character(arq))
     stop("Variável não é do tipo chr.", call. = FALSE)
