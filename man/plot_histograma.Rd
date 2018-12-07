@@ -4,7 +4,7 @@
 \alias{plot_histograma}
 \title{Plotagem de histogramas}
 \usage{
-plot_histograma(dados, col_valores, colunas = 10)
+plot_histograma(dados, col_valores, colunas = 10, legenda = "Q/P")
 }
 \arguments{
 \item{dados}{Data frame com a série hidrológica a ser utilizada.}
@@ -12,16 +12,19 @@ plot_histograma(dados, col_valores, colunas = 10)
 \item{col_valores}{O nome da coluna com os valores a serem utilizados.}
 
 \item{colunas}{Número de colunas a serem plotadas.}
+
+\item{legenda}{Variável que corresponde à legenda dos gráficos (eixo x).}
 }
 \description{
 Função de plotagem de histogramas.
 }
 \details{
 O histograma gerado separa por cores os dados por estação. Os
-  gráficos são feitos com auxílio do pacote \code{\link[ggplot2]{ggplot2-package}}.
+  gráficos são feitos com auxílio do pacote
+  \code{\link[ggplot2]{ggplot2-package}}.
 }
 \examples{
 # Histograma da estação de Fluviópolis:
-plot_histograma(fluviopolis, col_valores = "Q", colunas = 10)
+plot_histograma(fluviopolis, col_valores = "Q", colunas = 10, legenda = "Q (m³/s)")
 
 }

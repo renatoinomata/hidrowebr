@@ -4,15 +4,14 @@
 \alias{plot_dist}
 \title{Plotagem das distribuições de probabilidade empíricas e teóricas}
 \usage{
-plot_dist(valores, dist, tipo = "Q")
+plot_dist(valores, dist, legenda = "Q/P")
 }
 \arguments{
 \item{valores}{Vetor numérico com as leituras a serem plotadas.}
 
 \item{dist}{Vetor com o nome das distribuições a serem utilizadas.}
 
-\item{tipo}{Variável que corresponde ao tipo de leitura, as opções são:
-\code{Q} ou \code{P}, para vazões ou precipitações, respectivamente.}
+\item{legenda}{Variável que corresponde à legenda dos gráficos (eixo x).}
 }
 \description{
 Função de plotagem das distribuições de probabilidade empíricas
@@ -26,12 +25,4 @@ São gerados: um gráfico com o histograma e densidades teóricas e um
   \code{\link[fitdistrplus]{cdfcomp}}. As distribuições suportadas são as
   mesmas da função \code{\link{distprob}}, sendo necessário carregar o pacote
   \code{FAdist} para o uso de algumas distribuições.
-}
-\examples{
-# Distribuições de probabilidade para os valores máximos de Fluviópolis:
-qmax <- maxAnuais(fluviopolis, col_valores = "Q")
-distribuicoes <- c("norm", "lnorm", "gamma3", "lgamma3")
-
-plot_dist(valores = qmax$Maxima, dist = distribuicoes)
-
 }

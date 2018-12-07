@@ -4,12 +4,14 @@
 \alias{plot_boxplot}
 \title{Plotagem de boxplots}
 \usage{
-plot_boxplot(dados, col_valores)
+plot_boxplot(dados, col_valores, legenda = "Q/P")
 }
 \arguments{
 \item{dados}{Data frame com a série hidrológica a ser utilizada.}
 
 \item{col_valores}{O nome da coluna com os valores a serem utilizados.}
+
+\item{legenda}{Variável que corresponde à legenda dos gráficos (eixo y).}
 }
 \description{
 Função de plotagem de boxplots.

@@ -99,6 +99,7 @@ plot_cperm <- function(cperm, pad = FALSE){
 #'
 #' @param dados Data frame com a série hidrológica a ser utilizada.
 #' @param col_valores O nome da coluna com os valores a serem utilizados.
+#' @param legenda Variável que corresponde à legenda dos gráficos (eixo y).
 #'
 #' @details O boxplot gerado separa os dados por estação. Os gráficos são feitos
 #'   com auxílio do pacote \code{\link[ggplot2]{ggplot2-package}}.
@@ -108,7 +109,7 @@ plot_cperm <- function(cperm, pad = FALSE){
 #' plot_boxplot(fluviopolis, col_valores = "Q")
 #'
 #' @export
-plot_boxplot <- function(dados, col_valores){
+plot_boxplot <- function(dados, col_valores, legenda = "Q/P"){
   # Conferindo valores para col_valores
   if (is.null(col_valores))
     stop("Inserir argumento 'col_valores'.")
@@ -129,7 +130,7 @@ plot_boxplot <- function(dados, col_valores){
   Plot <- ggplot2::ggplot(dados, ggplot2::aes(x = Est, y = Valores)) +
     ggplot2::geom_boxplot() +
     ggplot2::theme_bw() +
-    ggplot2::labs(title = "Boxplot", x = "Est", y = col_valores)
+    ggplot2::labs(title = "Boxplot", x = "Est", y = legenda)
 
   return(Plot)
 }
@@ -141,16 +142,18 @@ plot_boxplot <- function(dados, col_valores){
 #' @param dados Data frame com a série hidrológica a ser utilizada.
 #' @param col_valores O nome da coluna com os valores a serem utilizados.
 #' @param colunas Número de colunas a serem plotadas.
+#' @param legenda Variável que corresponde à legenda dos gráficos (eixo x).
 #'
 #' @details O histograma gerado separa por cores os dados por estação. Os
-#'   gráficos são feitos com auxílio do pacote \code{\link[ggplot2]{ggplot2-package}}.
+#'   gráficos são feitos com auxílio do pacote
+#'   \code{\link[ggplot2]{ggplot2-package}}.
 #'
 #' @examples
 #' # Histograma da estação de Fluviópolis:
-#' plot_histograma(fluviopolis, col_valores = "Q", colunas = 10)
+#' plot_histograma(fluviopolis, col_valores = "Q", colunas = 10, legenda = "Q (m³/s)")
 #'
 #' @export
-plot_histograma <- function(dados, col_valores, colunas = 10){
+plot_histograma <- function(dados, col_valores, colunas = 10, legenda = "Q/P"){
   # Conferindo valores para col_valores
   if (is.null(col_valores))
     stop("Inserir argumento 'col_valores'.")
@@ -165,17 +168,17 @@ plot_histograma <- function(dados, col_valores, colunas = 10){
     stop("Não há colunas com valores iguais a 'col_valores'.")
 
   # Reconstruindo dados
-  dados <- data.frame(dados$Est, dados$Data, dados[col_valores])
-  colnames(dados) <- c("Est", "Data", "Valores")
+  dados <- data.frame(dados$Est, dados[col_valores])
+  colnames(dados) <- c("Est", "Valores")
 
   est <- unique(dados$Est)
   Plot <- ggplot2::ggplot(dados, ggplot2::aes(x = Valores)) +
-    ggplot2::geom_histogram(alpha = 1/length(est),
+    ggplot2::geom_histogram(alpha = 0.75,
                               position = "identity",
                               ggplot2::aes(fill = Est),
                               bins = colunas) +
     ggplot2::theme_bw() +
-    ggplot2::labs(title = "Histograma", x = col_valores, y = "n")
+    ggplot2::labs(title = "Histograma", x = legenda, y = "Número de observações")
   return(Plot)
 }
 
@@ -186,8 +189,7 @@ plot_histograma <- function(dados, col_valores, colunas = 10){
 #'
 #' @param valores Vetor numérico com as leituras a serem plotadas.
 #' @param dist Vetor com o nome das distribuições a serem utilizadas.
-#' @param tipo Variável que corresponde ao tipo de leitura, as opções são:
-#'   \code{Q} ou \code{P}, para vazões ou precipitações, respectivamente.
+#' @param legenda Variável que corresponde à legenda dos gráficos (eixo x).
 #'
 #' @details São gerados: um gráfico com o histograma e densidades teóricas e um
 #'   gráfico com as funções de probabilidade empíricas e teóricas. Os gráficos
@@ -202,10 +204,10 @@ plot_histograma <- function(dados, col_valores, colunas = 10){
 #' qmax <- maxAnuais(fluviopolis, col_valores = "Q")
 #' distribuicoes <- c("norm", "lnorm", "gamma3", "lgamma3")
 #'
-#' plot_dist(valores = qmax$Maxima, dist = distribuicoes)
+#' plot_dist(valores = qmax$Maxima, dist = distribuicoes, legenda = "Q (m³/s))
 #'
 #' @export
-plot_dist <- function(valores, dist, tipo = "Q"){
+plot_dist <- function(valores, dist, legenda = "Q/P"){
   for (i in 1:length(dist)){
     if(all(dist[i] != c("norm", "lnorm", "gumbel", "weibull", "gamma3", "lgamma3")))
       stop("Valores incorretos para o parâmetro dist")
@@ -267,10 +269,7 @@ plot_dist <- function(valores, dist, tipo = "Q"){
     ggplot2::labs(title = "Histograma e densidades teóricas") +
     ggplot2::ylab("Densidade")
 
-  if(tipo == "Q")
-    densPlot <- densPlot + ggplot2::xlab("Q (m³/s)")
-  if(tipo == "P")
-    densPlot <- densPlot + ggplot2::xlab("P (mm)")
+    densPlot <- densPlot + ggplot2::xlab(legenda)
 
   cdfPlot <- fitdistrplus::cdfcomp(distr, legendtext = dist,
                                    plotstyle = "ggplot") +
@@ -278,10 +277,7 @@ plot_dist <- function(valores, dist, tipo = "Q"){
     ggplot2::labs(title = "Funções de probabilidades empíricas e teóricas") +
     ggplot2::ylab("Probabilidade")
 
-  if(tipo == "Q")
-    cdfPlot <- cdfPlot + ggplot2::xlab("Q (m³/s)")
-  if(tipo == "P")
-    cdfPlot <- cdfPlot + ggplot2::xlab("P (mm)")
+    cdfPlot <- cdfPlot + ggplot2::xlab(legenda)
 
   Plot <- list(densPlot, cdfPlot)
 

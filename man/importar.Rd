@@ -4,7 +4,7 @@
 \alias{importar}
 \title{Função de importação dos dados de arquivos \code{txt} e \code{csv}}
 \usage{
-importar(arq, skip = 13)
+importar(arq, skip = 9)
 }
 \arguments{
 \item{arq}{Variável do tipo \code{chr}. Corresponde ao nome ou caminho do
